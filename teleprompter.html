@@ -59,13 +59,13 @@
     <div class="step">
         <h3><span class="step-number">1</span> Agent Engine</h3>
         <div class="script-box">
-            "We're going to install an AI agent on your server. Think of it as a digital employee that works 24/7. There are two engines to choose from — the difference is what they're <em>bad</em> at."<br><br>
+            "We're going to install an AI agent on your server. Think of it as a digital employee that works 24/7. There are two engines — the difference is what they're <em>bad</em> at."<br><br>
 
-            <strong>"Hermes</strong> is your operations manager. It's great at managing systems, sending you messages, running background tasks, and talking to APIs. Its weakness: it's not a data scientist. It won't train machine learning models or do heavy number-crunching."<br><br>
+            <strong>"Hermes</strong> is your operations manager. Great at managing systems, sending you messages, running background tasks, and talking to APIs. Its weakness: it's not a data scientist. It won't train ML models or do heavy number-crunching."<br><br>
 
-            <strong>"OpenClaw</strong> is your data scientist. It's built for Python, machine learning, and complex computation. Its weakness: it's heavier, uses more RAM, and isn't as snappy for day-to-day admin tasks."<br><br>
+            <strong>"OpenClaw</strong> is your data scientist. Built for Python, machine learning, and complex computation. Its weakness: it's heavier, uses more RAM, and isn't as snappy for day-to-day admin tasks."<br><br>
 
-            "<strong>For most people, Hermes is the right call.</strong> It's lighter, faster, and does 90% of what you'd want. OpenClaw is the choice if you specifically need data science or ML workloads."
+            "<strong>For most people, Hermes is the right call.</strong> It's lighter, faster, and does 90% of what you'd want. OpenClaw is the choice if you specifically need data science or ML."
         </div>
         <div class="action-box">
             <h4>🖱️ Select Agent</h4>
@@ -103,17 +103,20 @@
         <div class="script-box">
             "The brain is the AI model that powers your agent. We access all models through <strong>OpenRouter</strong> — one API key, every model. Two tiers:"<br><br>
 
-            <strong>"Claude Sonnet 4</strong> is the best reasoning engine available. Flawless code, complex logic, nuanced writing. It costs more per request — roughly $15-$30/month with typical usage."<br><br>
+            <strong>"Top tier: Claude Opus 4.7 or GPT 5.5.</strong> These are the smartest models on the planet right to. Flawless code, complex reasoning, nuanced decisions. Roughly $15-30/month with typical usage."<br><br>
 
-            <strong>"Gemini 2.5 Flash</strong> is the workhorse. Extremely fast, excellent at most tasks, and costs a fraction — roughly $3-$8/month. It's not quite as sharp on complex reasoning, but it's really good."<br><br>
+            <strong>"Mid tier: Claude Sonnet 4.6 or Gemini 2.5 Pro.</strong> Excellent at almost everything — code, writing, analysis. Not quite as sharp as Opus/GPT-5.5 on the hardest problems, but honestly? For 95% of tasks you won't notice a difference. Roughly $5-15/month."<br><br>
 
-            "<strong>My recommendation: start with Gemini Flash.</strong> It's more than enough for daily work. Your agent can always switch to Claude later for specific tasks — it's smart enough to pick the right model for the job. But if you want the absolute best from day one, go Claude."
+            "<strong>My recommendation: start mid tier.</strong> It's genuinely great. Your agent can upgrade to top tier later for specific heavy tasks — it's smart enough to pick the right model for the job. But if you want the absolute best from day one, go top tier."
         </div>
         <div class="action-box">
-            <h4>🖱️ Select Model</h4>
+            <h4>🖱️ Select Model Tier</h4>
             <div class="radio-group">
-                <label class="radio-option selected"><input type="radio" name="model" value="google/gemini-2.5-flash" checked onchange="updateAll()"> <strong>Gemini 2.5 Flash</strong> — Fast & excellent value <span style="color: #888; font-size: 0.85em;">(~$3-8/mo, recommended)</span></label>
-                <label class="radio-option"><input type="radio" name="model" value="anthropic/claude-sonnet-4" onchange="updateAll()"> <strong>Claude Sonnet 4</strong> — Best reasoning available <span style="color: #888; font-size: 0.85em;">(~$15-30/mo)</span></label>
+                <label class="radio-option selected"><input type="radio" name="model" value="mid" checked onchange="updateAll()"> <strong>Mid Tier</strong> — Sonnet 4.6 / Gemini 2.5 Pro <span style="color: #888; font-size: 0.85em;">(~$5-15/mo, recommended)</span></label>
+                <label class="radio-option"><input type="radio" name="model" value="top" onchange="updateAll()"> <strong>Top Tier</strong> — Opus 4.7 / GPT 5.5 <span style="color: #888; font-size: 0.85em;">(~$15-30/mo)</span></label>
+            </div>
+            <div class="info-box" style="margin-top: 10px;">
+                <strong>💡 Note:</strong> Your agent can switch between models at any time. This just sets the default. As it learns your needs, it'll pick the right model for each task automatically.
             </div>
         </div>
     </div>
@@ -133,7 +136,6 @@
             <strong>⏱ Note:</strong> VPS provisioning takes 15-30 minutes on Contabo (instant on Vultr). We'll set up the other accounts while we wait.
         </div>
 
-        <!-- Contabo instructions -->
         <div id="vps-contabo">
             <p><strong>Have them share their screen. Walk through this together:</strong></p>
             <ol>
@@ -151,7 +153,6 @@
             </ol>
         </div>
 
-        <!-- Vultr instructions -->
         <div id="vps-vultr" class="hidden">
             <p><strong>Have them share their screen. Walk through this together:</strong></p>
             <ol>
@@ -177,19 +178,33 @@
         <div class="script-box">
             "Your agent talks to you through Telegram — like texting a friend. We need to create a bot for it. This takes about 2 minutes."
         </div>
-        <p><strong>Walk them through this:</strong></p>
         <ol>
             <li>Open Telegram on their phone (or <code>web.telegram.org</code> on desktop)</li>
             <li>Search for <strong>@BotFather</strong> and start a chat</li>
             <li>Type <code>/newbot</code> and send it</li>
             <li>BotFather asks for a <strong>name</strong>: suggest something like <code>"My AI Assistant"</code> (this is the display name)</li>
-            <li>BotFather asks for a <strong>username</strong>: must end in <code>bot</code>. Suggest <code>"theirname_agent_bot"</code> or similar</li>
-            <li>BotFather replies with a <strong>token</strong> — it looks like <code>123456789:ABCdefGHIjklMNOpqrsTUVwxyz</code></li>
-            <li><strong>Have them save it in notepad:</strong><br>
+            <li>BotFather asks for a <strong>username</strong>: must end in <code>bot</code>. Suggest <code>"theirname_agent_bot"</code></li>
+            <li>BotFather replies with a <strong>token</strong> — looks like <code>123456789:ABCdefGHIjklMNOpqrsTUVwxyz</code></li>
+            <li><strong>Save in notepad:</strong><br>
                 <code>Telegram Bot Token: _______________</code></li>
         </ol>
         <div class="warning-box">
-            <strong>⚠️ Tell them:</strong> "This token is like a password for your bot. Don't share it publicly. Save it in your notepad."
+            <strong>⚠️ Tell them:</strong> "This token is like a password for your bot. Don't share it publicly."
+        </div>
+
+        <h4 style="margin-top: 20px;">Now get their Telegram User ID:</h4>
+        <div class="script-box">
+            "One more thing — I need your Telegram user ID so the bot knows to talk to <em>you</em> and not strangers. This takes 10 seconds."
+        </div>
+        <ol>
+            <li>In Telegram, search for <strong>@userinfobot</strong></li>
+            <li>Start a chat and send <code>/start</code></li>
+            <li>It replies with a <strong>numeric ID</strong> (something like <code>8164757328</code>)</li>
+            <li><strong>Save in notepad:</strong><br>
+                <code>Telegram User ID: _______________</code></li>
+        </ol>
+        <div class="info-box">
+            <strong>💡 Explain:</strong> "This ID is how your bot knows it's you. Without it, anyone could talk to your agent."
         </div>
     </div>
 
@@ -199,7 +214,6 @@
         <div class="script-box">
             "Now we need to connect the brain. OpenRouter is like a universal adapter — one account, every AI model. You're going to add $10 in credits to start."
         </div>
-        <p><strong>Walk them through this:</strong></p>
         <ol>
             <li>Go to <code>openrouter.ai</code> and sign up (Google/GitHub login works)</li>
             <li>Click the <strong>Wallet/Credits</strong> icon in the top right</li>
@@ -218,7 +232,7 @@
                 <code>OpenRouter API Key: _______________</code></li>
         </ol>
         <div class="info-box">
-            <strong>💡 Explain:</strong> "With auto-refill, you'll spend roughly $3-8/month on the AI brain. That's it. No subscription, no markup — you're paying the AI provider directly."
+            <strong>💡 Explain:</strong> "With auto-refill, you'll spend roughly $5-15/month on the AI brain. That's it. No subscription, no markup — you're paying the AI provider directly."
         </div>
     </div>
 
@@ -228,21 +242,19 @@
         <div class="script-box">
             "GitHub is where your agent stores code and projects. Think of it as Google Drive, but for software. Even if you've never used it, your agent needs it to build things for you."
         </div>
-        <p><strong>Walk them through this:</strong></p>
         <ol>
             <li>Go to <code>github.com</code> and <strong>sign up</strong> (free account is fine)</li>
             <li>Choose the <strong>Free</strong> plan</li>
             <li>Verify their email</li>
             <li><strong>Create a Personal Access Token</strong> (this lets the agent manage repos):
                 <ul style="margin-top: 5px;">
-                    <li>Click their profile picture (top right) → <strong>Settings</strong></li>
+                    <li>Click profile picture (top right) → <strong>Settings</strong></li>
                     <li>Scroll down to <strong>Developer settings</strong> (left sidebar)</li>
-                    <li>Click <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong></li>
+                    <li><strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong></li>
                     <li>Click <strong>Generate new token</strong> → <strong>Generate new token (classic)</strong></li>
                     <li><strong>Note:</strong> <code>VPS Agent</code></li>
-                    <li><strong>Expiration:</strong> <code>90 days</code> (you can renew later)</li>
-                    <li style="color: red; font-weight: bold;">⚠️ <strong>Scopes — check these:</strong>
-                        <code>repo</code>, <code>workflow</code>, <code>read:org</code></li>
+                    <li><strong>Expiration:</strong> <code>90 days</code> (renew later)</li>
+                    <li style="color: red; font-weight: bold;">⚠️ <strong>Scopes — check these:</strong> <code>repo</code>, <code>workflow</code>, <code>read:org</code></li>
                     <li>Click <strong>Generate token</strong></li>
                 </ul>
             </li>
@@ -251,7 +263,7 @@
                 <code>GitHub Token: _______________</code></li>
         </ol>
         <div class="info-box">
-            <strong>💡 Why this matters:</strong> "With this token, your agent can create repositories, push code, and manage projects on your behalf. When it builds something for you, it saves it to GitHub automatically."
+            <strong>💡 Why this matters:</strong> "With this token, your agent can create repos, push code, and manage projects on your behalf. When it builds something, it saves it to GitHub automatically."
         </div>
     </div>
 
@@ -261,7 +273,6 @@
         <div class="script-box">
             "Vercel is where your agent deploys websites and web apps. When your agent builds something, this is where it goes live. Free tier is plenty to start."
         </div>
-        <p><strong>Walk them through this:</strong></p>
         <ol>
             <li>Go to <code>vercel.com</code> and click <strong>Sign Up</strong></li>
             <li><strong>Sign in with GitHub</strong> (use the account they just created) — this auto-connects the two</li>
@@ -271,7 +282,7 @@
                 <code>Vercel Account: connected to GitHub ✓</code></li>
         </ol>
         <div class="info-box">
-            <strong>💡 How it works:</strong> "When your agent builds a website, it pushes the code to GitHub, which automatically deploys to Vercel. You get a live URL instantly. Free tier includes 100GB bandwidth — more than enough."
+            <strong>💡 How it works:</strong> "When your agent builds a website, it pushes the code to GitHub, which auto-deploys to Vercel. You get a live URL instantly. Free tier: 100GB bandwidth."
         </div>
     </div>
 
@@ -280,60 +291,18 @@
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <div class="phase-header">
         <h2>PHASE 3: DEPLOY</h2>
-        <p>Paste credentials, run the script. ~2 minutes.</p>
+        <p>Customer fills in credentials at top of script, pastes into SSH. ~2 minutes.</p>
     </div>
 
-    <!-- CREDENTIALS -->
     <div class="step">
         <div class="script-box">
-            "Alright, we've got everything set up. Now I need you to <strong>paste your credentials from your notepad</strong> into this chat so I can build the install script. Don't worry — I'm injecting them directly into your server, not storing them anywhere."
+            "Alright, we've got everything. I'm going to give you an install script. It has <strong>4 blanks at the top</strong> — fill those in with the credentials from your notepad, then paste the whole thing into your SSH terminal. It takes about 60 seconds."
         </div>
         <div class="action-box">
-            <h4>🖱️ Paste Credentials</h4>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: bold;">OpenRouter API Key:</label>
-                    <input type="password" id="openrouter_key" placeholder="sk-or-v1-..." oninput="generateScript()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; box-sizing: border-box; margin-top: 5px;">
-                </div>
-                <div style="flex: 1; min-width: 250px;" class="hermes-only">
-                    <label style="font-weight: bold;">Telegram Bot Token:</label>
-                    <input type="password" id="telegram_token" placeholder="123456789:ABCDEF..." oninput="generateScript()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; box-sizing: border-box; margin-top: 5px;">
-                </div>
-            </div>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: bold;">GitHub Username:</label>
-                    <input type="text" id="github_user" placeholder="username" oninput="generateScript()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; box-sizing: border-box; margin-top: 5px;">
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: bold;">GitHub Token:</label>
-                    <input type="password" id="github_token" placeholder="ghp_..." oninput="generateScript()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; box-sizing: border-box; margin-top: 5px;">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DEPLOY SCRIPT -->
-    <div class="step">
-        <div class="script-box">
-            "I'm compiling the deployment script now. I'm going to paste it into your SSH terminal. Give it about 60 seconds — it installs the agent, wires up Telegram, and connects GitHub."
-        </div>
-        <div class="action-box">
-            <h4>🖱️ Copy & Run</h4>
-            <p>Paste this into the client's SSH terminal:</p>
-            <button class="btn" onclick="copyScript()">📋 Copy Bash Script to Clipboard</button>
+            <h4>🖱️ Copy & Give to Customer</h4>
+            <p>Customer fills in the 4 lines at the top, then pastes the whole script into SSH:</p>
+            <button class="btn" onclick="copyScript()">📋 Copy Install Script to Clipboard</button>
             <div id="output"></div>
-        </div>
-    </div>
-
-    <!-- TELEGRAM USER ID -->
-    <div class="step hermes-only">
-        <div class="warning-box">
-            <strong>⚠️ Before testing — get their Telegram User ID:</strong><br>
-            Tell them: <em>"Search <strong>@userinfobot</strong> in Telegram, send /start, it replies with your numeric ID."</em><br><br>
-            Once you have it, SSH in and run:<br>
-            <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">sed -i 's/REPLACE_WITH_USER_ID/THEIR_NUMERIC_ID/' ~/.hermes/.env</code><br>
-            <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">hermes gateway restart</code>
         </div>
     </div>
 
@@ -349,11 +318,11 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <!-- PHASE 4: REFERENCE (post-call) -->
+    <!-- PHASE 4: REFERENCE -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <div class="phase-header">
         <h2>REFERENCE: Concepts to Plant (Before Ending Call)</h2>
-        <p>Teach these briefly during the call. Seeds for Calls 2-4.</p>
+        <p>Teach these briefly. Seeds for Calls 2-4.</p>
     </div>
 
     <div class="step" style="border-left: 4px solid #dc3545; background: #fff5f5;">
@@ -430,16 +399,16 @@
             const agent = document.querySelector('input[name="agent_type"]:checked').value;
             const provider = document.querySelector('input[name="provider"]:checked').value;
 
-            // Update radio button styling
+            // Update radio styling
             document.querySelectorAll('.radio-option').forEach(el => el.classList.remove('selected'));
             document.querySelectorAll('input:checked').forEach(el => el.closest('.radio-option').classList.add('selected'));
 
-            // Show/hide Hermes-only sections
+            // Hermes-only sections
             document.querySelectorAll('.hermes-only').forEach(el => {
                 el.classList.toggle('hidden', agent !== 'hermes');
             });
 
-            // Show/hide VPS instructions
+            // VPS instructions
             document.getElementById('vps-contabo').classList.toggle('hidden', provider !== 'contabo');
             document.getElementById('vps-vultr').classList.toggle('hidden', provider !== 'vultr');
 
@@ -449,18 +418,43 @@
         function generateScript() {
             const agent = document.querySelector('input[name="agent_type"]:checked').value;
             const provider = document.querySelector('input[name="provider"]:checked').value;
-            const model = document.querySelector('input[name="model"]:checked').value;
-            const openrouter = document.getElementById('openrouter_key').value || 'YOUR_OPENROUTER_KEY_HERE';
-            const tg_token = document.getElementById('telegram_token').value || '';
-            const gh_user = document.getElementById('github_user').value || '';
-            const gh_token = document.getElementById('github_token').value || '';
+            const tier = document.querySelector('input[name="model"]:checked').value;
+
+            // Pick default model per tier
+            const modelMap = {
+                'mid': 'anthropic/claude-sonnet-4.6',
+                'top': 'anthropic/claude-opus-4.7'
+            };
+            const model = modelMap[tier];
 
             let s = '';
 
             s += `#!/bin/bash\n`;
-            s += `# Agent Install Script — generated by teleprompter\n`;
+            s += `# ═══════════════════════════════════════════════════════════════\n`;
+            s += `# Agent Install Script\n`;
+            s += `# FILL IN THE 4 LINES BELOW, THEN PASTE THIS ENTIRE SCRIPT\n`;
+            s += `# INTO YOUR SSH TERMINAL.\n`;
+            s += `# ═══════════════════════════════════════════════════════════════\n\n`;
+
+            // Credential placeholders
+            s += `OPENROUTER_KEY="PASTE_YOUR_OPENROUTER_KEY_HERE"\n`;
+            if (agent === 'hermes') {
+                s += `TELEGRAM_TOKEN="PASTE_YOUR_TELEGRAM_BOT_TOKEN_HERE"\n`;
+                s += `TELEGRAM_USER_ID="PASTE_YOUR_TELEGRAM_USER_ID_HERE"\n`;
+            }
+            s += `GITHUB_TOKEN="PASTE_YOUR_GITHUB_TOKEN_HERE"\n`;
+            s += `GITHUB_USER="PASTE_YOUR_GITHUB_USERNAME_HERE"\n\n`;
+
+            s += `# ═══════════════════════════════════════════════════════════════\n`;
+            s += `# Don't edit anything below this line — it runs automatically\n`;
+            s += `# ═══════════════════════════════════════════════════════════════\n`;
             s += `set -euo pipefail\n\n`;
 
+            s += `echo "═══════════════════════════════════════════════════════"\n`;
+            s += `echo "  AGENT INSTALL — Starting setup..."\n`;
+            s += `echo "═══════════════════════════════════════════════════════"\n\n`;
+
+            // System prep
             s += `# System prep\n`;
             s += `apt-get update && apt-get upgrade -y\n`;
             s += `apt-get install -y git curl wget unzip build-essential\n\n`;
@@ -483,8 +477,8 @@
                 s += `cd ~/.openclaw\n`;
                 s += `conda create -n openclaw python=3.10 -y && conda activate openclaw\n`;
                 s += `pip install -r requirements.txt\n\n`;
-                s += `cat << 'ENVFILE' > .env\n`;
-                s += `OPENROUTER_API_KEY=${openrouter}\n`;
+                s += `cat << ENVFILE > .env\n`;
+                s += `OPENROUTER_API_KEY=\${OPENROUTER_KEY}\n`;
                 s += `DEFAULT_MODEL=${model}\n`;
                 s += `ENVFILE\n\n`;
                 s += `python main.py --setup\n`;
@@ -494,51 +488,43 @@
                 s += `mkdir -p ~/.hermes\n`;
                 s += `curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash -s -- --skip-setup\n\n`;
 
-                s += `# Environment (secrets — never in config.yaml)\n`;
-                s += `cat << 'ENVFILE' > ~/.hermes/.env\n`;
-                s += `OPENROUTER_API_KEY=${openrouter}\n`;
-                if (tg_token) {
-                    s += `TELEGRAM_BOT_TOKEN=${tg_token}\n`;
-                    s += `TELEGRAM_ALLOWED_USERS=REPLACE_WITH_USER_ID\n`;
-                    s += `TELEGRAM_HOME_CHANNEL=REPLACE_WITH_USER_ID\n`;
-                }
+                s += `# Environment (secrets)\n`;
+                s += `cat << ENVFILE > ~/.hermes/.env\n`;
+                s += `OPENROUTER_API_KEY=\${OPENROUTER_KEY}\n`;
+                s += `TELEGRAM_BOT_TOKEN=\${TELEGRAM_TOKEN}\n`;
+                s += `TELEGRAM_ALLOWED_USERS=\${TELEGRAM_USER_ID}\n`;
+                s += `TELEGRAM_HOME_CHANNEL=\${TELEGRAM_USER_ID}\n`;
                 s += `ENVFILE\n\n`;
 
                 s += `# Config\n`;
-                s += `cat << 'YAMLFILE' > ~/.hermes/config.yaml\n`;
+                s += `cat << YAMLFILE > ~/.hermes/config.yaml\n`;
                 s += `model:\n`;
                 s += `  default: ${model}\n`;
                 s += `  provider: openrouter\n`;
-
-                // GitHub MCP server
-                if (gh_token) {
-                    s += `\nmcp_servers:\n`;
-                    s += `  github:\n`;
-                    s += `    command: "npx"\n`;
-                    s += `    args: ["-y", "@modelcontextprotocol/server-github"]\n`;
-                    s += `    env:\n`;
-                    s += `      GITHUB_PERSONAL_ACCESS_TOKEN: "${gh_token}"\n`;
-                    s += `    timeout: 60\n`;
-                }
-
+                s += `\nmcp_servers:\n`;
+                s += `  github:\n`;
+                s += `    command: "npx"\n`;
+                s += `    args: ["-y", "@modelcontextprotocol/server-github"]\n`;
+                s += `    env:\n`;
+                s += `      GITHUB_PERSONAL_ACCESS_TOKEN: "\${GITHUB_TOKEN}"\n`;
+                s += `    timeout: 60\n`;
                 s += `YAMLFILE\n\n`;
 
-                if (gh_user) {
-                    s += `# Configure git\n`;
-                    s += `git config --global user.name "${gh_user}"\n`;
-                    s += `git config --global user.email "${gh_user}@users.noreply.github.com"\n\n`;
-                }
+                s += `# Configure git\n`;
+                s += `git config --global user.name "\${GITHUB_USER}"\n`;
+                s += `git config --global user.email "\${GITHUB_USER}@users.noreply.github.com"\n\n`;
 
-                if (tg_token) {
-                    s += `# Start Telegram gateway\n`;
-                    s += `hermes gateway install\n`;
-                    s += `hermes gateway start\n`;
-                    s += `sleep 5 && hermes gateway status\n`;
-                } else {
-                    s += `# Test CLI\n`;
-                    s += `hermes chat -q "Hello, are you online?"\n`;
-                }
+                s += `# Start Telegram gateway\n`;
+                s += `hermes gateway install\n`;
+                s += `hermes gateway start\n`;
+                s += `sleep 5 && hermes gateway status\n`;
             }
+
+            s += `\necho ""\n`;
+            s += `echo "═══════════════════════════════════════════════════════"\n`;
+            s += `echo "  ✓ SETUP COMPLETE"\n`;
+            s += `echo "  Your agent is online. Open Telegram and say hello!"\n`;
+            s += `echo "═══════════════════════════════════════════════════════"\n`;
 
             document.getElementById('output').textContent = s;
         }
