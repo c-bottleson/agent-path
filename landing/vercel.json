@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/captain", "destination": "/captain.html" },
+    { "source": "/skills", "destination": "/skills.html" },
+    { "source": "/audit", "destination": "/audit.html" },
+    { "source": "/review", "destination": "/review.html" }
+  ]
+}

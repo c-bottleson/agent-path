@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Onboarding Teleprompter</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #222; background: #f4f6f8; }
+        h1 { border-bottom: 2px solid #ccc; padding-bottom: 10px; color: #111; }
+        .step { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .script-box { background: #e8f4fd; border-left: 4px solid #0066cc; padding: 15px; margin-bottom: 20px; font-size: 1.1em; font-style: italic; color: #004488; }
+        .script-box strong { color: #002244; }
+        .action-box { background: #fdfbf7; border: 1px solid #f0d8c0; padding: 15px; border-radius: 6px; }
+        .action-box h4 { margin-top: 0; color: #b35900; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: monospace; }
+        .radio-group { display: flex; flex-direction: column; gap: 8px; }
+        .radio-option { background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .radio-option:hover { background: #f0f0f0; }
+        .radio-option input { margin-right: 10px; }
+        
+        .btn { background: #0066cc; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; text-align: center; }
+        .btn:hover { background: #0055aa; }
+        #output { background: #1e1e1e; color: #00ff00; padding: 20px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; overflow-x: auto; font-size: 13px; line-height: 1.4; border: 2px solid #555; }
+        .hidden { display: none; }
+        .highlight { background: #fffae6; padding: 2px 4px; border-radius: 3px; font-weight: bold; }
+
+        .warning-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.95em; color: #664d03; }
+        .warning-box strong { color: #664d03; }
+    </style>
+</head>
+<body>
+
+    <h1>Agent Onboarding: Live Setup Flow</h1>
+    <p>Read the <span style="color: #0066cc; font-weight: bold;">blue boxes</span> verbatim. Execute the <span style="color: #b35900; font-weight: bold;">orange boxes</span> based on their answers.</p>
+
+    <!-- STEP 1: INTRO -->
+    <div class="step">
+        <div class="script-box">
+            "Alright, let's get your autonomous worker online. We are going to provision the server, inject the AI brain, and link it to your platform right now on this call."
+        </div>
+    </div>
+
+    
+    <!-- STEP 1B: DEEP DIVE RESEARCH (AGENT, VPS, LLM) -->
+    <div class="step">
+        <h3 style="color: #0066cc;">1. Agent Engine Deep Dive (3m)</h3>
+        <div class="script-box">
+            "Let's figure out what engine we are dropping into your server. We have two options: OpenClaw or Hermes Agent."<br><br>
+            <strong>"OpenClaw</strong> is your hacker. It's built to execute code, crawl files, and build things inside the server natively. Perfect for coding features."<br><br>
+            <strong>"Hermes Agent</strong> is your COO. It orchestrates systems, handles APIs, and delegates long-running tasks. If you need a system to watch your data and ping you on Telegram with results, this is it."
+        </div>
+        <p><strong>Action:</strong> "What's the primary goal for this first setup? Are we building features or monitoring a workflow?"</p>
+    </div>
+
+    <div class="step">
+        <h3 style="color: #0066cc;">2. VPS Platform (1m)</h3>
+        <div class="script-box">
+            "Next, we need the server. We have two recommendations: Contabo or Vultr."<br><br>
+            <strong>"Contabo</strong> is the heavy-duty work truck. Super cheap (~$6/mo) for massive RAM/cores. Pure power, but the UI is dated. Best to 'set and forget'."<br><br>
+            <strong>"Vultr</strong> is the sports car. Costs a bit more (~$10/mo), but you get NVMe drives, instant boots, and a beautiful UI. Best if you plan to log in a lot."
+        </div>
+        <p><strong>Action:</strong> "Do you care more about raw, cheap power, or premium UI and speed?"</p>
+    </div>
+
+    <div class="step">
+        <h3 style="color: #0066cc;">3. LLM Brain (2m)</h3>
+        <div class="script-box">
+            "Finally, the brain. We use OpenRouter to access any model we want. Think of it like a universal adapter—you get access to every major AI model through one key."<br><br>
+            <strong>"SOTA (Best Tools):</strong> Claude Sonnet 4 / Gemini 2.5 Pro. Flawless code, highest logic. Cost: ~$10-$30/mo usage."<br><br>
+            <strong>"Best Bang for Buck:</strong> Gemini 2.5 Flash / Llama 4 Maverick. Fast, great for most tasks, cheap. Cost: ~$2-$5/mo usage."<br><br>
+            <strong>"Entry Tier:</strong> Gemini 2.5 Flash-Lite. Handles most tasks well, including code. Cost: Pennies."
+        </div>
+        <p><strong>Action:</strong> "Want the smartest brain for smooth operation, or wanna start cheap and upgrade later?"</p>
+    </div>
+
+    <!-- CLIENT SIDEQUESTS -->
+    <div class="step">
+        <h3 style="color: #cc6600;">Sidequest 1: Get the VPS (Client Action)</h3>
+        <p><em>Have the client share their screen. Walk them through live.</em></p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; border: 1px solid #ddd; padding: 15px; border-radius: 4px;">
+                <strong>Contabo</strong>
+                <ol style="font-size: 14px;">
+                    <li>Go to <code>contabo.com</code></li>
+                    <li>Click <strong>Cloud VPS</strong> &gt; Select <strong>Cloud VPS 1</strong> ($5.99/mo)</li>
+                    <li>Term Length: <strong>1 Month</strong></li>
+                    <li>Region: Select the cheapest/closest</li>
+                    <li>Storage Type: <strong>50GB NVMe</strong></li>
+                    <li style="color: red; font-weight: bold;">Operating System &gt; Ubuntu 24.04 (or 22.04)</li>
+                    <li>Password: Have them generate and save a root password.</li>
+                    <li>Check out with CC. (ETA: 15-30 mins for IP assignment)</li>
+                </ol>
+            </div>
+            <div style="flex: 1; border: 1px solid #ddd; padding: 15px; border-radius: 4px;">
+                <strong>Vultr</strong>
+                <ol style="font-size: 14px;">
+                    <li>Go to <code>vultr.com</code> and Sign Up. Add CC.</li>
+                    <li>Go to <strong>Deploy New Instance</strong></li>
+                    <li>Choose <strong>Cloud Compute</strong> &gt; <strong>Shared CPU</strong></li>
+                    <li>Location: Closest to them.</li>
+                    <li style="color: red; font-weight: bold;">OS Image &gt; Ubuntu 24.04 LTS</li>
+                    <li>Server Size: <strong>1 vCPU / 2GB RAM</strong> ($10/mo).</li>
+                    <li>Uncheck "Enable automated backups" (save $2).</li>
+                    <li>Click <strong>Deploy Now</strong>. IP available immediately.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3 style="color: #cc6600;">Sidequest 2: The API Key (Client Action)</h3>
+        <p><em>While we wait for the server IP, connect the brain.</em></p>
+        <ol style="font-size: 14px; border: 1px solid #ddd; padding: 15px 35px; border-radius: 4px;">
+             <li>Go to <code>openrouter.ai</code></li>
+             <li>Sign up / Log in.</li>
+             <li>Click the <strong>Wallet/Credits</strong> icon top right and add $10 via CC.</li>
+             <li>Go to <strong>Keys</strong> in the top menu.</li>
+             <li>Click <strong>Create Key</strong>. Name it "VPS Agent".</li>
+             <li style="color: red; font-weight: bold;">Have them copy the key (sk-or-v1-...) and paste it in Zoom/Meet chat so you can enter it below.</li>
+         </ol>
+    </div>
+
+
+<!-- STEP 2: THE AGENT (FRAMEWORK) -->
+    <div class="step">
+        <div class="script-box">
+            "First, we need to choose the chassis. <br><br>
+            Option 1 is <strong>Hermes</strong>. It's incredibly fast, lightweight, and perfect for system administration, APIs, and background tasks. Think of it as your operations manager. <br><br>
+            Option 2 is <strong>OpenClaw</strong>. It's a Python heavyweight. It uses more RAM, but if you need data science, complex Python libraries, or machine learning, this is what we use. <br><br>
+            <strong>Which sounds closer to your goal?</strong>"
+        </div>
+        <div class="action-box">
+            <h4>🖱️ Your Action: Select Agent</h4>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="agent_type" value="hermes" checked onchange="updateUI()"> <strong>Hermes</strong> (Go / Fast / CLI & APIs)</label>
+                <label class="radio-option"><input type="radio" name="agent_type" value="openclaw" onchange="updateUI()"> <strong>OpenClaw</strong> (Python / Heavy / Data Science)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 3: THE MODEL (BRAIN) -->
+    <div class="step">
+        <div class="script-box">
+            "Next, we pick the brain. <br><br>
+            We can use <strong>Gemini 2.5 Flash</strong>—it's ridiculously fast and costs literal pennies to run thousands of tasks. Highly recommended for daily automation. <br><br>
+            Or, we can use <strong>Claude Sonnet 4</strong>. It's one of the smartest reasoning engines available, perfect for writing code or complex logic, but it costs more per request. <br><br>
+            <strong>Do you want cheap and fast, or premium and deep reasoning?</strong>"
+        </div>
+        <div class="action-box">
+            <h4>🖱️ Your Action: Select Model</h4>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="model" value="google/gemini-2.5-flash" checked onchange="generateScript()"> <strong>Gemini 2.5 Flash</strong> (Speed & Cost)</label>
+                <label class="radio-option"><input type="radio" name="model" value="anthropic/claude-sonnet-4" onchange="generateScript()"> <strong>Claude Sonnet 4</strong> (Intelligence & Coding)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 4: THE INFRASTRUCTURE (VPS) -->
+    <div class="step">
+        <div class="script-box">
+            "Now for the real estate. Where does the bot live? <br><br>
+            I recommend <strong>Contabo</strong>. It's blue-collar tech. Not flashy, but it gives you massive hardware for cheap. <br><br>
+            If you absolutely need premium network speeds and zero downtime guarantees, we use <strong>Vultr</strong>, but it costs a bit more. <br><br>
+            <strong>Do you care about premium networking, or do you just want it to work?</strong>"
+        </div>
+        <div class="action-box">
+            <h4>🖱️ Your Action: Select Cloud</h4>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="provider" value="contabo" checked onchange="generateScript()"> <strong>Contabo</strong> (Value & Hardware)</label>
+                <label class="radio-option"><input type="radio" name="provider" value="vultr" onchange="generateScript()"> <strong>Vultr</strong> (Premium Network)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 5: CREDENTIALS -->
+    <div class="step">
+        <div class="script-box">
+            "Perfect. Last step before I deploy: I need the keys to your engine. <br><br>
+            Drop your <strong>OpenRouter API Key</strong> in the chat. <span class="hermes-only">(And if you want it talking to your phone, drop a fresh <strong>Telegram Bot Token</strong> from BotFather too.)</span> <br><br>
+            Once you send those, I'll inject them securely into the server block and we go live."
+        </div>
+        <div class="action-box">
+            <h4>🖱️ Your Action: Paste Keys</h4>
+            <div class="form-group">
+                <label>OpenRouter API Key:</label>
+                <input type="password" id="openrouter_key" placeholder="sk-or-v1-..." oninput="generateScript()">
+            </div>
+            <div class="form-group hermes-only">
+                <label>Telegram Bot Token:</label>
+                <input type="password" id="telegram_token" placeholder="123456789:ABCDEF..." oninput="generateScript()">
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 6: DEPLOYMENT -->
+    <div class="step">
+        <div class="script-box">
+            "I'm compiling the deployment script now. Executing against the VPS root. Give it about 60 seconds to configure the environment, download the binaries, and wake up the agent."
+        </div>
+        <div class="action-box">
+            <h4>🖱️ Your Action: Copy & Run</h4>
+            <p>Click below to copy the finalized bash script, then paste it directly into the client's SSH terminal.</p>
+            <button class="btn" onclick="copyScript()">📋 Copy Bash Script to Clipboard</button>
+            <div id="output" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- STEP 7: TELEGRAM ID (if Hermes + Telegram) -->
+    <div class="step hermes-only">
+        <div class="warning-box">
+            <strong>⚠️ Before testing Telegram:</strong> You need the client's numeric Telegram User ID (NOT their @username).<br>
+            Tell them: <em>"Search for <strong>@userinfobot</strong> in Telegram, send /start, and it'll reply with your numeric ID."</em><br>
+            Once you have it, SSH in and run:<br>
+            <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">sed -i 's/TELEGRAM_ALLOWED_USERS=.*/TELEGRAM_ALLOWED_USERS=THEIR_ID/' ~/.hermes/.env</code><br>
+            <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">sed -i 's/TELEGRAM_HOME_CHANNEL=.*/TELEGRAM_HOME_CHANNEL=THEIR_ID/' ~/.hermes/.env</code><br>
+            Then restart: <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">hermes gateway restart</code>
+        </div>
+    </div>
+    
+    <!-- STEP 8: WRAP UP -->
+    <div class="step">
+        <div class="script-box">
+            "Alright, the gateway is active. Your agent is online. <br><br>
+            <span class="hermes-only">If we set up Telegram, open Telegram and send a message to your bot now to verify the connection. It should reply within a few seconds.</span> <br><br>
+            It has access to the terminal to manage itself. My job here is done—tell it what you want to build."
+        </div>
+    </div>
+
+    <!-- CORE CONCEPT TEACHINGS (Call 1 Must-Cover) -->
+    <div class="step" style="border-left: 4px solid #dc3545; background: #fff5f5;">
+        <h3 style="color: #dc3545; margin-top: 0;">🔴 Must-Cover Concepts (Before Ending Call 1)</h3>
+        <p style="font-size: 0.9em; color: #666;">These three concepts from the core curriculum must be planted during the first call, even briefly. They're the foundation for everything in Calls 2-4.</p>
+
+        <div style="margin-bottom: 15px;">
+            <strong>1. "Hope is Not a Strategy" (The Watchdog Rule)</strong>
+            <p style="margin: 5px 0; font-size: 0.95em;">"Every automation you build, we also build something that watches it. If your scraper breaks at 2 AM, the agent texts you at 2:01 AM—not when you check two weeks later. We'll set this up properly in our next call."</p>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <strong>2. State Injection (Don't Bloat the Brain)</strong>
+            <p style="margin: 5px 0; font-size: 0.95em;">"Don't dump everything into the agent's memory at once. Instead, we create little instruction files for each project. When you say 'work on the CRM,' it reads only the CRM file. Keeps it fast and cheap."</p>
+        </div>
+
+        <div>
+            <strong>3. The "Probably Not An Issue" Trap</strong>
+            <p style="margin: 5px 0; font-size: 0.95em;">"If the agent ever says an error is 'probably fine'—push back. Make it prove it. Hope is not a strategy. If it can't prove it, we build a watchdog to catch it."</p>
+        </div>
+    </div>
+
+    <br><br>
+
+    <script>
+        function updateUI() {
+            const agent = document.querySelector('input[name="agent_type"]:checked').value;
+            const hermesOnly = document.querySelectorAll('.hermes-only');
+            
+            if (agent === 'hermes') {
+                hermesOnly.forEach(el => el.classList.remove('hidden'));
+            } else {
+                hermesOnly.forEach(el => el.classList.add('hidden'));
+            }
+            generateScript();
+        }
+
+        function generateScript() {
+            const agent = document.querySelector('input[name="agent_type"]:checked').value;
+            const provider = document.querySelector('input[name="provider"]:checked').value;
+            const openrouter = document.getElementById('openrouter_key').value || 'YOUR_OPENROUTER_KEY_HERE';
+            const model = document.querySelector('input[name="model"]:checked').value;
+            
+            let script = '';
+
+            script += `apt-get update && apt-get upgrade -y\n`;
+            script += `apt-get install -y git curl wget unzip build-essential\n\n`;
+
+            if (agent === 'openclaw') {
+                if (provider === 'contabo') {
+                    script += `# Configure Swap for OpenClaw on Contabo (Memory heavy)\n`;
+                    script += `fallocate -l 4G /swapfile\nchmod 600 /swapfile\nmkswap /swapfile\nswapon /swapfile\n`;
+                    script += `echo '/swapfile none swap sw 0 0' >> /etc/fstab\n\n`;
+                }
+
+                script += `# Install Miniconda for OpenClaw\n`;
+                script += `mkdir -p ~/miniconda3\n`;
+                script += `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh\n`;
+                script += `bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3\n`;
+                script += `rm -rf ~/miniconda3/miniconda.sh\n`;
+                script += `~/miniconda3/bin/conda init bash\n`;
+                script += `source ~/.bashrc\n\n`;
+
+                script += `# Clone and Configure OpenClaw\n`;
+                script += `git clone https://github.com/NousResearch/openclaw.git ~/.openclaw\n`;
+                script += `cd ~/.openclaw\n`;
+                script += `conda create -n openclaw python=3.10 -y\n`;
+                script += `conda activate openclaw\n`;
+                script += `pip install -r requirements.txt\n\n`;
+                
+                script += `cat << 'ENVFILE' > .env\n`;
+                script += `OPENROUTER_API_KEY=${openrouter}\n`;
+                script += `DEFAULT_MODEL=${model}\n`;
+                script += `ENVFILE\n\n`;
+                
+                script += `python main.py --setup\n`;
+            } 
+            else if (agent === 'hermes') {
+                const tg_token = document.getElementById('telegram_token').value;
+
+                script += `# Install Hermes Agent (skip interactive setup, we configure manually)\n`;
+                script += `mkdir -p ~/.hermes\n`;
+                script += `curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash -s -- --skip-setup\n\n`;
+
+                script += `# Configure Environment (API Keys)\n`;
+                script += `cat << 'ENVFILE' > ~/.hermes/.env\n`;
+                script += `OPENROUTER_API_KEY=${openrouter}\n`;
+                
+                if (tg_token) {
+                    script += `TELEGRAM_BOT_TOKEN=${tg_token}\n`;
+                    script += `TELEGRAM_ALLOWED_USERS=REPLACE_WITH_USER_ID\n`;
+                    script += `TELEGRAM_HOME_CHANNEL=REPLACE_WITH_USER_ID\n`;
+                }
+                
+                script += `ENVFILE\n\n`;
+                
+                script += `# Generate Config (Model + Provider)\n`;
+                script += `cat << 'YAMLFILE' > ~/.hermes/config.yaml\n`;
+                script += `model:\n`;
+                script += `  default: ${model}\n`;
+                script += `  provider: openrouter\n`;
+                script += `YAMLFILE\n\n`;
+
+                if (tg_token) {
+                    script += `# Install & Start Gateway (Telegram)\n`;
+                    script += `hermes gateway install\n`;
+                    script += `hermes gateway start\n\n`;
+                    script += `# Check connection status\n`;
+                    script += `sleep 5 && hermes gateway status\n`;
+                } else {
+                    script += `# Start agent in CLI mode to verify\n`;
+                    script += `hermes chat -q "Hello, are you online?"\n`;
+                }
+            }
+
+            document.getElementById('output').textContent = script;
+        }
+        
+        function copyScript() {
+            const scriptText = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(scriptText).then(() => {
+                const btn = document.querySelector('.btn');
+                const oldText = btn.textContent;
+                btn.textContent = "✅ Copied! Paste into VPS terminal";
+                btn.style.backgroundColor = "#28a745";
+                setTimeout(() => {
+                    btn.textContent = oldText;
+                    btn.style.backgroundColor = "#0066cc";
+                }, 3000);
+            });
+        }
+
+        updateUI();
+    </script>
+
+    <!-- UPSELL/FOLLOW-UP TRACKS -->
+    <div class="step" style="border-top: 3px solid #ccc; padding-top: 40px; margin-top: 20px;">
+        <h2 style="color: #000; text-align: center;">The Autonomy Roadmap (Follow-up Calls)</h2>
+        <p style="text-align: center; color: #555; margin-bottom: 30px;">"This first call just puts the employee at the desk. The next three calls actually teach them how to do your job so you can step away."</p>
+        
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            
+            <!-- CALL 2 -->
+            <div style="flex: 1; border: 1px solid #333; border-radius: 6px; overflow: hidden; min-width: 250px;">
+                <div style="background: #333; color: #fff; padding: 15px;">
+                    <h4 style="margin: 0;">Call 2: Memory & Skills</h4>
+                    <span style="font-size: 12px; opacity: 0.8;">"Teaching them the ropes"</span>
+                </div>
+                <div style="padding: 15px; font-size: 14px;">
+                    <p>We configure persistent memory and Standard Operating Procedures (Skills) so you stop repeating yourself.</p>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                    <h5 style="margin-bottom: 5px;">If Hermes (The COO):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li>Teach exact formatting for inbound CRM leads.</li>
+                        <li>Provide read-only API access to Stripe/DBs.</li>
+                        <li>Lock in Telegram communication styles.</li>
+                    </ul>
+                    <h5 style="margin-bottom: 5px;">If OpenClaw (The Hacker):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li>Teach codebase architecture patterns.</li>
+                        <li>Build a custom "Web Scraping" module for their niche.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CALL 3 -->
+            <div style="flex: 1; border: 1px solid #333; border-radius: 6px; overflow: hidden; min-width: 250px;">
+                <div style="background: #333; color: #fff; padding: 15px;">
+                    <h4 style="margin: 0;">Call 3: Watchdogs & Crons</h4>
+                    <span style="font-size: 12px; opacity: 0.8;">"Working while you sleep"</span>
+                </div>
+                <div style="padding: 15px; font-size: 14px;">
+                    <p>We remove the need to "click run". The system wakes up on its own to do the work autonomously.</p>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                    <h5 style="margin-bottom: 5px;">If Hermes (The COO):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li><strong>Watchdogs:</strong> Silent triggers that text you only if servers drop or prices shift.</li>
+                        <li><strong>Crons:</strong> 6:00 AM daily briefings pulled directly from your databases.</li>
+                    </ul>
+                    <h5 style="margin-bottom: 5px;">If OpenClaw (The Hacker):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li><strong>Automated Execution:</strong> Cron jobs that wake, scrape/trade, and go back to sleep.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CALL 4 -->
+            <div style="flex: 1; border: 1px solid #333; border-radius: 6px; overflow: hidden; min-width: 250px;">
+                <div style="background: #333; color: #fff; padding: 15px;">
+                    <h4 style="margin: 0;">Call 4: The Idea Pipeline</h4>
+                    <span style="font-size: 12px; opacity: 0.8;">"Human as CEO"</span>
+                </div>
+                <div style="padding: 15px; font-size: 14px;">
+                    <p>Full autonomy. You stop managing tasks and only provide ideas. The system orchestrates itself.</p>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                    <h5 style="margin-bottom: 5px;">If Hermes (The COO):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li><strong>Idea Ingestion:</strong> Forward an email or voice memo. Hermes parses it, plans it, and sub-delegates it.</li>
+                    </ul>
+                    <h5 style="margin-bottom: 5px;">If OpenClaw (The Hacker):</h5>
+                    <ul style="color: #555; padding-left: 20px; margin-top: 0;">
+                        <li><strong>End-to-End:</strong> Drop a Jira ticket in chat. It writes the code, runs tests, commits, and deploys.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

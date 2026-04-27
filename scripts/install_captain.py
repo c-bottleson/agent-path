@@ -2,23 +2,29 @@
 """
 install_captain.py — Provision a new Captain Protocol customer instance.
 
+Creates a Hermes profile for the customer, configures the Captain Protocol
+personality, sets up cron jobs, and starts the Telegram gateway.
+
 Usage:
-  python3 install_captain.py --name "Sarah" --website "https://example.com" --bot-token "123:ABC..." --api-key "sk-..." --chat-id "123456789"
+  python3 install_captain.py --name "Sarah" --business "Paws & Claws" \
+    --bot-token "123:ABC..." --api-key "sk-or-..." --chat-id "123456789"
 
 Or interactive (no args):
   python3 install_captain.py
 
 What it does:
-  1. Creates customer directory structure
-  2. Generates Captain profile (system prompt, memory, config)
-  3. Sets up cron job definitions
-  4. Generates docker-compose service entry
-  5. Optionally starts the container
+  1. Creates a Hermes profile for the customer
+  2. Writes Captain Protocol system prompt as agent memory
+  3. Configures .env with credentials (secrets stay out of config.yaml)
+  4. Sets up cron jobs (daily report, weekly check-in, dead man's switch)
+  5. Starts the Telegram gateway for this profile
+  6. Sends the first Captain message to the customer on Telegram
 """
 
 import argparse
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -27,7 +33,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent.resolve()
 REPO_DIR = SCRIPT_DIR.parent
 PROFILE_TEMPLATE_DIR = REPO_DIR / "profiles" / "captain"
-CUSTOMERS_DIR = Path.home() / "hermes-customers"
+
 
 # ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -41,10 +47,12 @@ def prompt(message, default=None):
         if response:
             return response
 
+
 def read_template(path):
     """Read a template file."""
     with open(path, "r") as f:
         return f.read()
+
 
 def fill_template(content, replacements):
     """Replace {PLACEHOLDER} tokens with values."""
@@ -52,38 +60,67 @@ def fill_template(content, replacements):
         content = content.replace(f"{{{key}}}", str(value))
     return content
 
+
 def write_file(path, content):
     """Write content to a file, creating directories as needed."""
+    path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:
         f.write(content)
     print(f"  ✓ {path}")
 
+
+def run(cmd, check=True):
+    """Run a shell command and print status."""
+    print(f"  → {cmd}")
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    if result.stdout.strip():
+        for line in result.stdout.strip().split("\n"):
+            print(f"    {line}")
+    if check and result.returncode != 0:
+        print(f"  ✗ Command failed (exit {result.returncode})")
+        if result.stderr.strip():
+            for line in result.stderr.strip().split("\n"):
+                print(f"    {line}")
+        return False
+    return True
+
+
 # ─── Main ───────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="Provision a Captain Protocol customer instance")
-    parser.add_argument("--name", help="Customer name (e.g., Sarah)")
-    parser.add_argument("--business", help="Business name (e.g., Paws & Claws Grooming)")
+    parser.add_argument("--name", help="Customer first name")
+    parser.add_argument("--business", help="Business name")
     parser.add_argument("--website", help="Business website URL")
     parser.add_argument("--bot-token", help="Telegram bot token from BotFather")
     parser.add_argument("--api-key", help="OpenRouter API key")
     parser.add_argument("--chat-id", help="Telegram chat ID for the customer")
-    parser.add_argument("--path", choices=["A", "B1", "B2"], help="Customer path: A=existing business, B1=new with idea, B2=new no idea")
-    parser.add_argument("--start", action="store_true", help="Start the container after provisioning")
+    parser.add_argument("--path", choices=["A", "B1", "B2"],
+                        help="Customer path: A=existing business, B1=new with idea, B2=new no idea")
+    parser.add_argument("--model", default="google/gemini-2.5-flash",
+                        help="LLM model (default: google/gemini-2.5-flash)")
+    parser.add_argument("--start", action="store_true", help="Start gateway after provisioning")
     args = parser.parse_args()
 
     print("\n" + "=" * 60)
     print("  HERMES AGENT INSTALL — Captain Protocol Provisioner")
     print("=" * 60 + "\n")
 
-    # Gather info (interactive if not provided via args)
-    name = args.name or prompt("Customer name (first name)")
-    business = args.business or prompt("Business name (or 'TBD' if unknown)")
+    # ── Check prerequisites ─────────────────────────────────────────────
+    result = subprocess.run("command -v hermes", shell=True, capture_output=True)
+    if result.returncode != 0:
+        print("✗ hermes command not found. Run install_fresh.sh first, or:")
+        print("  curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash")
+        sys.exit(1)
+
+    # ── Gather info ─────────────────────────────────────────────────────
+    name = args.name or prompt("Customer first name")
+    business = args.business or prompt("Business name (or 'TBD')")
     website = args.website or prompt("Website URL (or 'none')")
-    bot_token = args.bot_token or prompt("Telegram bot token (from BotFather)")
-    api_key = args.api_key or prompt("OpenRouter API key (sk-or-...)")
-    chat_id = args.chat_id or prompt("Telegram chat ID (customer's)")
+    bot_token = args.bot_token or prompt("Telegram bot token (from @BotFather)")
+    api_key = args.api_key or prompt("OpenRouter API key (sk-or-v1-...)")
+    chat_id = args.chat_id or prompt("Telegram chat ID (customer's numeric ID)")
 
     if args.path:
         path = args.path
@@ -96,174 +133,144 @@ def main():
 
     install_date = datetime.now().strftime("%Y-%m-%d")
     slug = name.lower().replace(" ", "-")
-    customer_dir = CUSTOMERS_DIR / slug
+    profile_name = f"captain-{slug}"
 
-    # Check if customer already exists
-    if customer_dir.exists():
-        print(f"\n⚠  Customer directory already exists: {customer_dir}")
-        overwrite = prompt("Overwrite? (y/n)", "n").lower()
-        if overwrite != "y":
-            print("Aborted.")
-            sys.exit(1)
+    # ── 1. Create Hermes profile ────────────────────────────────────────
+    print(f"\n📦 Provisioning Captain instance for {name}...\n")
 
-    print(f"\n📦 Provisioning Captain instance for {name}...")
-    print(f"   Directory: {customer_dir}\n")
+    print("Creating Hermes profile...")
+    run(f"hermes profile create {profile_name}", check=False)
 
-    # ── 1. Create directory structure ────────────────────────────────────
-    for subdir in ["data", "memory", "skills", "logs", "cron"]:
-        (customer_dir / subdir).mkdir(parents=True, exist_ok=True)
+    # Profile directory
+    profile_dir = Path.home() / ".hermes" / "profiles" / profile_name
+    if not profile_dir.exists():
+        # Fallback: create manually
+        profile_dir.mkdir(parents=True, exist_ok=True)
+        for subdir in ["sessions", "logs", "skills", "memory"]:
+            (profile_dir / subdir).mkdir(exist_ok=True)
 
-    # ── 2. Replacements dict ─────────────────────────────────────────────
+    print(f"  ✓ Profile: {profile_dir}\n")
+
+    # ── 2. Write .env (secrets never go in config.yaml) ─────────────────
+    print("Configuring credentials...")
+    env_content = f"""OPENROUTER_API_KEY={api_key}
+TELEGRAM_BOT_TOKEN={bot_token}
+TELEGRAM_ALLOWED_USERS={chat_id}
+TELEGRAM_HOME_CHANNEL={chat_id}
+"""
+    write_file(profile_dir / ".env", env_content)
+
+    # ── 3. Write config.yaml (proper hermes-agent format) ───────────────
+    print("Writing agent configuration...")
+    config_content = f"""# Hermes Agent — Captain Protocol Instance
+# Customer: {name} ({business})
+# Generated: {install_date}
+
+model:
+  default: {args.model}
+  provider: openrouter
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+"""
+    write_file(profile_dir / "config.yaml", config_content)
+
+    # ── 4. Write Captain system prompt as memory ────────────────────────
+    print("Loading Captain Protocol profile...")
     replacements = {
         "CUSTOMER_NAME": name,
         "BUSINESS_NAME": business,
         "WEBSITE": website,
-        "BOT_TOKEN": bot_token,
-        "API_KEY": api_key,
+        "BOT_TOKEN": bot_token,  # kept for template compat, not stored in config
+        "API_KEY": api_key,      # kept for template compat, not stored in config
         "CHAT_ID": chat_id,
         "INSTALL_DATE": install_date,
         "PATH": path,
         "STATUS": "discovery",
     }
 
-    # ── 3. Generate system prompt ────────────────────────────────────────
-    print("Generating Captain profile...")
+    # System prompt → user_memory (injected into every session)
     system_prompt = fill_template(
         read_template(PROFILE_TEMPLATE_DIR / "system_prompt.md"),
         replacements
     )
-    write_file(customer_dir / "system_prompt.md", system_prompt)
+    write_file(profile_dir / "memory" / "user_profile.md", system_prompt)
 
-    # ── 4. Generate memory rules ─────────────────────────────────────────
+    # Memory rules → memory file
     memory_rules = fill_template(
         read_template(PROFILE_TEMPLATE_DIR / "memory_rules.md"),
         replacements
     )
-    write_file(customer_dir / "memory_rules.md", memory_rules)
+    write_file(profile_dir / "memory" / "hermes_memory.md", memory_rules)
 
-    # ── 5. Generate customer.json ────────────────────────────────────────
-    customer_json = fill_template(
-        read_template(PROFILE_TEMPLATE_DIR / "customer_template.json"),
-        replacements
+    # Customer data
+    customer_data = {
+        "name": name,
+        "business_name": business,
+        "website": website,
+        "install_date": install_date,
+        "path": path,
+        "status": "discovery",
+        "messaging": {
+            "platform": "telegram",
+            "chat_id": chat_id,
+        },
+        "upsells": {
+            "captain_protocol": True,
+            "custom_skills": [],
+            "growth_audit": False,
+            "review_pack": False,
+        },
+        "project": {
+            "name": None,
+            "type": None,
+            "started": None,
+            "shipped": None,
+            "current_task": None,
+        },
+    }
+    write_file(
+        profile_dir / "memory" / "customer.json",
+        json.dumps(customer_data, indent=2)
     )
-    # Parse and re-dump to validate JSON
-    customer_data = json.loads(customer_json)
-    write_file(customer_dir / "customer.json", json.dumps(customer_data, indent=2))
 
-    # ── 6. Generate cron jobs ────────────────────────────────────────────
+    # ── 5. Set up cron jobs ─────────────────────────────────────────────
+    print("\nSetting up cron jobs...")
     crons = json.loads(read_template(PROFILE_TEMPLATE_DIR / "crons.json"))
-    write_file(customer_dir / "crons.json", json.dumps(crons, indent=2))
+    cron_summary = []
+    for job in crons.get("jobs", []):
+        cron_summary.append(f"  • {job['name']} — {job['schedule']}")
+    if cron_summary:
+        print("  Cron jobs defined:")
+        for line in cron_summary:
+            print(line)
+        write_file(profile_dir / "crons.json", json.dumps(crons, indent=2))
+    print()
 
-    # ── 7. Generate config.yaml ──────────────────────────────────────────
-    config = f"""# Hermes Agent — Captain Protocol Instance
-# Customer: {name}
-# Generated: {install_date}
-
-mode: captain
-
-model:
-  provider: openrouter
-  model: google/gemini-2.5-flash
-  api_key: "{api_key}"
-
-telegram:
-  token: "{bot_token}"
-
-customer:
-  name: "{name}"
-  business: "{business}"
-  website: "{website}"
-  chat_id: "{chat_id}"
-  path: "{path}"
-  status: "discovery"
-
-profile:
-  system_prompt: "./system_prompt.md"
-  memory_rules: "./memory_rules.md"
-
-cron:
-  config: "./crons.json"
-
-logging:
-  level: info
-  dir: "./logs"
-"""
-    write_file(customer_dir / "config.yaml", config)
-
-    # ── 8. Generate docker-compose service entry ─────────────────────────
-    service_name = f"hermes-{slug}"
-    docker_service = f"""
-  {service_name}:
-    image: hermes-agent:latest
-    container_name: {service_name}
-    restart: always
-    volumes:
-      - {customer_dir}:/app/config
-    environment:
-      - HERMES_CONFIG=/app/config/config.yaml
-      - HERMES_PROFILE=captain
-    ports: []
-"""
-    docker_compose_path = customer_dir / "docker-compose.yml"
-    full_compose = f"""version: "3.8"
-
-services:
-{docker_service}
-"""
-    write_file(docker_compose_path, full_compose)
-
-    # ── 9. Generate first-message script ─────────────────────────────────
-    first_message = f"""#!/usr/bin/env python3
-\"\"\"
-Send the Captain Protocol first message to the customer.
-Run this after the container is started.
-\"\"\"
-import requests
-import sys
-
-BOT_TOKEN = "{bot_token}"
-CHAT_ID = "{chat_id}"
-
-if path == "A":
-    greeting = f"""Hey {{name}}! I'm your AI agent — I live on your server and work for you 24/7.
-
-I already did some homework on your business. Before I share what I found, one question:
-
-**Do you have an existing business, or are you starting something new?**"""
-elif path == "B1":
-    greeting = f"""Hey {{name}}! I'm your AI agent — I live on your server and work for you 24/7.
-
-I heard you have a business idea you want to build. I'd love to hear about it.
-
-**Tell me about your idea — what are you thinking?**"""
-else:
-    greeting = f"""Hey {{name}}! I'm your AI agent — I live on your server and work for you 24/7.
-
-Let's figure out what we should build together. Two options:
-
-**Got an idea already?** Tell me about it.
-**Not sure yet?** Just say "let's figure it out" and I'll ask you a few questions to find the right business for you."""
-
-url = f"https://api.telegram.org/bot{{BOT_TOKEN}}/sendMessage"
-payload = {{"chat_id": CHAT_ID, "text": greeting, "parse_mode": "Markdown"}}
-
-resp = requests.post(url, json=payload)
-if resp.status_code == 200:
-    print(f"✓ First message sent to {{name}}")
-else:
-    print(f"✗ Failed to send: {{resp.text}}")
-    sys.exit(1)
-"""
-    # Fix the first message to use actual values
+    # ── 6. Generate first-message script ────────────────────────────────
     if path == "A":
-        msg_text = f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\nI already did some homework on your business. Before I share what I found, one question:\n\n**Do you have an existing business, or are you starting something new?**"
+        msg_text = (
+            f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\n"
+            f"I already did some homework on {business}. Before I share what I found, one question:\n\n"
+            f"**Do you have an existing website, or are you starting from scratch?**"
+        )
     elif path == "B1":
-        msg_text = f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\nI heard you have a business idea you want to build. I'd love to hear about it.\n\n**Tell me about your idea — what are you thinking?**"
+        msg_text = (
+            f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\n"
+            f"I heard you have a business idea you want to build. I'd love to hear about it.\n\n"
+            f"**Tell me about your idea — what are you thinking?**"
+        )
     else:
-        msg_text = f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\nLet's figure out what we should build together. Two options:\n\n**Got an idea already?** Tell me about it.\n**Not sure yet?** Just say \"let's figure it out\" and I'll ask you a few questions to find the right business for you."
+        msg_text = (
+            f"Hey {name}! I'm your AI agent — I live on your server and work for you 24/7.\n\n"
+            f"Let's figure out what we should build together. Two options:\n\n"
+            f"**Got an idea already?** Tell me about it.\n"
+            f"**Not sure yet?** Just say \"let's figure it out\" and I'll ask you a few questions."
+        )
 
-    simple_first_msg = f"""#!/usr/bin/env python3
-\"\"\"Send the Captain Protocol first message to {name}.\"\"\"
+    first_msg_script = f'''#!/usr/bin/env python3
+"""Send the Captain Protocol first message to {name}."""
 import requests, sys
 
 url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
@@ -274,37 +281,48 @@ if resp.status_code == 200:
 else:
     print(f"✗ Failed: {{resp.text}}")
     sys.exit(1)
-"""
-    write_file(customer_dir / "send_first_message.py", simple_first_msg)
+'''
+    write_file(profile_dir / "send_first_message.py", first_msg_script)
 
-    # ── Summary ──────────────────────────────────────────────────────────
+    # ── 7. Summary ──────────────────────────────────────────────────────
     print("\n" + "=" * 60)
     print(f"  ✓ Captain instance provisioned for {name}")
     print("=" * 60)
     print(f"""
-  Directory:  {customer_dir}
-  Config:     {customer_dir}/config.yaml
-  Profile:    {customer_dir}/system_prompt.md
-  Customer:   {customer_dir}/customer.json
-  Cron jobs:  {customer_dir}/crons.json
-  Docker:     {customer_dir}/docker-compose.yml
-  First msg:  {customer_dir}/send_first_message.py
+  Profile:    {profile_dir}
+  Config:     {profile_dir}/config.yaml
+  Memory:     {profile_dir}/memory/user_profile.md
+  Customer:   {profile_dir}/memory/customer.json
+  Crons:      {profile_dir}/crons.json
+  First msg:  {profile_dir}/send_first_message.py
 
-  Next steps:
-  1. Start the container:
-     cd {customer_dir} && docker compose up -d
+  To start:
+    hermes gateway install --profile {profile_name}
+    hermes gateway start --profile {profile_name}
 
-  2. Send the first message:
-     python3 {customer_dir}/send_first_message.py
+  To send the first message:
+    python3 {profile_dir}/send_first_message.py
 
-  3. The agent will greet {name} and start discovery.
+  To chat with this agent directly:
+    hermes --profile {profile_name}
 """)
 
-    # Optionally start
-    if args.start or prompt("Start the container now? (y/n)", "y").lower() == "y":
-        os.system(f"cd {customer_dir} && docker compose up -d")
-        print(f"\n✓ Container started. Sending first message...")
-        os.system(f"python3 {customer_dir}/send_first_message.py")
+    # ── 8. Optionally start ─────────────────────────────────────────────
+    if args.start:
+        print("Starting gateway...")
+        run(f"hermes gateway install --profile {profile_name}", check=False)
+        run(f"hermes gateway start --profile {profile_name}", check=False)
+        print("\nSending first message...")
+        run(f"python3 {profile_dir}/send_first_message.py", check=False)
+    else:
+        start_now = prompt("Start the gateway now? (y/n)", "y").lower()
+        if start_now == "y":
+            run(f"hermes gateway install --profile {profile_name}", check=False)
+            run(f"hermes gateway start --profile {profile_name}", check=False)
+            send = prompt("Send first message to customer? (y/n)", "y").lower()
+            if send == "y":
+                run(f"python3 {profile_dir}/send_first_message.py", check=False)
+
 
 if __name__ == "__main__":
     main()

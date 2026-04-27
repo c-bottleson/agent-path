@@ -8,17 +8,18 @@ When someone buys an **AI Agent Setup ($399)**, you walk them through installing
 
 - **Install scripts** — automated setup for fresh VPS and existing VPS
 - **Captain Profile** — the agent personality and behavior for customer instances
+- **Teleprompter** — the live call script with interactive agent/model/cloud selectors
 - **Landing pages** — standalone Vercel pages for the product and upsells
 
 ## Package Overview
 
 | Product | Price | Page |
-|---|---|---|
-| **AI Agent Setup** | $399 | [/](landing/index.html) |
-| **Captain Protocol** | $199 | [/captain](landing/captain.html) |
-| **Custom Skills** | $149/skill | [/skills](landing/skills.html) |
-| **Growth Audit** | $199 | [/audit](landing/audit.html) |
-| **3-Month Review Pack** | $149 | [/review](landing/review.html) |
+|---------|-------|------|
+| **AI Agent Setup** | $399 | [/](https://hermes-agent-install.vercel.app/) |
+| **Captain Protocol** | $199 | [/captain](https://hermes-agent-install.vercel.app/captain) |
+| **Custom Skills** | $149/skill | [/skills](https://hermes-agent-install.vercel.app/skills) |
+| **Growth Audit** | $199 | [/audit](https://hermes-agent-install.vercel.app/audit) |
+| **3-Month Review Pack** | $149 | [/review](https://hermes-agent-install.vercel.app/review) |
 
 ## Install Flow
 
@@ -26,40 +27,52 @@ When someone buys an **AI Agent Setup ($399)**, you walk them through installing
 
 1. Customer buys AI Agent Setup ($399)
 2. You schedule a Google Meet video call
-3. Customer creates a Contabo VPS ($6/mo) — you walk them through it
-4. Customer SSHs in and clones this repo
-5. Customer runs `bash scripts/install_fresh.sh`
-6. Script installs Docker, prompts for credentials, provisions the agent
+3. Open `teleprompter.html` — it walks you through the live call
+4. Customer creates a Contabo VPS ($6/mo) — you walk them through it
+5. Customer SSHs in and runs the generated script
+6. Script installs Hermes, configures Telegram, starts the gateway
 7. Agent sends first message on Telegram
 8. You're on the call to help if anything goes wrong
 
-### Scenario B: Customer already has a VPS with Hermes
+### Scenario B: You're provisioning remotely (add_customer.sh)
 
-1. Customer buys AI Agent Setup ($399)
-2. You SSH in (or they run it) and run `bash scripts/add_customer.sh --name "..." --bot-token "..." --api-key "..." --chat-id "..." --path A`
-3. New customer instance is provisioned alongside existing installation
-4. Agent sends first message on Telegram
+```bash
+# SSH into the VPS, then:
+bash scripts/install_fresh.sh --api-key "sk-or-v1-..." --bot-token "123:ABC..." --model "google/gemini-2.5-flash"
+```
+
+### Scenario C: Customer buys Captain Protocol (upsell)
+
+```bash
+# On a VPS that already has Hermes installed:
+python3 scripts/install_captain.py --name "Sarah" --business "Paws & Claws" \
+  --bot-token "123:ABC..." --api-key "sk-or-..." --chat-id "123456789" --path A
+```
+
+This creates a separate Hermes profile with the Captain personality, daily reports, and proactive behavior.
 
 ## Repo Structure
 
 ```
 hermes-agent-install/
+├── teleprompter.html           # Live call script (open in browser during calls)
 ├── scripts/
 │   ├── install_fresh.sh        # Full VPS setup from scratch
 │   ├── add_customer.sh         # Add customer to existing VPS
-│   └── install_captain.py      # Core provisioning script
+│   └── install_captain.py      # Captain Protocol provisioning
 ├── profiles/
 │   └── captain/
-│       ├── system_prompt.md    # Agent personality
+│       ├── system_prompt.md    # Captain personality
 │       ├── memory_rules.md     # Behavioral rules
-│       ├── customer_template.json  # Customer data template
-│       └── crons.json          # Scheduled jobs
-├── landing/                    # Vercel deployment
+│       ├── customer_template.json
+│       └── crons.json          # Scheduled jobs (daily report, weekly check-in)
+├── landing/                    # Vercel deployment (customer-facing pages)
 │   ├── index.html              # Agent Install ($399)
 │   ├── captain.html            # Captain Protocol ($199)
 │   ├── skills.html             # Custom Skills ($149)
 │   ├── audit.html              # Growth Audit ($199)
 │   ├── review.html             # 3-Month Review Pack ($149)
+│   ├── vercel.json             # URL rewrites
 │   └── assets/style.css        # Shared styles
 └── README.md
 ```
@@ -68,20 +81,21 @@ hermes-agent-install/
 
 ```bash
 cd landing/
-npx vercel --prod
+npx vercel --prod --token=<VERCEL_TOKEN>
 ```
 
-Or connect the `landing/` directory to a Vercel project via GitHub.
+Or connect the repo to a Vercel project via GitHub (root directory: `landing/`).
 
 ## Key Design Decisions
 
 - **Customer owns everything.** Their VPS, their keys, their data. You never see their passwords.
-- **One instance per customer.** Clean isolation. No shared memory, no shared bots.
+- **Secrets stay in .env.** API keys and bot tokens go in `~/.hermes/.env`, never in `config.yaml`.
+- **One profile per customer.** Clean isolation via Hermes profiles. No shared memory, no shared bots.
 - **Captain Protocol is default.** Every customer gets the proactive, leading agent personality.
 - **Telegram is the interface.** No web UI to maintain. Customers talk to their agent like texting a friend.
 - **One-time pricing.** No subscriptions (for now). Customers pay once, own forever.
 
 ## Stripe Payment Links
 
-- AI Agent Setup ($399): `https://buy.stripe.com/6oU3cv9wR0Mvfd89qz87K00`
-- AI Assessment ($999): `https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01`
+- AI Agent Setup ($399): https://buy.stripe.com/6oU3cv9wR0Mvfd89qz87K00
+- AI Assessment ($999): https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01
