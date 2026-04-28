@@ -62,6 +62,33 @@
         </div>
     </div>
 
+    <!-- PROFILE NAME -->
+    <div class="step">
+        <h3><span class="step-number">2</span> Name This Captain</h3>
+        <div class="script-box">
+            "Each Captain gets a unique name. This becomes the command you type to switch to it — <code>captain</code>, <code>captain-sarah</code>, <code>captain-sales</code>, whatever makes sense."
+        </div>
+        <div class="action-box">
+            <h4>Profile Name</h4>
+            <div style="display: flex; gap: 15px; align-items: end; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Profile Name:</label>
+                    <input type="text" id="profile_name" placeholder="captain" value="captain" oninput="generateScript()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; font-size: 14px; box-sizing: border-box;">
+                </div>
+                <div style="flex: 2; min-width: 300px;">
+                    <div class="info-box" style="margin: 0;">
+                        <strong>Command:</strong> <code id="profile_cmd">captain</code> — this is what you'll type in SSH to switch to this Captain.<br>
+                        <strong>Gateway:</strong> <code id="profile_gw">hermes --profile captain gateway status</code><br>
+                        <strong>Directory:</strong> <code id="profile_dir">~/.hermes/profiles/captain/</code>
+                    </div>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top: 10px;">
+                <strong>Multiple Captains?</strong> Each one needs a unique name. Examples: <code>captain</code>, <code>captain-sales</code>, <code>captain-dev</code>, <code>sarah</code>. The wrapper command matches the name.
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <!-- PHASE 2: CREDENTIALS -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
@@ -228,6 +255,12 @@
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <script>
         function updateAll() {
+            const profileName = document.getElementById('profile_name').value || 'captain';
+
+            // Update info box
+            document.getElementById('profile_cmd').textContent = profileName;
+            document.getElementById('profile_gw').textContent = `hermes --profile ${profileName} gateway status`;
+            document.getElementById('profile_dir').textContent = `~/.hermes/profiles/${profileName}/`;
             const installType = document.querySelector('input[name="install_type"]:checked').value;
 
             // Radio styling
@@ -248,13 +281,13 @@
         }
 
         function generateScript() {
-            const installType = document.querySelector('input[name="install_type"]:checked').value;
 
             let s = '';
 
             // Header
             s += `#!/bin/bash\n`;
             s += `# ═══════════════════════════════════════════════════════════════\n`;
+            s += `# Profile: ${profileName}\n`;
             s += `# Captain Protocol — ${installType === 'fresh' ? 'Full Install' : installType === 'existing_vps' ? 'Add to Existing VPS' : 'Upgrade Existing'}\n`;
             s += `# FILL IN THE LINES BELOW, THEN PASTE THIS ENTIRE SCRIPT\n`;
             s += `# INTO YOUR SSH TERMINAL.\n`;
@@ -272,7 +305,7 @@
             s += `# ═══════════════════════════════════════════════════════════════\n`;
             s += `set -euo pipefail\n\n`;
 
-            s += `PROFILE_NAME="captain"\n`;
+            s += `PROFILE_NAME="${profileName}"\n`;
             s += `PROFILE_DIR=~/.hermes/profiles/\${PROFILE_NAME}\n\n`;
 
             // Fresh install: full hermes setup
@@ -532,9 +565,9 @@ Let's figure out what we should build together.
             s += `echo "  Commands:"\n`;
             s += `echo "    SSH into root, then type the command:"\n`;
             s += `echo ""\n`;
-            s += `echo "    captain                 # Chat with Captain (CLI)"\n`;
-            s += `echo "    captain gateway status   # Check Captain gateway"\n`;
-            s += `echo "    captain gateway restart  # Restart Captain"\n`;
+            s += `echo "    \${PROFILE_NAME}                 # Chat with Captain (CLI)"\n`;
+            s += `echo "    \${PROFILE_NAME} gateway status   # Check Captain gateway"\n`;
+            s += `echo "    \${PROFILE_NAME} gateway restart  # Restart Captain"\n`;
             s += `echo "    hermes                  # Chat with main agent"\n`;
             s += `echo "    hermes gateway status    # Check main gateway"\n`;
             s += `echo ""\n`;
