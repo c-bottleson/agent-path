@@ -528,6 +528,13 @@ Let's figure out what we should build together.
             s += `echo ""\n`;
             s += `echo "  The Captain will message you on Telegram now."\n`;
             s += `echo "  Answer its questions — it takes it from there."\n`;
+            s += `echo ""\n`;
+            s += `echo "  Commands:"\n`;
+            s += `echo "    captain                 # Chat with Captain (CLI)"\n`;
+            s += `echo "    captain gateway status   # Check Captain gateway"\n`;
+            s += `echo "    captain gateway restart  # Restart Captain"\n`;
+            s += `echo "    hermes                  # Chat with main agent"\n`;
+            s += `echo "    hermes gateway status    # Check main gateway"\n`;
             s += `echo "═══════════════════════════════════════════════════════"\n`;
 
             document.getElementById('output').textContent = s;
