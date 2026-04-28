@@ -537,6 +537,23 @@ Let's figure out what we should build together.
             s += `echo "    captain gateway restart  # Restart Captain"\n`;
             s += `echo "    hermes                  # Chat with main agent"\n`;
             s += `echo "    hermes gateway status    # Check main gateway"\n`;
+            s += `echo ""\n`;
+            s += `echo "  ─── Move a Project to Captain ──────────────────────"\n`;
+            s += `echo ""\n`;
+            s += `echo "  1. Write a project brief:"\n`;
+            s += `echo "     nano \${PROFILE_DIR}/memory/[projectname].md"\n`;
+            s += `echo ""\n`;
+            s += `echo "  2. Put this in it:"\n`;
+            s += `echo "     # ProjectName"\n`;
+            s += `echo "     - What it is:"\n`;
+            s += `echo "     - GitHub repo:"\n`;
+            s += `echo "     - Live URL:"\n`;
+            s += `echo "     - What needs work:"\n`;
+            s += `echo ""\n`;
+            s += `echo "  3. Message the Captain on Telegram:"\n`;
+            s += `echo "     'Read [projectname].md in your memory. Then [task].'"\n`;
+            s += `echo ""\n`;
+            s += `echo "  The Captain reads the brief and takes over."\n`;
             s += `echo "═══════════════════════════════════════════════════════"\n`;
 
             document.getElementById('output').textContent = s;
