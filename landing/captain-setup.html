@@ -415,6 +415,40 @@
                 s += `YAML_EOF\n\n`;
             }
 
+            // Validate user ID before sending
+            s += `# ─── Validate Telegram User ID ─────────────────────────────\n`;
+            s += `echo "Verifying Telegram User ID..."\n`;
+            s += `VALIDATE_RESP=$(curl -s "https://api.telegram.org/bot\${TELEGRAM_TOKEN}/getChat?chat_id=\${TELEGRAM_USER_ID}")\n`;
+            s += `if echo "\${VALIDATE_RESP}" | grep -q '"is_bot":true'; then\n`;
+            s += `    echo ""\n`;
+            s += `    echo "═══════════════════════════════════════════════════════"\n`;
+            s += `    echo "  ✗ ERROR: That ID belongs to a BOT, not a human."\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  The Telegram User ID must be YOUR personal ID,"\n`;
+            s += `    echo "  not the bot's ID or another bot's ID."\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  How to get the RIGHT ID:"\n`;
+            s += `    echo "  1. Open Telegram"\n`;
+            s += `    echo "  2. Search for @userinfobot"\n`;
+            s += `    echo "  3. Send /start"\n`;
+            s += `    echo "  4. It replies with a number like 8164757328"\n`;
+            s += `    echo "  5. That number is your User ID"\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  Fix it now:"\n`;
+            s += `    echo "    sed -i 's/TELEGRAM_USER_ID=.*/TELEGRAM_USER_ID=YOUR_REAL_ID/' \\"\n`;
+            s += `    echo "      \${PROFILE_DIR}/.env"\n`;
+            s += `    echo "    sed -i 's/TELEGRAM_HOME_CHANNEL=.*/TELEGRAM_HOME_CHANNEL=YOUR_REAL_ID/' \\"\n`;
+            s += `    echo "      \${PROFILE_DIR}/.env"\n`;
+            s += `    echo "    sed -i 's/TELEGRAM_ALLOWED_USERS=.*/TELEGRAM_ALLOWED_USERS=YOUR_REAL_ID/' \\"\n`;
+            s += `    echo "      \${PROFILE_DIR}/.env"\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  Then re-run this script or manually:"\n`;
+            s += `    echo "    hermes --profile \${PROFILE_NAME} gateway restart"\n`;
+            s += `    echo "    python3 \${PROFILE_DIR}/send_first_message.py"\n`;
+            s += `    echo "═══════════════════════════════════════════════════════"\n`;
+            s += `    exit 1\n`;
+            s += `fi\n`;
+            s += `echo "✓ Telegram User ID verified"\n\n`;
             // First message
             s += `# ─── First Message ──────────────────────────────────────────\n`;
             s += `cat << 'MSG_EOF' > \${PROFILE_DIR}/send_first_message.py\n`;

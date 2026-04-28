@@ -513,7 +513,27 @@
                 s += `# Configure git\n`;
                 s += `git config --global user.name "\${GITHUB_USER}"\n`;
                 s += `git config --global user.email "\${GITHUB_USER}@users.noreply.github.com"\n\n`;
-
+                s += `# Validate Telegram User ID\n`;
+                s += `echo "Verifying Telegram User ID..."\n`;
+                s += `VALIDATE_RESP=$(curl -s "https://api.telegram.org/bot\${TELEGRAM_TOKEN}/getChat?chat_id=\${TELEGRAM_USER_ID}")\n`;
+                s += `if echo "\${VALIDATE_RESP}" | grep -q '"is_bot":true'; then\n`;
+                s += `    echo ""\n`;
+                s += `    echo "═══════════════════════════════════════════════════════"\n`;
+                s += `    echo "  ✗ ERROR: That ID belongs to a BOT, not a human."\n`;
+                s += `    echo ""\n`;
+                s += `    echo "  The Telegram User ID must be YOUR personal ID."\n`;
+                s += `    echo ""\n`;
+                s += `    echo "  How to get the RIGHT ID:"\n`;
+                s += `    echo "  1. Open Telegram"\n`;
+                s += `    echo "  2. Search for @userinfobot"\n`;
+                s += `    echo "  3. Send /start"\n`;
+                s += `    echo "  4. It replies with a number like 8164757328"\n`;
+                s += `    echo "  5. Edit the script at the top: replace REPLACE_WITH_USER_ID"\n`;
+                s += `    echo "     with that number, then re-paste the whole script"\n`;
+                s += `    echo "═══════════════════════════════════════════════════════"\n`;
+                s += `    exit 1\n`;
+                s += `fi\n`;
+                s += `echo "✓ Telegram User ID verified"\n\n`;
                 s += `# Start Telegram gateway\n`;
                 s += `hermes gateway install\n`;
                 s += `hermes gateway start\n`;
