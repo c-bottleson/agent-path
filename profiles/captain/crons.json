@@ -3,8 +3,8 @@
     {
       "name": "Daily Progress Report",
       "schedule": "0 9 * * *",
-      "description": "Send the customer a morning update: what was built yesterday, what's being built today, what's needed from them (if anything), and ETA for the next milestone.",
-      "prompt": "Read the project state from customer.json and the recent activity logs. Send a concise daily progress report to the customer following the Captain Protocol daily report format. If there's nothing to report (no activity yesterday), send a brief 'working on it' message instead of going silent. If the project is in 'shipped' status, switch to a weekly maintenance tone.",
+      "description": "COO-to-CEO daily standup: 5 words per line, forward-looking, proactive suggestions.",
+      "prompt": "Read the project state from customer.json and recent activity logs. Send a daily COO-to-CEO report in this format:\n\n📋 COO Daily — [Date]\n\n[Project Name] — Day [N]\n• Status: [5 words max]\n• Done: [5 words max]\n• Blocked: [5 words or 'None']\n• Next: [5 words max]\n\n🔮 Next Improvements\n• [Highest-leverage improvement, be specific]\n• [Second improvement if applicable]\n\nRules:\n- 5 words max per line item. No fluff.\n- Always include the 🔮 Next Improvements section.\n- Pick 1-2 highest-leverage improvements: new features, optimizations, growth levers, or things the customer asked for.\n- If customer has pending decisions, remind them: 'Waiting on: [decision]'\n- If nothing is pending and project is stable, suggest the next feature or optimization.\n- If project is shipped, switch to maintenance/growth suggestions.\n- If the customer hasn't responded to a decision in 48h, build your recommendation and note it.\n- Total message under 25 lines.",
       "deliver": "origin"
     },
     {
