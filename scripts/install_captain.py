@@ -249,6 +249,9 @@ memory:
         with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
             f.write(prompt_text)
             prompt_file = f.name
+        # CRITICAL: --profile flag ensures cron runs under the Captain's
+        # isolated context, NOT the main profile's. Without this, the cron
+        # inherits main's full project context and will leak data.
         run(
             f"hermes --profile {profile_name} cron create "
             f"'{schedule}' "
@@ -258,6 +261,16 @@ memory:
             check=False
         )
         os.unlink(prompt_file)
+
+    # Verify crons landed in the right profile (not main)
+    captain_cron_path = profile_dir / "cron" / "jobs.json"
+    if captain_cron_path.exists():
+        print(f"\n  ✓ Crons verified in {captain_cron_path}")
+    else:
+        print(f"\n  ⚠ WARNING: Cron file not found at {captain_cron_path}")
+        print(f"    Crons may have been created under main profile.")
+        print(f"    Fix: remove from main (`hermes cron list` → `hermes cron remove ID`)")
+        print(f"    Then re-run with: hermes --profile {profile_name} cron create ...")
     print()
 
     # ── 6. Generate first-message script ────────────────────────────────

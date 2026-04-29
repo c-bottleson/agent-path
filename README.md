@@ -80,7 +80,9 @@ hermes-agent-install/
 │   ├── assessment_playbook.md  # How to deliver the $999 Assessment
 │   ├── agent_setup_teachings.md # Core curriculum for $399 Install
 │   ├── agent_setup_advanced.md  # Advanced topics (councils, routing, etc.)
-│   └── marketing_copy.md        # Ad scripts & direct mail copy
+│   ├── marketing_copy.md        # Ad scripts & direct mail copy
+│   ├── profile_isolation.md     # CRITICAL: Multi-profile architecture rules
+│   └── skipper_onboarding.md    # Skipper instance onboarding doc
 └── README.md
 ```
 
@@ -98,6 +100,7 @@ Or connect the repo to a Vercel project via GitHub (root directory: `landing/`).
 - **Customer owns everything.** Their VPS, their keys, their data. You never see their passwords.
 - **Secrets stay in .env.** API keys and bot tokens go in `~/.hermes/.env`, never in `config.yaml`.
 - **One profile per customer.** Clean isolation via Hermes profiles. No shared memory, no shared bots.
+- **Crons go in the profile, not main.** Critical: always use `hermes --profile <name> cron create` — never create customer crons under the main profile. Main's context will leak into the cron. See `docs/profile_isolation.md`.
 - **Captain Protocol is default.** Every customer gets the proactive, leading agent personality.
 - **Telegram is the interface.** No web UI to maintain. Customers talk to their agent like texting a friend.
 - **One-time pricing.** No subscriptions (for now). Customers pay once, own forever.
