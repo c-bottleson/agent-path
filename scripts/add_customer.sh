@@ -33,7 +33,7 @@ echo ""
 command -v docker &> /dev/null || error "Docker not found. Run install_fresh.sh first."
 command -v python3 &> /dev/null || error "Python3 not found."
 
-INSTALL_DIR="$HOME/hermes-agent-install"
+INSTALL_DIR="$HOME/agent-path"
 [ -d "$INSTALL_DIR" ] || error "Install repo not found at $INSTALL_DIR. Clone it first."
 [ -f "$INSTALL_DIR/scripts/install_captain.py" ] || error "install_captain.py not found in $INSTALL_DIR/scripts/"
 

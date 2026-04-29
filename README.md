@@ -15,12 +15,12 @@ When someone buys an **AI Agent Setup ($399)**, you walk them through installing
 
 | Product | Price | Page |
 |---------|-------|------|
-| **AI Assessment** | $999 | [/assessment](https://hermes-agent-install.vercel.app/assessment) |
-| **AI Agent Setup** | $399 | [/](https://hermes-agent-install.vercel.app/) |
-| **Captain Protocol** | $199 | [/captain](https://hermes-agent-install.vercel.app/captain) |
-| **Custom Skills** | $149/skill | [/skills](https://hermes-agent-install.vercel.app/skills) |
-| **Growth Audit** | $199 | [/audit](https://hermes-agent-install.vercel.app/audit) |
-| **3-Month Review Pack** | $149 | [/review](https://hermes-agent-install.vercel.app/review) |
+| **AI Assessment** | $999 | [/assessment](https://agent-path.vercel.app/assessment) |
+| **AI Agent Setup** | $399 | [/](https://agent-path.vercel.app/) |
+| **Captain Protocol** | $199 | [/captain](https://agent-path.vercel.app/captain) |
+| **Custom Skills** | $149/skill | [/skills](https://agent-path.vercel.app/skills) |
+| **Growth Audit** | $199 | [/audit](https://agent-path.vercel.app/audit) |
+| **3-Month Review Pack** | $149 | [/review](https://agent-path.vercel.app/review) |
 
 ## Install Flow
 
@@ -55,7 +55,7 @@ This creates a separate Hermes profile with the Captain personality, daily repor
 ## Repo Structure
 
 ```
-hermes-agent-install/
+agent-path/
 ├── teleprompter.html           # Live call script (open in browser during calls)
 ├── scripts/
 │   ├── install_fresh.sh        # Full VPS setup from scratch

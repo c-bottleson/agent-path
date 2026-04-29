@@ -12,7 +12,7 @@
 #   bash scripts/install_fresh.sh --api-key "sk-or-v1-..." --bot-token "123:ABC..." --model "google/gemini-2.5-flash"
 #
 # Can also be piped:
-#   curl -sSL https://raw.githubusercontent.com/c-bottleson/hermes-agent-install/main/scripts/install_fresh.sh | bash
+#   curl -sSL https://raw.githubusercontent.com/c-bottleson/agent-path/main/scripts/install_fresh.sh | bash
 #
 
 set -euo pipefail
