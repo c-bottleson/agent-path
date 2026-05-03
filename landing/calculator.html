@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI ROI Calculator — Find Out If AI Saves You Money</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111;
+      --border: #222;
+      --text: #e5e5e5;
+      --muted: #888;
+      --accent: #3b82f6;
+      --green: #22c55e;
+      --red: #ef4444;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 24px; }
+    
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    
+    /* Calculator Form */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+    .step-num {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .step h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    
+    /* Results */
+    .results {
+      display: none;
+      text-align: center;
+    }
+    .results.active { display: block; }
+    .results h2 { font-size: 24px; margin-bottom: 24px; }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .stat-card .num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .stat-card .label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    
+    .breakdown {
+      text-align: left;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .breakdown h3 { font-size: 16px; margin-bottom: 12px; }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row .val { color: var(--green); font-weight: 600; }
+    
+    .cta-section {
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .cta-section h3 { margin-bottom: 8px; }
+    .cta-section p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+    .cta-section .btn { margin-bottom: 8px; }
+    .cta-section .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    
+    /* Trust */
+    .trust {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .trust span { margin: 0 12px; }
+    
+    .disclaimer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>How much could AI save your business?</h1>
+      <p>Answer 5 questions. Get a real dollar estimate. Takes 60 seconds.</p>
+    </div>
+
+    <div class="calc-card" id="calculator">
+      <!-- Step 1: Industry -->
+      <div class="step active" id="step1">
+        <div class="step-num">1</div>
+        <h2>What industry are you in?</h2>
+        <p>This helps us estimate which tasks AI can automate for you.</p>
+        <select id="industry">
+          <option value="">Select your industry...</option>
+          <option value="hvac">HVAC / Plumbing / Electrical</option>
+          <option value="construction">Construction / Remodeling</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="logistics">Logistics / Transportation</option>
+          <option value="retail">Retail / E-commerce</option>
+          <option value="services">Professional Services</option>
+          <option value="other">Other</option>
+        </select>
+        <button class="btn" onclick="nextStep(1)" id="btn1" disabled>Next →</button>
+      </div>
+
+      <!-- Step 2: Team Size -->
+      <div class="step" id="step2">
+        <div class="step-num">2</div>
+        <h2>How many employees?</h2>
+        <p>Include everyone — office staff, techs, sales, management.</p>
+        <select id="teamSize">
+          <option value="">Select team size...</option>
+          <option value="3">1-5 employees</option>
+          <option value="8">6-15 employees</option>
+          <option value="25">16-50 employees</option>
+          <option value="75">51-100 employees</option>
+        </select>
+        <button class="btn" onclick="nextStep(2)" id="btn2" disabled>Next →</button>
+      </div>
+
+      <!-- Step 3: Admin Hours -->
+      <div class="step" id="step3">
+        <div class="step-num">3</div>
+        <h2>Hours/week on admin tasks?</h2>
+        <p>Emails, scheduling, invoicing, data entry, reports, follow-ups — across your whole team.</p>
+        <select id="adminHours">
+          <option value="">Estimate total admin hours/week...</option>
+          <option value="10">Under 10 hours/week</option>
+          <option value="20">10-25 hours/week</option>
+          <option value="40">25-50 hours/week</option>
+          <option value="70">50-100 hours/week</option>
+          <option value="120">100+ hours/week</option>
+        </select>
+        <button class="btn" onclick="nextStep(3)" id="btn3" disabled>Next →</button>
+      </div>
+
+      <!-- Step 4: Avg Hourly Cost -->
+      <div class="step" id="step4">
+        <div class="step-num">4</div>
+        <h2>Average hourly cost per employee?</h2>
+        <p>Include salary, benefits, taxes. Rough number is fine.</p>
+        <select id="hourlyCost">
+          <option value="">Select average hourly cost...</option>
+          <option value="20">$15-25/hr</option>
+          <option value="35">$25-45/hr</option>
+          <option value="55">$45-65/hr</option>
+          <option value="80">$65+/hr</option>
+        </select>
+        <button class="btn" onclick="nextStep(4)" id="btn4" disabled>Next →</button>
+      </div>
+
+      <!-- Step 5: Email for Results -->
+      <div class="step" id="step5">
+        <div class="step-num">5</div>
+        <h2>Get your results</h2>
+        <p>Enter your email to see your personalized AI savings estimate.</p>
+        <label>Your email</label>
+        <input type="email" id="email" placeholder="you@company.com">
+        <label>Business name (optional)</label>
+        <input type="text" id="business" placeholder="Your Business Name">
+        <button class="btn" onclick="calculate()" id="btn5">Show My Results →</button>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results">
+      <h2>Your AI Savings Estimate</h2>
+      
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="num" id="monthlySavings">$0</div>
+          <div class="label">Monthly savings</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="yearlySavings">$0</div>
+          <div class="label">Yearly savings</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="hoursReclaimed">0</div>
+          <div class="label">Hours reclaimed/week</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="roiMultiple">0x</div>
+          <div class="label">ROI on $399 setup</div>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <h3>Where the savings come from</h3>
+        <div class="breakdown-row">
+          <span>Admin task automation (60-80%)</span>
+          <span class="val" id="adminSavings">$0/mo</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Faster quoting & proposals</span>
+          <span class="val" id="quoteSavings">$0/mo</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Automated follow-ups & scheduling</span>
+          <span class="val" id="followupSavings">$0/mo</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Setup cost (one-time)</span>
+          <span class="val" style="color: var(--red);">-$399</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Monthly API cost</span>
+          <span class="val" style="color: var(--red);">-$10/mo</span>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3>Want the exact numbers for your business?</h3>
+        <p>This is an estimate. For a detailed, line-by-line blueprint of where AI saves you money — and where it won't — book a 90-minute AI Assessment.</p>
+        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Book AI Assessment — $999</a>
+        <br><br>
+        <a href="https://buy.stripe.com/6oU3cv9wR0Mvfd89qz87K00" class="btn btn-secondary">Or get the $399 Agent Install</a>
+      </div>
+
+      <div class="trust">
+        <span>🔒 Your data stays on your server</span>
+        <span>💰 One-time pricing</span>
+        <span>📞 1-on-1 video call setup</span>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      Estimates based on industry averages. Actual results vary by business.<br>
+      <a href="https://agent-path.vercel.app" style="color: var(--accent);">Agent Path</a> — AI that actually works for your business.
+    </div>
+  </div>
+
+  <script>
+    // Enable next buttons on select
+    document.querySelectorAll('select').forEach(sel => {
+      sel.addEventListener('change', () => {
+        const step = sel.closest('.step').id.replace('step', '');
+        document.getElementById('btn' + step).disabled = !sel.value;
+      });
+    });
+
+    // Email validation
+    document.getElementById('email').addEventListener('input', () => {
+      const valid = document.getElementById('email').value.includes('@');
+      document.getElementById('btn5').disabled = !valid;
+    });
+    document.getElementById('btn5').disabled = true;
+
+    function nextStep(current) {
+      document.getElementById('step' + current).classList.remove('active');
+      document.getElementById('step' + (current + 1)).classList.add('active');
+    }
+
+    function calculate() {
+      const adminHours = parseInt(document.getElementById('adminHours').value);
+      const hourlyCost = parseInt(document.getElementById('hourlyCost').value);
+      const email = document.getElementById('email').value;
+      
+      // Automate 65% of admin hours (conservative)
+      const automatablePct = 0.65;
+      const hoursReclaimed = Math.round(adminHours * automatablePct);
+      const adminSavings = Math.round(hoursReclaimed * hourlyCost * 4.33); // monthly
+      
+      // Quoting time savings (estimate 20% faster)
+      const quoteSavings = Math.round(adminHours * 0.15 * hourlyCost * 4.33);
+      
+      // Follow-up automation
+      const followupSavings = Math.round(adminHours * 0.10 * hourlyCost * 4.33);
+      
+      const totalMonthly = adminSavings + quoteSavings + followupSavings - 10; // minus API cost
+      const yearlySavings = totalMonthly * 12 - 399; // minus setup cost
+      const roiMultiple = Math.round((yearlySavings + 399) / 399);
+
+      // Display
+      document.getElementById('monthlySavings').textContent = '$' + totalMonthly.toLocaleString();
+      document.getElementById('yearlySavings').textContent = '$' + yearlySavings.toLocaleString();
+      document.getElementById('hoursReclaimed').textContent = hoursReclaimed;
+      document.getElementById('roiMultiple').textContent = roiMultiple + 'x';
+      document.getElementById('adminSavings').textContent = '$' + adminSavings.toLocaleString() + '/mo';
+      document.getElementById('quoteSavings').textContent = '$' + quoteSavings.toLocaleString() + '/mo';
+      document.getElementById('followupSavings').textContent = '$' + followupSavings.toLocaleString() + '/mo';
+
+      // Hide calculator, show results
+      document.getElementById('calculator').style.display = 'none';
+      document.getElementById('results').classList.add('active');
+
+      // Log lead (you'd send this to your backend/email)
+      console.log('Lead captured:', {
+        email: email,
+        business: document.getElementById('business').value,
+        industry: document.getElementById('industry').value,
+        teamSize: document.getElementById('teamSize').value,
+        adminHours: adminHours,
+        hourlyCost: hourlyCost,
+        estimatedMonthlySavings: totalMonthly,
+        timestamp: new Date().toISOString()
+      });
+    }
+  </script>
+</body>
+</html>
