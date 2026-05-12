@@ -22,7 +22,31 @@ Beyond the core curriculum, the true value of an "AI Architect" lies in knowing 
 - **The Implementation**: Hermes separates *Facts* (Declarative memory: "Nick prefers concise answers") from *Procedures* (Procedural memory: `SKILL.md` files). If we solve a complex bug or figure out a multi-step workflow (like `whatsapp-export-to-crm`), we don't memorize it; we compress it into a standalone Skill file. The agent only loads that Skill when the specific task is triggered in the future.
 - **The Teaching**: Teach clients to stop writing massive system prompts. Instead, train them to build a library of `SKILL.md` SOPs (Standard Operating Procedures) that the agent can read on-demand. 
 
-## 5. Dogfooding & QA Personas
+## 5. Google Meet Integration (Real-Time Meeting Intelligence)
+- **The Concept**: Your AI agent can join Google Meet calls, transcribe everything in real-time, and generate structured meeting notes, action items, and follow-ups — without any human note-taking.
+- **The Implementation**: Hermes has built-in `meet_join`, `meet_transcript`, `meet_say`, and `meet_leave` tools. The agent joins as a guest, scrapes live captions into a transcript, and can optionally speak into the call via TTS (requires OpenAI Realtime API key + audio bridge).
+- **Use Cases for Consulting**:
+  - **Assessment Calls**: Captain joins the $999 assessment call, transcribes the entire conversation, and auto-generates the teardown document from what was said.
+  - **Agent Install Sessions**: During the $399 1-on-1 deployment, the agent captures every step discussed so nothing is lost.
+  - **Client Check-ins**: Weekly client calls get auto-summarized with action items.
+- **How It Works**:
+  ```bash
+  # Join a Meet call (transcribe-only mode)
+  meet_join url="https://meet.google.com/abc-defg-hij" mode="transcribe"
+  
+  # Read live transcript as it accumulates
+  meet_transcript last=10  # last 10 lines
+  
+  # Speak into the call (requires realtime mode + API key)
+  meet_join url="..." mode="realtime"
+  meet_say text="Action item: deploy the booking widget by Friday"
+  
+  # Leave and finalize transcript
+  meet_leave
+  ```
+- **The Teaching**: Show clients how their AI can attend meetings for them. The agent sits in the call silently, captures everything, and delivers a structured summary afterward. For consulting businesses, this is the "always-on executive assistant" that never misses a detail.
+
+## 6. Dogfooding & QA Personas
 - **The Concept**: Developers are blind to their own bad UX.
 - **The Implementation**: We use the `dogfood` skill in tandem with the internal `browser` tool. Hermes is pointed at a live Vercel URL or a Next.js app and given a strict persona (e.g., "Act like a skeptical 55-year-old business owner who hates clicking buttons"). It autonomously navigates the site, attempts to break the forms, and writes a harsh UX critique.
 - **The Teaching**: Show product-focused makers how to automate their QA process so they never push a broken UI to a real customer.
