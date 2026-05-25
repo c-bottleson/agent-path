@@ -1,4 +1,10 @@
-# Agent Path — Cold Outreach Templates
+# Agent Path — Cold Outreach Templates (v2)
+
+## Strategy
+- All outreach drives to the **$999 AI Assessment** — the only product with a complete funnel right now
+- Goal: first 2-3 customers for testimonials and case studies
+- No prices in outreach — DM to close
+- Brand philosophy: "I don't want to convince anyone. I'm looking for the people who are already convinced."
 
 ## Email Templates
 
@@ -18,7 +24,7 @@ I'll keep this short. Your office staff is probably spending hours every week on
 
 That's not their fault. Nobody showed them a better way.
 
-We set up a private AI agent on your team's computers in one video call — $399 flat. It runs locally, no data leaves your network, and your people actually use it because we walk them through it live.
+I do a 90-minute AI Assessment for businesses like yours. I look at your actual workflows, figure out where AI saves real time, and hand you a roadmap. No subscriptions, no cloud nonsense. Your data stays on your machines.
 
 Worth a 10-minute call to see if it fits?
 
@@ -36,11 +42,11 @@ Quick question — how long does it take your team to put together a quote or pr
 
 Some of your competitors are using AI to do it in 5. Not because they're smarter — because someone showed them how.
 
-We work with businesses in [industry] to set up private AI tools that your team can actually use. No subscriptions, no cloud nonsense. One-time install, done in a single video call.
+I work with [industry] businesses to figure out exactly where AI fits in their operation. It starts with a 90-minute assessment — I dig into your workflows, find the bottlenecks, and hand you a plan.
 
-We're new. We're direct. And we're $399.
+We're new. We're direct. And we don't waste your time.
 
-If you want to see what this looks like, I'll show you on a quick call.
+If you want to see what this looks like, let's talk for 10 minutes.
 
 — [Your Name], Agent Path
 
@@ -56,7 +62,7 @@ Rough numbers for a 10-person team:
 
 Your admin and office staff spend ~6 hours/week on tasks AI can handle — writing, summarizing, organizing. At $25/hr, that's **$1,500/month** walking out the door on busywork.
 
-We install a private AI agent on your systems for a one-time $399. No monthly fees. No vendor lock-in. Your data stays on your machines.
+I do a 90-minute AI Assessment where I map your actual workflows and show you exactly where the time savings are. No generic advice — everything is based on how YOUR business actually operates.
 
 Most teams start saving real hours in week one.
 
@@ -76,7 +82,7 @@ Not a trick question. Genuinely asking.
 
 If your team had 20 extra hours a week — no extra hires — what would you have them focus on? More jobs? Better customer follow-up? Actually leaving on time for once?
 
-We help [industry] businesses install AI tools that reclaim that time. Private setup, one video call, $399. We also do a deeper 90-minute operational teardown for $999 if you want to find every efficiency opportunity in your workflow.
+I help [industry] businesses figure out exactly where AI fits. Starts with a 90-minute assessment — I look at your real workflows, find the time leaks, and hand you a roadmap.
 
 Curious if this fits your shop? Takes 10 minutes to find out.
 
@@ -84,21 +90,19 @@ Curious if this fits your shop? Takes 10 minutes to find out.
 
 ---
 
-### Email 5: Social Proof / Case Study Style
+### Email 5: The Anti-Hype
 
-**Subject:** How a 15-person [industry] shop cut proposal time from 45 min to 8
+**Subject:** Not another AI pitch. Just a question.
 
 Hey [First Name],
 
-We recently worked with a [industry] business — 15 people, doing about $3M/year. Their office manager was spending half her day writing proposals, follow-up emails, and reformatting documents.
+I'm not going to tell you AI is going to change the world. You've heard that.
 
-We installed a private AI agent on their system during a single video call. No cloud. No subscription. $399 one-time.
+Here's what I will say: I've been setting up AI agents for businesses that don't have an IT department. The ones that work best are the ones where someone actually sat down, looked at the workflows, and figured out what to automate first.
 
-Within a week, proposal time dropped from 45 minutes to 8. Follow-up emails went from 20 minutes to 3. She's now focused on actual operations instead of typing.
+That's what I do. 90 minutes. Your business. A real plan at the end.
 
-We're a new company — no big client list yet. But the results are real and we stand behind them.
-
-Want to see if we can do the same for you?
+If that's interesting, I'm easy to find.
 
 — [Your Name], Agent Path
 
@@ -116,12 +120,12 @@ Hey [First Name] — I work with [industry] businesses on practical AI setup. No
 
 **Message 2: Curiosity**
 
-Hey [First Name] — quick question: how much time does your team spend on admin work that could be automated? We help [industry] businesses set up private AI tools for a flat one-time cost. Worth a conversation?
+Hey [First Name] — quick question: how much time does your team spend on admin work that could be automated? I do AI assessments for [industry] businesses — 90 minutes, real plan at the end. Worth a conversation?
 
 **Message 3: Peer Angle**
 
-Hey [First Name] — I'm building something for businesses like yours. We set up AI tools that actually get used — no subscriptions, no cloud, one flat fee. Connecting with owners in [industry] to learn and share what's working. Let's link up.
+Hey [First Name] — I'm building something for businesses like yours. I map out where AI actually saves time in your specific operation — no generic advice, no subscriptions. Connecting with owners in [industry] to learn and share what's working. Let's link up.
 
 ---
 
-*All templates are under 150 words (emails) and 300 characters (LinkedIn). Customize [First Name], [industry], and [Your Name] before sending.*
+*Customize [First Name], [industry], and [Your Name] before sending. No prices in outreach — close in DMs.*
