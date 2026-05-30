@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jackson Second Brain Install Addendum — Agent Path</title>
+  <title>Jackson second brain call script</title>
   <style>
     :root {
-      --bg: #f4f6f8;
+      --bg: #f5f7fb;
       --card: #ffffff;
-      --ink: #172033;
+      --ink: #111827;
       --muted: #667085;
-      --blue: #0066cc;
-      --blue-soft: #e8f4fd;
-      --orange: #b35900;
-      --orange-soft: #fff7ed;
+      --border: #d9e2ec;
+      --blue: #1d4ed8;
+      --blue-soft: #eff6ff;
       --green: #15803d;
       --green-soft: #ecfdf3;
-      --border: #d9e2ec;
-      --dark: #111827;
+      --orange: #c2410c;
+      --orange-soft: #fff7ed;
+      --dark: #0f172a;
     }
     * { box-sizing: border-box; }
     body {
@@ -27,268 +27,194 @@
       color: var(--ink);
       background: var(--bg);
     }
-    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    main { max-width: 1040px; margin: 0 auto; padding: 22px; }
     header {
-      background: linear-gradient(135deg, #0f172a, #173b66);
-      color: #fff;
+      background: var(--dark);
+      color: white;
       border-radius: 18px;
-      padding: 30px;
-      margin-bottom: 22px;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
+      padding: 26px;
+      margin-bottom: 18px;
     }
-    header p { color: #dbeafe; max-width: 760px; font-size: 1.05rem; }
-    h1 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; }
     h2 { margin: 0 0 12px; font-size: 1.35rem; }
-    h3 { margin: 0 0 8px; font-size: 1rem; }
-    .badge { display: inline-flex; gap: 8px; align-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #e0f2fe; padding: 6px 10px; border-radius: 999px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    p { margin: 8px 0; }
+    header p { color: #dbeafe; max-width: 760px; }
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 5px 18px rgba(15, 23, 42, .06); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 5px 18px rgba(15, 23, 42, .05); }
     .span-4 { grid-column: span 4; }
     .span-6 { grid-column: span 6; }
     .span-8 { grid-column: span 8; }
     .span-12 { grid-column: span 12; }
-    .script { background: var(--blue-soft); border-left: 5px solid var(--blue); color: #003a75; padding: 16px; border-radius: 12px; font-size: 1.02rem; }
-    .operator { background: var(--orange-soft); border-left: 5px solid #f97316; color: #7c2d12; padding: 14px 16px; border-radius: 12px; }
-    .success { background: var(--green-soft); border-left: 5px solid var(--green); color: #14532d; padding: 14px 16px; border-radius: 12px; }
-    .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
-    ul, ol { margin: 10px 0 0 20px; padding: 0; }
+    .read { background: var(--blue-soft); border-left: 5px solid var(--blue); padding: 14px 16px; border-radius: 12px; }
+    .send { background: var(--green-soft); border-left: 5px solid var(--green); padding: 14px 16px; border-radius: 12px; }
+    .note { background: var(--orange-soft); border-left: 5px solid var(--orange); padding: 14px 16px; border-radius: 12px; }
+    .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 800; margin-bottom: 8px; }
+    ul, ol { margin: 10px 0 0 22px; padding: 0; }
     li { margin: 7px 0; }
-    code, pre { background: #111827; color: #a7f3d0; border-radius: 10px; }
-    code { padding: 2px 6px; font-size: .9em; }
-    pre { padding: 16px; overflow-x: auto; white-space: pre-wrap; }
-    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
-    .flow div { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; font-weight: 700; font-size: .9rem; }
+    pre {
+      background: #0f172a;
+      color: #d1fae5;
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+    code { background: #eef2ff; padding: 2px 6px; border-radius: 6px; }
     .muted { color: var(--muted); }
-    .timeline { display: grid; gap: 12px; }
-    .step { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; }
-    .num { width: 36px; height: 36px; border-radius: 50%; background: var(--dark); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .pill { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; border-radius: 999px; padding: 5px 10px; font-size: .84rem; }
-    .two-col { columns: 2; column-gap: 28px; }
-    footer { color: var(--muted); text-align: center; padding: 26px 0 10px; }
+    .checklist { columns: 2; column-gap: 28px; }
+    footer { color: var(--muted); text-align: center; padding: 24px 0 10px; }
     @media (max-width: 820px) {
       main { padding: 14px; }
       .span-4, .span-6, .span-8 { grid-column: span 12; }
-      .flow { grid-template-columns: 1fr; }
-      .two-col { columns: 1; }
+      .checklist { columns: 1; }
     }
   </style>
 </head>
 <body>
 <main>
   <header>
-    <div class="badge">Install Call Addendum</div>
-    <h1>Jackson's Karpathy Second Brain</h1>
-    <p>Use this after the standard Hermes install call. The goal is not to impress him with integrations. The goal is to make capture, retrieval, and tiny action easier than doing nothing.</p>
+    <h1>Jackson second brain call script</h1>
+    <p>A practical script for the install call. Read the blue boxes out loud. Send the green boxes to Jackson. Keep this simple: Telegram first, capture first, behavior first.</p>
   </header>
 
   <section class="grid">
+    <div class="card span-12">
+      <h2>Goal of this call</h2>
+      <div class="note">
+        This is not a pitch. It is a setup call. The win is that Jackson knows what to text the agent, sends a few real messages, and leaves with simple nudges that make starting easier when motivation is low.
+      </div>
+    </div>
+
     <div class="card span-8">
-      <h2>Positioning Script</h2>
-      <div class="script">
-        "Jackson, we're not setting up a productivity app you have to maintain. We're setting up a place where you can throw thoughts, links, school stuff, project ideas, and reminders without organizing them first. The agent's job is to catch it, sort it, remind you at the right time, and help make tomorrow easier."
+      <h2>Read this first</h2>
+      <div class="read">
+        Jackson, the goal is not to build you another app to manage. The goal is to give you a place to text messy stuff before you lose it. School notes, project ideas, links, reminders, tasks, random thoughts. You send it here first. Later you can ask for it back.
+        <br><br>
+        The second part is motivation. We are not going to rely on you feeling motivated. We are going to make useful things easier to start. That means tiny first steps, reminders at the right time, and small setup actions that reduce friction tomorrow.
       </div>
     </div>
+
     <div class="card span-4">
-      <h2>V1 Rule</h2>
-      <div class="success">
-        Keep it simple. Telegram first. Hermes native memory/files/reminders. No calendar, no NotebookLM automation, no Notion dashboard until usage is proven.
-      </div>
+      <h2>Do not over-explain</h2>
+      <ul>
+        <li>No dashboard today.</li>
+        <li>No NotebookLM today.</li>
+        <li>No Notion sync today.</li>
+        <li>No calendar integration today.</li>
+        <li>Prove he texts it first.</li>
+      </ul>
     </div>
 
     <div class="card span-12">
-      <h2>Simple Architecture</h2>
-      <div class="flow">
-        <div>Telegram Capture</div>
-        <div>Hermes Profile</div>
-        <div>Memory + Files</div>
-        <div>Cron Nudges</div>
-        <div>Weekly Review</div>
+      <h2>Text block 1: first message for Jackson to send Hermes</h2>
+      <p class="muted">Send this to Jackson and have him paste it into Telegram.</p>
+      <pre>I want you to be my second brain for school, engineering projects, ideas, links, reminders, and small tasks.
+
+Motivation is one of my main issues, so do not rely on hype, guilt, or long pep talks. Use behavioral ideas instead: reduce friction, make the next action tiny, use timely nudges, help me set up my environment, and create tomorrow hooks so starting is easier.
+
+Help me capture things quickly, file them into simple buckets, remind me at useful times, and help me take tiny next actions. If I say something vague, ask one short follow-up question.</pre>
+    </div>
+
+    <div class="card span-12">
+      <h2>Text block 2: setup messages for Jackson to send Hermes</h2>
+      <p class="muted">Send these after the first message. One block is fine.</p>
+      <pre>Remember that I am using you as my second brain. My main buckets are School, Mechanical Engineering, Projects, Game Design, Watch Ideas, Links, Tasks, Reminders, and Parking Lot.
+
+Create a simple notes folder for me with those buckets. Keep it lightweight. Tell me where you saved it.
+
+Set up a morning nudge for 8:30 AM: ask me for one tiny win today and the first 5-minute action. If I sound unmotivated, make the task smaller instead of trying to motivate me.
+
+Set up an evening nudge for 9:30 PM: ask what I want to make easier tomorrow and suggest one friction-reducing setup action, like opening the right file, laying something out, charging a device, or blocking a distraction.
+
+Set up a Sunday 6 PM review: summarize my captures, tasks, reminders, open loops, and one friction fix for next week. Point out where motivation failed and suggest an easier environment or smaller starting step.</pre>
+    </div>
+
+    <div class="card span-6">
+      <h2>Read this after he sends the setup block</h2>
+      <div class="read">
+        Don't treat this like Google. Treat it like a notebook that can text you back and do chores. Send messy thoughts. Ask for them later. If something matters, ask it to remind you. If something feels hard to start, ask it to make the first step smaller.
+        <br><br>
+        The point is not to become more motivated. The point is to make the useful thing easier to start when motivation is not there.
       </div>
     </div>
 
     <div class="card span-6">
-      <h2>What to Install / Configure</h2>
-      <ul>
-        <li>Fresh Hermes profile for Jackson.</li>
-        <li>Telegram gateway with his private bot.</li>
-        <li>Memory enabled for stable facts and preferences.</li>
-        <li>File tools for notes, source packs, and summaries.</li>
-        <li>Session search for recall.</li>
-        <li>Cron jobs for morning/evening nudges.</li>
-        <li>Web search if he wants research capture.</li>
-        <li>Skills for capture, review, nudges, and study-pack export.</li>
-      </ul>
-    </div>
-
-    <div class="card span-6">
-      <h2>What NOT to Install Yet</h2>
-      <ul>
-        <li>No Google Calendar / iCloud Calendar in v1.</li>
-        <li>No NotebookLM API/MCP automation.</li>
-        <li>No Notion sync as primary interface.</li>
-        <li>No complex dashboard until we see real capture behavior.</li>
-        <li>No outbound communication agent.</li>
-      </ul>
-    </div>
-
-    <div class="card span-12">
-      <h2>Live Call Flow</h2>
-      <div class="timeline">
-        <div class="step"><div class="num">1</div><div><h3>Open with the outcome</h3><div class="script">"The win is simple: when something crosses your mind, you send it here. Later, you can ask for it back. If the system does that reliably, we won."</div></div></div>
-        <div class="step"><div class="num">2</div><div><h3>Set capture categories</h3><div class="operator">Create these buckets: Inbox, School, Mechanical Engineering, Projects, Game Design, Watch/Product Ideas, Links/Research, Tasks, Reminders, Parking Lot.</div></div></div>
-        <div class="step"><div class="num">3</div><div><h3>Explain behavior layer</h3><div class="script">"This is partly a memory system and partly an environment-design system. If something matters, we'll make it easier to start. If something keeps derailing you, we'll add friction to it."</div></div></div>
-        <div class="step"><div class="num">4</div><div><h3>Create first nudge routines</h3><div class="operator">Add morning hook, evening setup, and Sunday review. Keep each one short enough that it doesn't feel like homework.</div></div></div>
-        <div class="step"><div class="num">5</div><div><h3>Run the first captures</h3><div class="operator">Have Jackson send 5 real messages: one school thought, one project idea, one link, one task, one reminder.</div></div></div>
-      </div>
-    </div>
-
-    <div class="card span-12">
-      <h2>How This Differs from Karpathy's Second Brain</h2>
-      <ul>
-        <li><strong>Karpathy-style system:</strong> source-heavy knowledge base. Save links, papers, docs, transcripts, notes, and use AI to search, summarize, and remix them.</li>
-        <li><strong>Jackson v1:</strong> behavior-first second brain. Capture messy thoughts, retrieve them later, get nudges, build tomorrow hooks, and reduce friction in daily life.</li>
-        <li><strong>Karpathy optimizes for knowledge work:</strong> reading, writing, research, synthesis, long-term reference.</li>
-        <li><strong>Jackson v1 optimizes for usage:</strong> texting the bot, remembering things, starting small actions, and proving he comes back to it.</li>
-        <li><strong>Karpathy stack can expand into NotebookLM, source packs, markdown vaults, search, and deeper research flows.</strong></li>
-        <li><strong>Jackson stack intentionally delays that:</strong> Telegram + Hermes memory + files + cron first. No dashboard or integrations until usage is real.</li>
-      </ul>
-    </div>
-
-    <div class="card span-12">
-      <h2>Success Criteria</h2>
-      <ul class="two-col">
-        <li>Capture ideas quickly without organizing first.</li>
-        <li>Retrieve notes later by asking naturally.</li>
-        <li>Get simple nudges at useful times.</li>
-        <li>Build tomorrow hooks that make starting easier.</li>
-        <li>Reduce friction in school, projects, habits, and daily life.</li>
-        <li>Prove he actually uses it before adding dashboards or integrations.</li>
-      </ul>
-    </div>
-
-    <div class="card span-12">
-      <h2>What Jackson Tells Hermes First</h2>
-      <div class="script">
-        "I want you to be my second brain for school, engineering projects, ideas, links, reminders, and small tasks. Motivation is one of my main issues, so do not rely on hype, guilt, or long pep talks. Use behavioral ideas: reduce friction, make the next action tiny, use timely nudges, help me set up my environment, and create tomorrow hooks so starting is easier. Help me capture things quickly, file them into simple buckets, remind me at useful times, and help me take tiny next actions. If I say something vague, ask one short follow-up question."
-      </div>
-      <div class="operator" style="margin-top: 12px;">
-        Have Jackson send this as the first real message after the Telegram test works. This gives Hermes its job in plain English before you add routines.
-      </div>
-    </div>
-
-    <div class="card span-6">
-      <h2>First 5 Messages Jackson Sends</h2>
+      <h2>Have Jackson test these live</h2>
       <ol>
-        <li><code>Remember that I am using you as my second brain. My main buckets are School, Mechanical Engineering, Projects, Game Design, Watch Ideas, Links, Tasks, Reminders, and Parking Lot.</code></li>
-        <li><code>Create a simple notes folder for me with those buckets. Keep it lightweight. Tell me where you saved it.</code></li>
-        <li><code>Set up a morning nudge for 8:30 AM: ask me for one tiny win today and the first 5-minute action. If I sound unmotivated, make the task smaller instead of trying to motivate me.</code></li>
-        <li><code>Set up an evening nudge for 9:30 PM: ask what I want to make easier tomorrow and suggest one friction-reducing setup action, like opening the right file, laying something out, charging a device, or blocking a distraction.</code></li>
-        <li><code>Set up a Sunday 6 PM review: summarize my captures, tasks, reminders, open loops, and one friction fix for next week. Point out where motivation failed and suggest an easier environment or smaller starting step.</code></li>
+        <li>Save one school thought.</li>
+        <li>Save one engineering or project idea.</li>
+        <li>Save one link or research item.</li>
+        <li>Create one reminder.</li>
+        <li>Ask it to make one avoided task easier to start.</li>
       </ol>
     </div>
 
-    <div class="card span-6">
-      <h2>Teach Him How to Use It</h2>
-      <ul>
-        <li><strong>Capture:</strong> <code>Save this idea: build a watch concept with...</code></li>
-        <li><strong>Recall:</strong> <code>What did I say about the watch idea?</code></li>
-        <li><strong>Task:</strong> <code>Remind me tomorrow at 4 PM to open the CAD file.</code></li>
-        <li><strong>Study:</strong> <code>Turn these notes into a 10-question quiz.</code></li>
-        <li><strong>Project:</strong> <code>Break this into the next 3 tiny actions.</code></li>
-        <li><strong>Friction fix:</strong> <code>I keep avoiding this. Make it easier to start.</code></li>
-      </ul>
+    <div class="card span-12">
+      <h2>Text block 3: examples Jackson can copy later</h2>
+      <pre>Save this idea: [rough idea here]
+
+What did I say about [topic]?
+
+Remind me tomorrow at 4 PM to open the CAD file.
+
+Turn these notes into a 10-question quiz: [paste notes]
+
+Break this into the next 3 tiny actions: [task]
+
+I keep avoiding this: [task]. Make it easier to start.
+
+Make a tomorrow hook for this: [thing I want to do].</pre>
     </div>
 
-    <div class="card span-12">
-      <h2>Operator Line to Say Out Loud</h2>
-      <div class="script">
-        "Don't talk to it like Google. Talk to it like a notebook that can text you back and do chores. Send messy thoughts. Ask for them later. If something matters, ask it to remind you or make the next step smaller. The point is not to become more motivated. The point is to make the useful thing easier to start."
+    <div class="card span-6">
+      <h2>If he says motivation is the problem</h2>
+      <div class="read">
+        That is exactly why we are setting it up this way. If motivation is unreliable, we do not build a system that depends on motivation. We build one that lowers the effort. Smaller first step. Better timing. Less searching. Fewer decisions. More reminders when action is realistic.
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h2>If he asks why not build the full stack now</h2>
+      <div class="read">
+        Because the first question is not whether we can build a powerful second brain. We can. The first question is whether you will actually use it. If you text it for a few days and it helps, then we add the heavier stuff: source packs, NotebookLM, calendar, dashboards, and deeper research workflows.
       </div>
     </div>
 
     <div class="card span-12">
-      <h2>Behavioral Sources</h2>
-      <ul>
-        <li>Thaler and Sunstein, <em>Nudge</em>: small changes in choice architecture can change behavior without forcing people.</li>
-        <li>Behavioural Insights Team, <em>EAST</em>: behavior is more likely when it is easy, attractive, social, and timely.</li>
-        <li>Fogg Behavior Model: behavior happens when motivation, ability, and a prompt converge; when motivation is low, make the action easier.</li>
-        <li>Gollwitzer, 1999: implementation intentions connect a situation to a specific action, the basic idea behind if-then plans and tomorrow hooks.</li>
-        <li>Michie, van Stralen, and West, 2011: the COM-B model says behavior depends on capability, opportunity, and motivation.</li>
-      </ul>
-    </div>
-
-    <div class="card span-6">
-      <h2>Behavioral Economics Priority</h2>
-      <div class="pill-row">
-        <span class="pill">Reduce friction</span>
-        <span class="pill">Timely nudges</span>
-        <span class="pill">If-then plans</span>
-        <span class="pill">Choice architecture</span>
-        <span class="pill">Tiny starts</span>
-        <span class="pill">Tomorrow hook</span>
-      </div>
-      <ul>
-        <li>Make the good behavior easier than the default.</li>
-        <li>Prompt only when action is realistic.</li>
-        <li>Prefer one tiny action over a motivational speech.</li>
-        <li>Convert vague goals into room setup, reminders, and scripts.</li>
-      </ul>
-    </div>
-
-    <div class="card span-6">
-      <h2>Example Nudges</h2>
-      <ul>
-        <li><strong>Morning:</strong> "One win today: open the CAD file for 5 minutes."</li>
-        <li><strong>Tomorrow hook:</strong> "After breakfast, sketch the ugly first version of the watch idea."</li>
-        <li><strong>Room setup:</strong> "Put your alarm in the bathroom so you're already near the shower."</li>
-        <li><strong>Friction:</strong> "Put distracting apps one folder deeper tonight."</li>
-        <li><strong>If-then:</strong> "If I finish coffee, then I send one idea to Jarvis."</li>
+      <h2>48-hour success check</h2>
+      <ul class="checklist">
+        <li>Jackson sends at least 10 captures.</li>
+        <li>He asks for one old note and gets it back.</li>
+        <li>He uses one reminder.</li>
+        <li>He tries one tiny-start prompt.</li>
+        <li>He uses one friction fix.</li>
+        <li>He can explain what the agent is for in one sentence.</li>
       </ul>
     </div>
 
     <div class="card span-12">
-      <h2>First Cron Jobs</h2>
-      <pre>Morning nudge — 8:30 AM
-Ask Jackson for one tiny win, one exciting thing, and one first action.
-
-Evening setup — 9:30 PM
-Ask what he wants to make easier tomorrow. Suggest one room/environment setup.
-
-Sunday review — 6:00 PM
-Summarize captures, open loops, wins, reminders, and one friction fix for next week.</pre>
-    </div>
-
-    <div class="card span-6">
-      <h2>48-Hour Validation</h2>
-      <ul>
-        <li>Jackson sends 10 captures.</li>
-        <li>Hermes files them into the right buckets.</li>
-        <li>Jackson asks for one item later and gets it back.</li>
-        <li>He tries one environment nudge.</li>
-        <li>He has one tomorrow hook he actually cares about.</li>
-      </ul>
-    </div>
-
-    <div class="card span-6">
-      <h2>Back Pocket</h2>
-      <ul>
-        <li>NotebookLM source pack export: <code>.txt</code> and URL first.</li>
-        <li>Private visual dashboard after usage is proven.</li>
-        <li>Google Calendar/iCloud CalDAV when school deadlines matter.</li>
-        <li>Notion import as source material, not the interface.</li>
-      </ul>
+      <h2>Close the call</h2>
+      <div class="read">
+        For the next two days, do not use this perfectly. Just text it. Ideas, links, reminders, school stuff, random tasks, anything you might want later. If it makes capture and recall easier, we build on it. If it feels like another thing to manage, we cut it down.
+      </div>
     </div>
 
     <div class="card span-12">
-      <h2>Close the Install Call</h2>
-      <div class="script">
-        "For the next two days, don't try to use this perfectly. Just throw things at it. Ideas, links, reminders, random tasks, stuff you might want later. If it makes capture and recall easier, we build the visual layer. If it feels like another app to manage, we cut it down further."
-      </div>
+      <h2>Why this is designed around nudges and friction</h2>
+      <ul>
+        <li><strong>Thaler and Sunstein, <em>Nudge</em>:</strong> small changes in choice architecture can change behavior without forcing people.</li>
+        <li><strong>Behavioural Insights Team, EAST:</strong> people are more likely to act when the behavior is easy, attractive, social, and timely.</li>
+        <li><strong>Fogg Behavior Model:</strong> behavior happens when motivation, ability, and a prompt meet. When motivation is low, make the action easier.</li>
+        <li><strong>Gollwitzer, 1999:</strong> implementation intentions connect a situation to a specific action. That is the idea behind if-then plans and tomorrow hooks.</li>
+        <li><strong>Michie, van Stralen, and West, 2011:</strong> the COM-B model says behavior depends on capability, opportunity, and motivation.</li>
+      </ul>
     </div>
   </section>
 
-  <footer>Agent Path — Jackson Second Brain Addendum</footer>
+  <footer>Agent Path - Jackson second brain call script</footer>
 </main>
 </body>
 </html>
