@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Path — AI Assessment</title>
+  <meta name="description" content="A $999 AI Assessment for small businesses: 60-minute operational teardown, written blueprint, top automation opportunities, cost/savings estimates, and a go/no-go verdict.">
+  <link rel="canonical" href="https://agent-path.vercel.app/assessment">
+  <meta property="og:title" content="Agent Path — AI Assessment">
+  <meta property="og:description" content="Find where admin work, missed leads, and slow follow-up are costing your business money. Get a written AI automation blueprint and go/no-go verdict.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agent-path.vercel.app/assessment">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/style.css">
   <style>
     .highlight { color: var(--yellow); }
@@ -86,6 +93,20 @@
       color: var(--muted);
       font-size: 15px;
     }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .proof-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .proof-card strong { display: block; margin-bottom: 8px; }
+    .proof-card p { color: var(--muted); font-size: 14px; }
     .not-for-list {
       list-style: none;
       margin-top: 16px;
@@ -104,7 +125,7 @@
       color: var(--red);
     }
     @media (max-width: 640px) {
-      .myth-grid { grid-template-columns: 1fr; }
+      .myth-grid, .proof-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -130,7 +151,8 @@
         One-time &middot; <strong>$999</strong> &middot; Includes call, written blueprint, and 7-day follow-up
       </div>
       <br><br>
-      <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Schedule Now — $999 →</a>
+      <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Pay & Schedule — $999 →</a>
+      <p style="margin-top: 10px; color: var(--muted); font-size: 14px;">Secure checkout via Stripe. Calendar booking opens immediately after payment.</p>
       <p style="margin-top: 16px; color: var(--muted); font-size: 14px;"><strong style="color: var(--green);">Money-back guarantee:</strong> if we cannot identify at least one practical AI or automation opportunity likely to save or make more than $999, we refund the Assessment.</p>
     </div>
   </section>
@@ -179,6 +201,28 @@
     </div>
   </section>
 
+
+  <section id="proof">
+    <div class="container">
+      <h2>What the blueprint makes concrete</h2>
+      <p class="section-sub">You are not buying a pep talk. You are buying the decision layer before anyone builds software.</p>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <strong>Example finding</strong>
+          <p>“You are losing after-hours leads because no one follows up until morning. First fix: capture, qualify, and text back within 2 minutes.”</p>
+        </div>
+        <div class="proof-card">
+          <strong>Example math</strong>
+          <p>“Four missed jobs per month at $450 average value is $1,800/month. A simple follow-up workflow may pay back in the first month.”</p>
+        </div>
+        <div class="proof-card">
+          <strong>Example no-go</strong>
+          <p>“Do not build a custom chatbot yet. Your intake process is not clean enough. Fix forms and follow-up first.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="what">
     <div class="container">
       <h2>What you get</h2>
@@ -214,8 +258,8 @@
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h3>Schedule now</h3>
-            <p>Pay $999 and schedule the teardown call. You'll get a short prep form so we can spend the call on the useful stuff.</p>
+            <h3>Pay, then pick your time</h3>
+            <p>Pay $999 through Stripe. After checkout, you are redirected to Google Calendar to choose your 60-minute teardown slot. You'll get a short prep form so we can spend the call on the useful stuff.</p>
           </div>
         </div>
         <div class="step">
@@ -260,7 +304,7 @@
       </div>
       <br><br>
       <div style="text-align: center;">
-        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Schedule Now — $999 →</a>
+        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Pay & Schedule — $999 →</a>
       </div>
     </div>
   </section>
@@ -268,61 +312,36 @@
   <section id="addons">
     <div class="container">
       <h2>After the Assessment, build only what is worth building.</h2>
-      <p class="section-sub">The Assessment comes first. These are B2B add-ons for companies that have a clear opportunity and want help implementing it.</p>
+      <p class="section-sub">The Assessment comes first. If the blueprint shows a clear business case, we can scope the next step. If not, you leave with the answer and no obligation.</p>
       <div class="pricing-grid">
         <div class="pricing-card pricing-recommended">
           <div class="pricing-badge">Common next step</div>
           <div class="pricing-label">Implementation Sprint</div>
           <div class="pricing-price">$3,500+</div>
-          <div class="pricing-sub">one time</div>
-          <p class="pricing-desc">We build the first automation from your blueprint: agent setup, workflow wiring, custom skill, and team handoff.</p>
+          <div class="pricing-sub">one workflow</div>
+          <p class="pricing-desc">We implement one high-leverage workflow from your blueprint: intake, follow-up, reporting, agent setup, or internal knowledge flow.</p>
           <ul class="pricing-features">
-            <li>Requires completed Assessment</li>
+            <li>Requires clear business case</li>
             <li>One priority workflow shipped</li>
-            <li>Agent install and configuration</li>
-            <li>Training and handoff</li>
+            <li>Training and handoff included</li>
           </ul>
         </div>
         <div class="pricing-card">
-          <div class="pricing-label">Custom Skill</div>
-          <div class="pricing-price">$750</div>
-          <div class="pricing-sub">per skill</div>
-          <p class="pricing-desc">Teach the agent one specific business process, tool, or recurring task so it can do the work the way your team does it.</p>
+          <div class="pricing-label">Ongoing AI Ops</div>
+          <div class="pricing-price">Selective</div>
+          <div class="pricing-sub">after proof</div>
+          <p class="pricing-desc">If the first workflow works, we can discuss ongoing Chief of Staff support for monitoring, reporting, and continuous improvements.</p>
           <ul class="pricing-features">
-            <li>CRM, email, docs, reports, or ops process</li>
-            <li>Written instructions and examples</li>
-            <li>Tested with your workflow</li>
-            <li>Useful when one task repeats often</li>
-          </ul>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-label">Growth Audit</div>
-          <div class="pricing-price">$1,500</div>
-          <div class="pricing-sub">one time</div>
-          <p class="pricing-desc">Market, competitor, and channel review after the operational work is clear. Useful when the bottleneck is growth, not admin.</p>
-          <ul class="pricing-features">
-            <li>Competitor scan</li>
-            <li>Channel recommendations</li>
-            <li>Offer and pricing review</li>
-            <li>Next 30-day action plan</li>
-          </ul>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-label">Chief of Staff</div>
-          <div class="pricing-price">$3,000/mo</div>
-          <div class="pricing-sub">ongoing</div>
-          <p class="pricing-desc">Ongoing automation, monitoring, reporting, and new workflow builds after the first implementation proves useful.</p>
-          <ul class="pricing-features">
-            <li>Monthly automation roadmap</li>
-            <li>Weekly ops review</li>
-            <li>Priority support</li>
-            <li>New improvements every month</li>
+            <li>No retainer before proof</li>
+            <li>Monthly improvement rhythm</li>
+            <li>Best for good-fit clients only</li>
           </ul>
         </div>
       </div>
       <br><br>
       <div style="text-align: center;">
         <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Start With the Assessment — $999 →</a>
+        <p style="margin-top: 10px; color: var(--muted); font-size: 14px;">Secure checkout via Stripe. Calendar booking opens immediately after payment.</p>
       </div>
     </div>
   </section>
@@ -363,14 +382,32 @@
     <div class="container">
       <h2>Stop wondering. Start knowing.</h2>
       <p class="section-sub">60 minutes or less. A written blueprint. An honest answer.</p>
-      <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Schedule Now — $999 →</a>
+      <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Pay & Schedule — $999 →</a>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>Built by humans, run by AI. &middot; <a href="https://oldbranch.com" style="color: var(--muted);">oldbranch.com</a></p>
+      <p>Built by humans, run by AI. &middot; Questions before buying? Start with the Assessment page or contact through <a href="https://oldbranch.com" style="color: var(--muted);">oldbranch.com</a></p>
     </div>
   </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Agent Path",
+    "url": "https://agent-path.vercel.app/assessment",
+    "description": "Agent Path provides a $999 AI Assessment for small businesses: a 60-minute operational teardown, written automation blueprint, cost/savings estimates, and go/no-go recommendation.",
+    "areaServed": "US",
+    "offers": {
+      "@type": "Offer",
+      "name": "AI Assessment",
+      "price": "999",
+      "priceCurrency": "USD",
+      "url": "https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01"
+    }
+  }
+  </script>
 </body>
 </html>

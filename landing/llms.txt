@@ -1,0 +1,14 @@
+# Agent Path
+
+Agent Path helps small businesses decide where AI is actually worth using, then scopes or installs the minimum useful workflow.
+
+Primary offer: AI Assessment — $999. A 60-minute operational teardown with a written blueprint within 48 hours. The blueprint identifies top automation opportunities, rough savings, implementation difficulty, cost, and a go/no-go verdict.
+
+Best-fit businesses: owner-operated service, construction, logistics, manufacturing, property management, and other businesses with repetitive admin work, missed leads, slow follow-up, scheduling friction, or manual reporting.
+
+Guarantee: if the assessment cannot identify at least one practical AI or automation opportunity likely to save or make more than $999, the Assessment is refunded.
+
+Implementation: after the Assessment, Agent Path may scope an Implementation Sprint starting at $3,500 for one high-leverage workflow. Ongoing Chief of Staff support is selective and only after proof.
+
+Website: https://agent-path.vercel.app/assessment
+Purchase: https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01
