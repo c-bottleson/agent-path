@@ -143,6 +143,70 @@
       </div>
     </div>
 
+    <div class="card span-12">
+      <h2>How This Differs from Karpathy's Second Brain</h2>
+      <ul>
+        <li><strong>Karpathy-style system:</strong> source-heavy knowledge base. Save links, papers, docs, transcripts, notes, and use AI to search, summarize, and remix them.</li>
+        <li><strong>Jackson v1:</strong> behavior-first second brain. Capture messy thoughts, retrieve them later, get nudges, build tomorrow hooks, and reduce friction in daily life.</li>
+        <li><strong>Karpathy optimizes for knowledge work:</strong> reading, writing, research, synthesis, long-term reference.</li>
+        <li><strong>Jackson v1 optimizes for usage:</strong> texting the bot, remembering things, starting small actions, and proving he comes back to it.</li>
+        <li><strong>Karpathy stack can expand into NotebookLM, source packs, markdown vaults, search, and deeper research flows.</strong></li>
+        <li><strong>Jackson stack intentionally delays that:</strong> Telegram + Hermes memory + files + cron first. No dashboard or integrations until usage is real.</li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>Success Criteria</h2>
+      <ul class="two-col">
+        <li>Capture ideas quickly without organizing first.</li>
+        <li>Retrieve notes later by asking naturally.</li>
+        <li>Get simple nudges at useful times.</li>
+        <li>Build tomorrow hooks that make starting easier.</li>
+        <li>Reduce friction in school, projects, habits, and daily life.</li>
+        <li>Prove he actually uses it before adding dashboards or integrations.</li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>What Jackson Tells Hermes First</h2>
+      <div class="script">
+        "I want you to be my second brain for school, engineering projects, ideas, links, reminders, and small tasks. Do not try to be fancy yet. Help me capture things quickly, file them into simple buckets, remind me at useful times, and help me take tiny next actions. If I say something vague, ask one short follow-up question."
+      </div>
+      <div class="operator" style="margin-top: 12px;">
+        Have Jackson send this as the first real message after the Telegram test works. This gives Hermes its job in plain English before you add routines.
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h2>First 5 Messages Jackson Sends</h2>
+      <ol>
+        <li><code>Remember that I am using you as my second brain. My main buckets are School, Mechanical Engineering, Projects, Game Design, Watch Ideas, Links, Tasks, Reminders, and Parking Lot.</code></li>
+        <li><code>Create a simple notes folder for me with those buckets. Keep it lightweight. Tell me where you saved it.</code></li>
+        <li><code>Set up a morning nudge for 8:30 AM: ask me for one tiny win today and the first 5-minute action.</code></li>
+        <li><code>Set up an evening nudge for 9:30 PM: ask what I want to make easier tomorrow and suggest one setup action.</code></li>
+        <li><code>Set up a Sunday 6 PM review: summarize my captures, tasks, reminders, open loops, and one friction fix for next week.</code></li>
+      </ol>
+    </div>
+
+    <div class="card span-6">
+      <h2>Teach Him How to Use It</h2>
+      <ul>
+        <li><strong>Capture:</strong> <code>Save this idea: build a watch concept with...</code></li>
+        <li><strong>Recall:</strong> <code>What did I say about the watch idea?</code></li>
+        <li><strong>Task:</strong> <code>Remind me tomorrow at 4 PM to open the CAD file.</code></li>
+        <li><strong>Study:</strong> <code>Turn these notes into a 10-question quiz.</code></li>
+        <li><strong>Project:</strong> <code>Break this into the next 3 tiny actions.</code></li>
+        <li><strong>Friction fix:</strong> <code>I keep avoiding this. Make it easier to start.</code></li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>Operator Line to Say Out Loud</h2>
+      <div class="script">
+        "Don't talk to it like Google. Talk to it like a notebook that can text you back and do chores. Send messy thoughts. Ask for them later. If something matters, ask it to remind you or make the next step smaller."
+      </div>
+    </div>
+
     <div class="card span-6">
       <h2>Behavioral Economics Priority</h2>
       <div class="pill-row">

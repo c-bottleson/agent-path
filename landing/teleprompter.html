@@ -172,6 +172,30 @@
         </div>
     </div>
 
+    <!-- SIDEQUEST: SSH -->
+    <div class="sidequest">
+        <h3>🔐 Sidequest A2: SSH into the VPS from PowerShell</h3>
+        <div class="script-box">
+            "Now we need to get into the server. On Windows, use PowerShell. SSH is already built in, so there is nothing extra to install."
+        </div>
+        <ol>
+            <li>Open <strong>PowerShell</strong>: press the Windows key, type <code>PowerShell</code>, press Enter.</li>
+            <li>Run this, replacing the IP with the VPS IP from notepad:<br>
+                <code>ssh root@YOUR_SERVER_IP</code></li>
+            <li>If the VPS username is <code>ubuntu</code> instead of <code>root</code>, use:<br>
+                <code>ssh ubuntu@YOUR_SERVER_IP</code></li>
+            <li>On the first connection, PowerShell asks if you trust the server. Type <code>yes</code> and press Enter.</li>
+            <li>Paste/type the VPS password. The password will not show while typing. That is normal. Press Enter.</li>
+            <li>If the prompt ends with <code>$</code>, run this before pasting the install script:<br>
+                <code>sudo -i</code></li>
+            <li>If the provider gave an SSH key instead of a password, use:<br>
+                <code>ssh -i C:\Users\Jackson\Downloads\vps-key.pem root@YOUR_SERVER_IP</code></li>
+        </ol>
+        <div class="info-box">
+            <strong>Ready check:</strong> You are ready to paste the install script when the terminal prompt ends with <code>#</code>, like <code>root@server:~#</code>. If it ends with <code>$</code>, you are not root yet. Run <code>sudo -i</code> first.
+        </div>
+    </div>
+
     <!-- SIDEQUEST: TELEGRAM -->
     <div class="sidequest hermes-only">
         <h3>💬 Sidequest B: Create a Telegram Bot</h3>
@@ -291,16 +315,16 @@
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <div class="phase-header">
         <h2>PHASE 3: DEPLOY</h2>
-        <p>Customer fills in credentials at top of script, pastes into SSH. ~2 minutes.</p>
+        <p>Customer fills in credentials at top of script, connects over PowerShell SSH, then pastes into the server terminal. ~2 minutes.</p>
     </div>
 
     <div class="step">
         <div class="script-box">
-            "Alright, we've got everything. I'm going to give you an install script. It has <strong>4 blanks at the top</strong> — fill those in with the credentials from your notepad, then paste the whole thing into your SSH terminal. It takes about 60 seconds."
+            "Alright, we've got everything. I'm going to give you an install script. It has <strong>4 blanks at the top</strong> — fill those in with the credentials from your notepad, connect to the VPS in PowerShell, then paste the whole thing into that SSH terminal. It takes about 60 seconds."
         </div>
         <div class="action-box">
             <h4>🖱️ Copy & Give to Customer</h4>
-            <p>Customer fills in the 4 lines at the top, then pastes the whole script into SSH:</p>
+            <p>Customer fills in the 4 lines at the top, SSHs into the VPS from PowerShell, then pastes the whole script there:</p>
             <button class="btn" onclick="copyScript()">📋 Copy Install Script to Clipboard</button>
             <div id="output"></div>
         </div>
@@ -449,6 +473,20 @@
             s += `# Don't edit anything below this line — it runs automatically\n`;
             s += `# ═══════════════════════════════════════════════════════════════\n`;
             s += `set -euo pipefail\n\n`;
+            s += `if [ "$(id -u)" -ne 0 ]; then\n`;
+            s += `    echo ""\n`;
+            s += `    echo "═══════════════════════════════════════════════════════"\n`;
+            s += `    echo "  ✗ ERROR: This install script must run as root."\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  Fix:"\n`;
+            s += `    echo "  1. Reconnect to the VPS if SSH closed"\n`;
+            s += `    echo "  2. Run: sudo -i"\n`;
+            s += `    echo "  3. Paste this install script again"\n`;
+            s += `    echo ""\n`;
+            s += `    echo "  Ready when your prompt ends with #, not $"\n`;
+            s += `    echo "═══════════════════════════════════════════════════════"\n`;
+            s += `    exit 1\n`;
+            s += `fi\n\n`;
 
             s += `echo "═══════════════════════════════════════════════════════"\n`;
             s += `echo "  AGENT INSTALL — Starting setup..."\n`;
@@ -534,10 +572,11 @@
                 s += `    exit 1\n`;
                 s += `fi\n`;
                 s += `echo "✓ Telegram User ID verified"\n\n`;
-                s += `# Start Telegram gateway\n`;
-                s += `hermes gateway install\n`;
-                s += `hermes gateway start\n`;
-                s += `sleep 5 && hermes gateway status\n`;
+                s += `# Start Telegram gateway as a system service\n`;
+                s += `# Use --system because fresh VPS SSH sessions often do not have a user systemd bus.\n`;
+                s += `hermes gateway install --system --run-as-user root --force\n`;
+                s += `hermes gateway start --system --all\n`;
+                s += `sleep 5 && hermes gateway status --system\n`;
             }
 
             s += `\necho ""\n`;
