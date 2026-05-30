@@ -1,10 +1,10 @@
-# Hermes Agent Install
+# Agent Path
 
 Complete provisioning system for deploying AI agents to customers.
 
 ## What This Is
 
-When someone buys an **AI Agent Setup ($399)**, you walk them through installing their own private AI agent on their VPS. This repo contains:
+When someone buys an **AI Assessment ($999)**, that is the front door. Implementation, custom skills, growth audits, and ongoing Chief of Staff support are add-ons after the blueprint shows a clear business case. This repo contains:
 
 - **Install scripts** — automated setup for fresh VPS and existing VPS
 - **Captain Profile** — the agent personality and behavior for customer instances
@@ -16,20 +16,20 @@ When someone buys an **AI Agent Setup ($399)**, you walk them through installing
 | Product | Price | Page |
 |---------|-------|------|
 | **AI Assessment** | $999 | [/assessment](https://agent-path.vercel.app/assessment) |
-| **AI Agent Setup** | $399 | [/](https://agent-path.vercel.app/) |
-| **Captain Protocol** | $199 | [/captain](https://agent-path.vercel.app/captain) |
-| **Custom Skills** | $149/skill | [/skills](https://agent-path.vercel.app/skills) |
-| **Growth Audit** | $199 | [/audit](https://agent-path.vercel.app/audit) |
-| **3-Month Review Pack** | $149 | [/review](https://agent-path.vercel.app/review) |
+| **Implementation Sprint** | $3,500+ | Add-on after Assessment |
+| **Captain Protocol** | Included in implementation / legacy page | [/captain](https://agent-path.vercel.app/captain) |
+| **Custom Skills** | $750/skill | [/skills](https://agent-path.vercel.app/skills) |
+| **Growth Audit** | $1,500 | [/audit](https://agent-path.vercel.app/audit) |
+| **Chief of Staff** | $3,000/mo | Add-on after implementation |
 
 ## Install Flow
 
 ### Scenario A: Customer has a fresh VPS (most common)
 
-1. Customer buys AI Agent Setup ($399)
+1. Customer completes AI Assessment ($999); implementation is scoped from the blueprint
 2. You schedule a Google Meet video call
 3. Open `teleprompter.html` — it walks you through the live call
-4. Customer creates a Contabo VPS ($6/mo) — you walk them through it
+4. Customer creates an OVHcloud VPS-1 (~$6.50/mo) — you walk them through it
 5. Customer SSHs in and runs the generated script
 6. Script installs Hermes, configures Telegram, starts the gateway
 7. Agent sends first message on Telegram
@@ -68,17 +68,17 @@ agent-path/
 │       ├── customer_template.json
 │       └── crons.json          # Scheduled jobs (daily report, weekly check-in)
 ├── landing/                    # Vercel deployment (customer-facing pages)
-│   ├── index.html              # Agent Install ($399)
-│   ├── assessment.html         # AI Assessment ($999)
-│   ├── captain.html            # Captain Protocol ($199)
-│   ├── skills.html             # Custom Skills ($149)
-│   ├── audit.html              # Growth Audit ($199)
-│   ├── review.html             # 3-Month Review Pack ($149)
+│   ├── index.html              # AI Assessment ($999) — main page
+│   ├── assessment.html         # AI Assessment ($999) — same offer route
+│   ├── captain.html            # Captain Protocol legacy/add-on page
+│   ├── skills.html             # Custom Skills ($750)
+│   ├── audit.html              # Growth Audit ($1,500)
+│   ├── review.html             # Review Pack ($750)
 │   ├── vercel.json             # URL rewrites
 │   └── assets/style.css        # Shared styles
 ├── docs/                       # Internal playbooks & teaching materials
 │   ├── assessment_playbook.md  # How to deliver the $999 Assessment
-│   ├── agent_setup_teachings.md # Core curriculum for $399 Install
+│   ├── agent_setup_teachings.md # Core implementation curriculum
 │   ├── agent_setup_advanced.md  # Advanced topics (councils, routing, etc.)
 │   ├── marketing_copy.md        # Ad scripts & direct mail copy
 │   ├── profile_isolation.md     # CRITICAL: Multi-profile architecture rules
@@ -108,5 +108,6 @@ Or connect the repo to a Vercel project via GitHub (root directory: `landing/`).
 
 ## Stripe Payment Links
 
-- AI Agent Setup ($399): https://buy.stripe.com/6oU3cv9wR0Mvfd89qz87K00
 - AI Assessment ($999): https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01
+- Implementation Sprint ($3,500+): no direct Stripe link yet; scoped after Assessment
+- Custom Skills ($750/skill), Growth Audit ($1,500), Chief of Staff ($3,000/mo): no direct Stripe links yet

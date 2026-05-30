@@ -58,7 +58,7 @@ Each includes: company name, industry, website, size estimate, location, specifi
 4. Average hourly cost
 5. Email capture (lead gen)
 
-Outputs: monthly savings, yearly savings, hours reclaimed, ROI multiple. Each result links to the $399 install and $999 assessment Stripe pages.
+Outputs: monthly savings, yearly savings, hours reclaimed, ROI multiple. Each result links to the $3,500+ implementation and $999 assessment Stripe pages.
 
 **Also added:** A "Not ready to buy?" section on the main landing page linking to the calculator. Catches visitors who aren't ready to purchase but are curious.
 
@@ -117,7 +117,7 @@ The outreach templates offer free 30-minute assessments. You deliver these. I pr
 **With the assets I built:**
 - 50 leads × 5% conversion (cold email) = 2-3 calls
 - 3 calls × 50% close rate = 1-2 sales
-- 1-2 sales × $399 = $399-$798 first month
+- 1-2 sales × $3,500+ = $999-$3,500+ first month
 
 **With consistent content (30-day calendar):**
 - LinkedIn: ~500-2,000 impressions/post × 25 posts = 12,500-50,000 impressions/month

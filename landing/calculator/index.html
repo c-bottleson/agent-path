@@ -305,7 +305,7 @@
         </div>
         <div class="stat-card">
           <div class="num" id="roiMultiple">0x</div>
-          <div class="label">ROI on $399 setup</div>
+          <div class="label">ROI on Assessment</div>
         </div>
       </div>
 
@@ -324,8 +324,8 @@
           <span class="val" id="followupSavings">$0/mo</span>
         </div>
         <div class="breakdown-row">
-          <span>Setup cost (one-time)</span>
-          <span class="val" style="color: var(--red);">-$399</span>
+          <span>Assessment cost (one-time)</span>
+          <span class="val" style="color: var(--red);">-$999</span>
         </div>
         <div class="breakdown-row">
           <span>Monthly API cost</span>
@@ -335,10 +335,10 @@
 
       <div class="cta-section">
         <h3>Want the exact numbers for your business?</h3>
-        <p>This is an estimate. For a detailed, line-by-line blueprint of where AI saves you money — and where it won't — book a 90-minute AI Assessment.</p>
-        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Book AI Assessment — $999</a>
+        <p>This is an estimate. For a detailed, line-by-line blueprint of where AI saves you money — and where it won't — schedule a 60-minute max AI Assessment.</p>
+        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn">Schedule Now — $999</a>
         <br><br>
-        <a href="https://buy.stripe.com/6oU3cv9wR0Mvfd89qz87K00" class="btn btn-secondary">Or get the $399 Agent Install</a>
+        <a href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" class="btn btn-secondary">Start with the AI Assessment</a>
       </div>
 
       <div class="trust">
@@ -392,8 +392,8 @@
       const followupSavings = Math.round(adminHours * 0.10 * hourlyCost * 4.33);
       
       const totalMonthly = adminSavings + quoteSavings + followupSavings - 10; // minus API cost
-      const yearlySavings = totalMonthly * 12 - 399; // minus setup cost
-      const roiMultiple = Math.round((yearlySavings + 399) / 399);
+      const yearlySavings = totalMonthly * 12 - 999; // minus assessment cost
+      const roiMultiple = Math.round((yearlySavings + 999) / 999);
 
       // Display
       document.getElementById('monthlySavings').textContent = '$' + totalMonthly.toLocaleString();

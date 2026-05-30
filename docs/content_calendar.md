@@ -41,7 +41,7 @@ REALITY: Your competitor who's already using it isn't waiting. They're quoting f
 
 The tech is good enough NOW. The question is whether you'll use it.
 
-7/ If you run a business with 5-50 employees and you're curious whether AI actually helps your bottom line — DM me. I do 90-minute operational teardowns. I'll tell you straight: yes, no, or not yet.
+7/ If you run a business with 5-50 employees and you're curious whether AI actually helps your bottom line — DM me. I do 60-minute max operational teardowns. I'll tell you straight: yes, no, or not yet.
 
 No jargon. No upsell. Just the math.
 
@@ -55,7 +55,7 @@ I keep hearing "AI is too expensive" from business owners.
 Let me break down the actual costs:
 
 → ChatGPT Plus: $20/mo (resets every session, forgets your business)
-→ Private AI agent: $399 one-time + ~$10/mo API (remembers everything, runs 24/7)
+→ Private AI agent: $3,500+ implementation + ~$10/mo API (remembers everything, runs 24/7)
 → Hiring one admin person: $3,500-4,500/mo
 
 The question isn't whether you can afford AI.
@@ -64,7 +64,7 @@ The question is whether you can afford NOT to automate the 15-20 hours/week your
 
 Most businesses I work with break even in the first month.
 
-If you want to see the math for YOUR business, I do a 90-minute operational teardown. I'll tell you exactly where AI saves money and where it's a waste of time.
+If you want to see the math for YOUR business, I do a 60-minute max operational teardown. I'll tell you exactly where AI saves money and where it's a waste of time.
 
 Link in comments.
 
@@ -105,7 +105,7 @@ He said: "I'd have her actually answer the phone."
 
 That's the opportunity. Not replacing people. Freeing them up to do the work that actually matters.
 
-$399 one-time. No subscription. Your data stays on your server.
+$3,500+ implementation. No subscription. Your data stays on your server.
 
 ---
 
@@ -145,7 +145,7 @@ AI doesn't eliminate admin. But it can cut it by 60-80%.
 
 That's $120,000-160,000 back in your pocket.
 
-The setup costs $399.
+The setup costs $3,500+.
 
 ---
 
@@ -178,7 +178,7 @@ If the answer is "scheduling, invoicing, and customer follow-up" — yes, AI hel
 
 If the answer is "driving to job sites and fixing things" — no, AI doesn't help with that.
 
-I spend 90 minutes with business owners figuring out exactly which category their bottlenecks fall into. Sometimes I tell them NOT to buy.
+I spend 60 minutes or less with business owners figuring out exactly which category their bottlenecks fall into. Sometimes I tell them NOT to buy.
 
 Honesty > revenue.
 
@@ -203,19 +203,19 @@ Great question. Here's the honest answer. 🧵
 
 The gap between "AI chatbot" and "AI agent" is the gap between advice and action.
 
-$399 to close that gap. One-time.
+$3,500+ to close that gap. One-time.
 
 ---
 
 ### Day 10 (Friday) — LinkedIn Post: ROI Math
 **Post:**
 
-The ROI math on a $399 AI agent install:
+The ROI math on a $3,500+ AI agent install:
 
 假设 your team of 8 spends 10 hours/week on admin tasks AI handles.
 At $25/hr average, that's $250/week = $1,000/month in wasted time.
 
-Agent install: $399 one-time.
+Implementation Sprint: $3,500+.
 Monthly API cost: ~$10.
 
 Month 1 savings: $1,000 - $409 = $591 net.
@@ -263,7 +263,7 @@ After AI agent:
 - Estimates generated in 8 minutes from templates
 
 Setup time: 30-minute video call.
-Cost: $399 one-time.
+Cost: $3,500+ implementation.
 ROI: Breaks even in 4 days.
 
 ---
@@ -273,7 +273,7 @@ ROI: Breaks even in 4 days.
 
 1/ I talk people OUT of buying my service more than I talk them into it.
 
-Here's when I tell someone "don't spend $399": 🧵
+Here's when I tell someone "don't spend $999": 🧵
 
 2/ When their biggest bottleneck is physical. "We need more warehouse space." AI can't build walls. Don't waste your money.
 
@@ -290,11 +290,11 @@ If I tell you not to buy, that's the best service I can offer. You'll remember m
 
 "We were skeptical. We're a manufacturing company, not a tech company. But our office staff was drowning in paperwork — quotes, follow-ups, scheduling.
 
-We did the $399 install on a Tuesday afternoon video call. By Thursday, the agent had built us an automated quoting system from our existing templates.
+We did the $3,500+ implementation on a Tuesday afternoon video call. By Thursday, the agent had built us an automated quoting system from our existing templates.
 
 Our office manager now spends her time on customer relationships instead of data entry. She's happier. Our customers are getting faster responses.
 
-Best $399 we've ever spent."
+Best $3,500+ we've ever spent."
 
 — (Composite from early customers. Real results, anonymized.)
 
@@ -309,7 +309,7 @@ That's 3 full work weeks. Per year. Just on invoices.
 
 An AI agent automates 80% of that. You review, approve, send.
 
-24 hours back per year. From a $399 one-time investment.
+24 hours back per year. From a $3,500+ implementation investment.
 
 The math never stops working.
 
@@ -346,7 +346,7 @@ I'll respond to every single one. Let's go.
 
 4/ They're lying about who it's for. Not every business needs AI. If your biggest problem is physical, no software fixes that.
 
-5/ I charge $399 for a private install. No subscription. No hidden costs. And I'll tell you straight if AI won't help your business.
+5/ I charge $3,500+ for a private install. No subscription. No hidden costs. And I'll tell you straight if AI won't help your business.
 
 That's the deal. Take it or leave it.
 
@@ -381,7 +381,7 @@ By the time AI is "mainstream" in your industry, the early adopters will already
 
 The window to be early is closing.
 
-$399. One video call. Your own private agent.
+$3,500+. One video call. Your own private agent.
 
 Link in bio.
 
@@ -398,7 +398,7 @@ If you're a business owner with 5-50 employees, here's your weekend homework:
 
 If the answer is more than 5 hours/week — AI can probably help.
 
-If you want to know exactly how much it would save, I do a 90-minute operational teardown. $999. I'll give you a written blueprint with specific numbers.
+If you want to know exactly how much it would save, I do a 60-minute max operational teardown. $999. I'll give you a written blueprint with specific numbers.
 
 Or just DM me and I'll tell you for free whether it's worth pursuing.
 
@@ -409,13 +409,13 @@ Or just DM me and I'll tell you for free whether it's worth pursuing.
 ### Day 21 (Monday) — X Thread: Full Walkthrough
 **Thread (8 tweets):**
 
-1/ Here's exactly what happens when you buy a $399 AI agent install. Step by step. No mystery. 🧵
+1/ Here's exactly what happens when you buy a $3,500+ AI agent install. Step by step. No mystery. 🧵
 
 2/ Step 1: You buy on our site. Stripe checkout. Takes 60 seconds.
 
 3/ Step 2: I send you a scheduling link. You pick a time that works. Google Meet.
 
-4/ Step 3: On the call, we get you a VPS. $6/month from Contabo. Takes 5 minutes. You own it.
+4/ Step 3: On the call, we get you a VPS. ~$6.50/month from OVHcloud. Takes 5 minutes. You own it.
 
 5/ Step 4: We run the install script together. You watch every step. 15 minutes.
 
@@ -438,7 +438,7 @@ Big corporations have IT departments, automation budgets, and dedicated AI teams
 
 Small businesses have a phone, a spreadsheet, and grit.
 
-I wanted to level the playing field. $399 for the same kind of AI setup that enterprise companies pay $50,000 for.
+I wanted to level the playing field. $3,500+ for the same kind of AI setup that enterprise companies pay $50,000 for.
 
 Not because it's charity — because it's profitable at scale, and it actually helps people who need it.
 
@@ -455,9 +455,9 @@ Sure. And you can also do your own plumbing, your own accounting, and your own l
 
 How's that working out?
 
-$399 to have someone walk you through the entire setup on a video call. You own everything after. No ongoing fees.
+$3,500+ to have someone walk you through the entire setup on a video call. You own everything after. No ongoing fees.
 
-Your time is worth more than $399.
+Your time is worth more than $3,500+.
 
 ---
 
@@ -486,7 +486,7 @@ That's why we do video calls. Show, don't tell.
 
 3/ See what it suggests. Try the top one. If it saves you time — imagine what a PRIVATE agent that actually KNOWS your business could do.
 
-4/ If you want the real thing — not a chatbot, but an autonomous worker that builds tools for your business — DM me. $399. One call. Done.
+4/ If you want the real thing — not a chatbot, but an autonomous worker that builds tools for your business — DM me. $3,500+. One call. Done.
 
 ---
 

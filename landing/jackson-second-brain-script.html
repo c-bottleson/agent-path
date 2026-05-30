@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jackson Second Brain Install Addendum — Agent Path</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #667085;
+      --blue: #0066cc;
+      --blue-soft: #e8f4fd;
+      --orange: #b35900;
+      --orange-soft: #fff7ed;
+      --green: #15803d;
+      --green-soft: #ecfdf3;
+      --border: #d9e2ec;
+      --dark: #111827;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    header {
+      background: linear-gradient(135deg, #0f172a, #173b66);
+      color: #fff;
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
+    }
+    header p { color: #dbeafe; max-width: 760px; font-size: 1.05rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1; }
+    h2 { margin: 0 0 12px; font-size: 1.35rem; }
+    h3 { margin: 0 0 8px; font-size: 1rem; }
+    .badge { display: inline-flex; gap: 8px; align-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #e0f2fe; padding: 6px 10px; border-radius: 999px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 5px 18px rgba(15, 23, 42, .06); }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .script { background: var(--blue-soft); border-left: 5px solid var(--blue); color: #003a75; padding: 16px; border-radius: 12px; font-size: 1.02rem; }
+    .operator { background: var(--orange-soft); border-left: 5px solid #f97316; color: #7c2d12; padding: 14px 16px; border-radius: 12px; }
+    .success { background: var(--green-soft); border-left: 5px solid var(--green); color: #14532d; padding: 14px 16px; border-radius: 12px; }
+    .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+    ul, ol { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 7px 0; }
+    code, pre { background: #111827; color: #a7f3d0; border-radius: 10px; }
+    code { padding: 2px 6px; font-size: .9em; }
+    pre { padding: 16px; overflow-x: auto; white-space: pre-wrap; }
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+    .flow div { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; font-weight: 700; font-size: .9rem; }
+    .muted { color: var(--muted); }
+    .timeline { display: grid; gap: 12px; }
+    .step { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; }
+    .num { width: 36px; height: 36px; border-radius: 50%; background: var(--dark); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; border-radius: 999px; padding: 5px 10px; font-size: .84rem; }
+    .two-col { columns: 2; column-gap: 28px; }
+    footer { color: var(--muted); text-align: center; padding: 26px 0 10px; }
+    @media (max-width: 820px) {
+      main { padding: 14px; }
+      .span-4, .span-6, .span-8 { grid-column: span 12; }
+      .flow { grid-template-columns: 1fr; }
+      .two-col { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="badge">Install Call Addendum</div>
+    <h1>Jackson's Karpathy Second Brain</h1>
+    <p>Use this after the standard Hermes install call. The goal is not to impress him with integrations. The goal is to make capture, retrieval, and tiny action easier than doing nothing.</p>
+  </header>
+
+  <section class="grid">
+    <div class="card span-8">
+      <h2>Positioning Script</h2>
+      <div class="script">
+        "Jackson, we're not setting up a productivity app you have to maintain. We're setting up a place where you can throw thoughts, links, school stuff, project ideas, and reminders without organizing them first. The agent's job is to catch it, sort it, remind you at the right time, and help make tomorrow easier."
+      </div>
+    </div>
+    <div class="card span-4">
+      <h2>V1 Rule</h2>
+      <div class="success">
+        Keep it simple. Telegram first. Hermes native memory/files/reminders. No calendar, no NotebookLM automation, no Notion dashboard until usage is proven.
+      </div>
+    </div>
+
+    <div class="card span-12">
+      <h2>Simple Architecture</h2>
+      <div class="flow">
+        <div>Telegram Capture</div>
+        <div>Hermes Profile</div>
+        <div>Memory + Files</div>
+        <div>Cron Nudges</div>
+        <div>Weekly Review</div>
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h2>What to Install / Configure</h2>
+      <ul>
+        <li>Fresh Hermes profile for Jackson.</li>
+        <li>Telegram gateway with his private bot.</li>
+        <li>Memory enabled for stable facts and preferences.</li>
+        <li>File tools for notes, source packs, and summaries.</li>
+        <li>Session search for recall.</li>
+        <li>Cron jobs for morning/evening nudges.</li>
+        <li>Web search if he wants research capture.</li>
+        <li>Skills for capture, review, nudges, and study-pack export.</li>
+      </ul>
+    </div>
+
+    <div class="card span-6">
+      <h2>What NOT to Install Yet</h2>
+      <ul>
+        <li>No Google Calendar / iCloud Calendar in v1.</li>
+        <li>No NotebookLM API/MCP automation.</li>
+        <li>No Notion sync as primary interface.</li>
+        <li>No complex dashboard until we see real capture behavior.</li>
+        <li>No outbound communication agent.</li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>Live Call Flow</h2>
+      <div class="timeline">
+        <div class="step"><div class="num">1</div><div><h3>Open with the outcome</h3><div class="script">"The win is simple: when something crosses your mind, you send it here. Later, you can ask for it back. If the system does that reliably, we won."</div></div></div>
+        <div class="step"><div class="num">2</div><div><h3>Set capture categories</h3><div class="operator">Create these buckets: Inbox, School, Mechanical Engineering, Projects, Game Design, Watch/Product Ideas, Links/Research, Tasks, Reminders, Parking Lot.</div></div></div>
+        <div class="step"><div class="num">3</div><div><h3>Explain behavior layer</h3><div class="script">"This is partly a memory system and partly an environment-design system. If something matters, we'll make it easier to start. If something keeps derailing you, we'll add friction to it."</div></div></div>
+        <div class="step"><div class="num">4</div><div><h3>Create first nudge routines</h3><div class="operator">Add morning hook, evening setup, and Sunday review. Keep each one short enough that it doesn't feel like homework.</div></div></div>
+        <div class="step"><div class="num">5</div><div><h3>Run the first captures</h3><div class="operator">Have Jackson send 5 real messages: one school thought, one project idea, one link, one task, one reminder.</div></div></div>
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h2>Behavioral Economics Priority</h2>
+      <div class="pill-row">
+        <span class="pill">Reduce friction</span>
+        <span class="pill">Timely nudges</span>
+        <span class="pill">If-then plans</span>
+        <span class="pill">Choice architecture</span>
+        <span class="pill">Tiny starts</span>
+        <span class="pill">Tomorrow hook</span>
+      </div>
+      <ul>
+        <li>Make the good behavior easier than the default.</li>
+        <li>Prompt only when action is realistic.</li>
+        <li>Prefer one tiny action over a motivational speech.</li>
+        <li>Convert vague goals into room setup, reminders, and scripts.</li>
+      </ul>
+    </div>
+
+    <div class="card span-6">
+      <h2>Example Nudges</h2>
+      <ul>
+        <li><strong>Morning:</strong> "One win today: open the CAD file for 5 minutes."</li>
+        <li><strong>Tomorrow hook:</strong> "After breakfast, sketch the ugly first version of the watch idea."</li>
+        <li><strong>Room setup:</strong> "Put your alarm in the bathroom so you're already near the shower."</li>
+        <li><strong>Friction:</strong> "Put distracting apps one folder deeper tonight."</li>
+        <li><strong>If-then:</strong> "If I finish coffee, then I send one idea to Jarvis."</li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>First Cron Jobs</h2>
+      <pre>Morning nudge — 8:30 AM
+Ask Jackson for one tiny win, one exciting thing, and one first action.
+
+Evening setup — 9:30 PM
+Ask what he wants to make easier tomorrow. Suggest one room/environment setup.
+
+Sunday review — 6:00 PM
+Summarize captures, open loops, wins, reminders, and one friction fix for next week.</pre>
+    </div>
+
+    <div class="card span-6">
+      <h2>48-Hour Validation</h2>
+      <ul>
+        <li>Jackson sends 10 captures.</li>
+        <li>Hermes files them into the right buckets.</li>
+        <li>Jackson asks for one item later and gets it back.</li>
+        <li>He tries one environment nudge.</li>
+        <li>He has one tomorrow hook he actually cares about.</li>
+      </ul>
+    </div>
+
+    <div class="card span-6">
+      <h2>Back Pocket</h2>
+      <ul>
+        <li>NotebookLM source pack export: <code>.txt</code> and URL first.</li>
+        <li>Private visual dashboard after usage is proven.</li>
+        <li>Google Calendar/iCloud CalDAV when school deadlines matter.</li>
+        <li>Notion import as source material, not the interface.</li>
+      </ul>
+    </div>
+
+    <div class="card span-12">
+      <h2>Close the Install Call</h2>
+      <div class="script">
+        "For the next two days, don't try to use this perfectly. Just throw things at it. Ideas, links, reminders, random tasks, stuff you might want later. If it makes capture and recall easier, we build the visual layer. If it feels like another app to manage, we cut it down further."
+      </div>
+    </div>
+  </section>
+
+  <footer>Agent Path — Jackson Second Brain Addendum</footer>
+</main>
+</body>
+</html>

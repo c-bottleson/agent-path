@@ -18,7 +18,7 @@ Scan to book a 1-on-1 reality check.
 
 ---
 
-## YouTube Pre-Roll Ad Script (for $399 Agent Install)
+## YouTube Pre-Roll Ad Script (for $3,500+ Implementation Sprint)
 **Targeting:** Engineering, 3D Printing, DIY Maker channels (e.g. Colin Furze, Practical Engineering, Adam Savage).
 **Visual:** Shot on an iPhone in a garage, shop, or home office. Desk is slightly messy. No ring lights. Real life.
 
@@ -29,7 +29,7 @@ Scan to book a 1-on-1 reality check.
 
 ---
 
-## Meta/LinkedIn Video Ad Script (for $999 Assessment & $399 Install)
+## Meta/LinkedIn Video Ad Script (for $999 Assessment & $3,500+ Implementation Sprint)
 **Targeting:** B2B Owners, VP of Operations, Plant Managers, General Managers.
 **Visual:** Shot in a standard office or sitting in a truck. Stark, direct eye contact.
 

@@ -82,16 +82,16 @@
         <div class="script-box">
             "Your agent needs a home — a server that runs 24/7. Two options:"<br><br>
 
-            <strong>"Contabo</strong> is the work truck. ~$6/month, massive hardware for the price. The website looks like it's from 2005, but the server is a beast. If you just want raw power and don't care about fancy dashboards, this is it."<br><br>
+            <strong>"OVHcloud</strong> is the default. ~$6.50/month for 4 vCores, 8GB RAM, 75GB SSD, and daily backups included. It is the best value/reliability balance — cheap enough for clients, reliable enough for installs."<br><br>
 
-            <strong>"Vultr</strong> is the sports car. ~$10/month. Sleek dashboard, instant provisioning, NVMe drives. If you think you'll log into the dashboard often, this is nicer to use."<br><br>
+            <strong>"Vultr</strong> is the polished fallback. ~$10/month. Sleek dashboard, instant provisioning, NVMe drives. Pick this only if they care more about dashboard experience than raw specs."<br><br>
 
-            "Both work perfectly. Contabo is more bang for buck. Vultr is more polished."
+            "Both work. OVHcloud is my recommendation. Vultr is the fallback if OVH signup gets annoying."
         </div>
         <div class="action-box">
             <h4>🖱️ Select VPS</h4>
             <div class="radio-group">
-                <label class="radio-option selected"><input type="radio" name="provider" value="contabo" checked onchange="updateAll()"> <strong>Contabo</strong> — $6/mo, raw power <span style="color: #888; font-size: 0.85em;">(recommended)</span></label>
+                <label class="radio-option selected"><input type="radio" name="provider" value="ovhcloud" checked onchange="updateAll()"> <strong>OVHcloud</strong> — ~$6.50/mo, 8GB RAM + backups <span style="color: #888; font-size: 0.85em;">(recommended)</span></label>
                 <label class="radio-option"><input type="radio" name="provider" value="vultr" onchange="updateAll()"> <strong>Vultr</strong> — $10/mo, polished UI</label>
             </div>
         </div>
@@ -133,23 +133,23 @@
     <div class="sidequest">
         <h3>🖥️ Sidequest A: Create the VPS</h3>
         <div class="info-box">
-            <strong>⏱ Note:</strong> VPS provisioning takes 15-30 minutes on Contabo (instant on Vultr). We'll set up the other accounts while we wait.
+            <strong>⏱ Note:</strong> OVHcloud provisioning can take a few minutes, especially on first signup. We'll set up the other accounts while we wait.
         </div>
 
-        <div id="vps-contabo">
+        <div id="vps-ovhcloud">
             <p><strong>Have them share their screen. Walk through this together:</strong></p>
             <ol>
-                <li>Go to <code>contabo.com</code> and click <strong>Cloud VPS</strong></li>
-                <li>Select <strong>Cloud VPS 1</strong> ($5.99/mo) — this is plenty for an AI agent</li>
-                <li><strong>Term Length:</strong> 1 Month (no long commitment)</li>
-                <li><strong>Region:</strong> Pick the closest to them (or cheapest)</li>
-                <li><strong>Storage:</strong> 50GB NVMe</li>
+                <li>Go to <code>us.ovhcloud.com</code> → <strong>VPS</strong></li>
+                <li>Select <strong>VPS-1</strong> — about $6.46/mo, 4 vCores, 8GB RAM, 75GB SSD, daily backup included</li>
+                <li><strong>Billing:</strong> Monthly/no long commitment if offered</li>
+                <li><strong>Region:</strong> Pick the closest US location available</li>
                 <li style="color: red; font-weight: bold;">⚠️ <strong>Operating System:</strong> Ubuntu 24.04 LTS — this is critical, do NOT pick Windows or Debian</li>
-                <li><strong>Password:</strong> Click "Generate" and have them <strong>save it in their notepad</strong> as:<br>
-                    <code>VPS Root Password: _______________</code></li>
+                <li><strong>Login:</strong> Use password login if offered. If OVH requires SSH keys, pause and let us generate one together.</li>
                 <li>Check out with credit card</li>
-                <li><strong>Save the server IP</strong> when it arrives (15-30 min email):<br>
-                    <code>VPS IP Address: _______________</code></li>
+                <li><strong>Save the server IP and login details</strong> when OVH shows/emails them:<br>
+                    <code>VPS IP Address: _______________</code><br>
+                    <code>VPS Username: root or ubuntu</code><br>
+                    <code>VPS Root Password / SSH Key: _______________</code></li>
             </ol>
         </div>
 
@@ -409,7 +409,7 @@
             });
 
             // VPS instructions
-            document.getElementById('vps-contabo').classList.toggle('hidden', provider !== 'contabo');
+            document.getElementById('vps-ovhcloud').classList.toggle('hidden', provider !== 'ovhcloud');
             document.getElementById('vps-vultr').classList.toggle('hidden', provider !== 'vultr');
 
             generateScript();
@@ -460,8 +460,8 @@
             s += `apt-get install -y git curl wget unzip build-essential\n\n`;
 
             if (agent === 'openclaw') {
-                if (provider === 'contabo') {
-                    s += `# Swap for OpenClaw on Contabo\n`;
+                if (provider === 'ovhcloud') {
+                    s += `# Swap for OpenClaw on OVHcloud\n`;
                     s += `fallocate -l 4G /swapfile && chmod 600 /swapfile\n`;
                     s += `mkswap /swapfile && swapon /swapfile\n`;
                     s += `echo '/swapfile none swap sw 0 0' >> /etc/fstab\n\n`;

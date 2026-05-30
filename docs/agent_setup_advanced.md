@@ -27,7 +27,7 @@ Beyond the core curriculum, the true value of an "AI Architect" lies in knowing 
 - **The Implementation**: Hermes has built-in `meet_join`, `meet_transcript`, `meet_say`, and `meet_leave` tools. The agent joins as a guest, scrapes live captions into a transcript, and can optionally speak into the call via TTS (requires OpenAI Realtime API key + audio bridge).
 - **Use Cases for Consulting**:
   - **Assessment Calls**: Captain joins the $999 assessment call, transcribes the entire conversation, and auto-generates the teardown document from what was said.
-  - **Agent Install Sessions**: During the $399 1-on-1 deployment, the agent captures every step discussed so nothing is lost.
+  - **Agent Install Sessions**: During the $3,500+ 1-on-1 deployment, the agent captures every step discussed so nothing is lost.
   - **Client Check-ins**: Weekly client calls get auto-summarized with action items.
 - **How It Works**:
   ```bash

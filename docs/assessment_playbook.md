@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A 90-minute 1-on-1 operational teardown of a client's business to determine whether AI can meaningfully reduce their overhead. The deliverable is a written blueprint with a Go/No-Go verdict.
+A 60-minute max 1-on-1 operational teardown of a client's business to determine whether AI can meaningfully reduce their overhead. The deliverable is a written blueprint with a Go/No-Go verdict.
 
 **Target:** Traditional businesses $1M-$10M revenue (manufacturing, logistics, local services, construction).
 
@@ -18,7 +18,7 @@ A 90-minute 1-on-1 operational teardown of a client's business to determine whet
    - Have you tried any AI tools? Which ones? What happened?
    - What's your approximate annual revenue? (ballpark is fine)
 
-## During the Call (90 minutes)
+## During the Call (60 minutes or less)
 
 ### Part 1: Operations Walkthrough (30 min)
 
@@ -123,8 +123,8 @@ Write the **Blueprint Document** in plain language. Structure:
 ## Pricing & Upsell Path
 
 - **Assessment is standalone.** No obligation to buy anything else.
-- **If they want implementation:** Recommend the $399 Agent Install
-- **If they want ongoing support:** Recommend the $199 Captain Protocol
+- **If they want implementation:** Scope a $3,500+ Implementation Sprint from the blueprint
+- **If they want ongoing support:** Recommend Chief of Staff at $3,000/mo after the first implementation proves useful
 - **If they just want the blueprint:** That's fine too. Not everything needs to be a sale.
 
 ## Key Principles
@@ -132,5 +132,5 @@ Write the **Blueprint Document** in plain language. Structure:
 1. **Honesty over revenue.** If AI doesn't help, say so. You earn trust, not $999.
 2. **Specific over generic.** "$47/month in saved labor" beats "improved efficiency."
 3. **Plain language.** No jargon. If you say "machine learning," immediately translate: "pattern detection."
-4. **Respect their time.** 90 minutes means 90 minutes. Don't run over.
+4. **Respect their time.** 60 minutes means 60 minutes max. Do not run over.
 5. **Follow up fast.** Blueprint within 48 hours. They're excited right after the call — don't let it fade.

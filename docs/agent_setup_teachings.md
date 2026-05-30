@@ -1,6 +1,6 @@
 # AI Agent Setup: Core Curriculum
 
-When delivering the "$399 AI Agent Setup" call to pragmatic founders and makers, we aren't just giving them API keys and a terminal window. We are teaching them how to build an **autonomous operating system** for their business.
+When delivering the "$3,500+ Implementation Sprint" call to pragmatic founders and makers, we aren't just giving them API keys and a terminal window. We are teaching them how to build an **autonomous operating system** for their business.
 
 This document outlines the core operational philosophies that must be taught during the implementation call to ensure the client gets compounding value and ascends your "Infinite Strategy Ladder."
 

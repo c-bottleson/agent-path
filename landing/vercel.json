@@ -5,6 +5,7 @@
     { "source": "/audit", "destination": "/audit.html" },
     { "source": "/review", "destination": "/review.html" },
     { "source": "/teleprompter", "destination": "/teleprompter.html" },
+    { "source": "/jackson-second-brain-script", "destination": "/jackson-second-brain-script.html" },
     { "source": "/captain-setup", "destination": "/captain-setup.html" },
     { "source": "/assessment", "destination": "/assessment.html" }
   ]

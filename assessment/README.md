@@ -61,8 +61,8 @@ The AI Assessment is Agent Path's core product at the $999 tier. It's a structur
 | Tier | Price | What's Included |
 |------|-------|-----------------|
 | AI Assessment | $999 | Discovery call + 12-slide report + 1 follow-up call |
-| Implementation | $1,199+ | Quick wins installed + training |
-| Chief of Staff | $1,699/mo | Ongoing optimization + new automations monthly |
+| Implementation Sprint | $3,500+ | First priority workflow installed + training |
+| Chief of Staff | $3,000/mo | Ongoing optimization + new automations monthly |
 
 ## Next Steps
 

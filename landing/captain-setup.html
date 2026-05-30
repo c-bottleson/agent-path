@@ -116,29 +116,29 @@
     <div class="step fresh-only">
         <h3><span class="step-number">2</span> Provision a VPS</h3>
         <div class="info-box">
-            <strong>⏱ Note:</strong> VPS provisioning takes 15-30 min on Contabo (instant on Vultr). Set up the other accounts while you wait.
+            <strong>⏱ Note:</strong> OVHcloud provisioning can take a few minutes, especially on first signup. Set up the other accounts while you wait.
         </div>
         <div class="action-box">
             <h4>🖱️ Select VPS</h4>
             <div class="radio-group">
-                <label class="radio-option selected"><input type="radio" name="vps" value="contabo" checked onchange="generateScript()"> <strong>Contabo</strong> — $6/mo, raw power <span style="color: #888; font-size: 0.85em;">(recommended)</span></label>
+                <label class="radio-option selected"><input type="radio" name="vps" value="ovhcloud" checked onchange="generateScript()"> <strong>OVHcloud</strong> — ~$6.50/mo, 8GB RAM + backups <span style="color: #888; font-size: 0.85em;">(recommended)</span></label>
                 <label class="radio-option"><input type="radio" name="vps" value="vultr" onchange="generateScript()"> <strong>Vultr</strong> — $10/mo, polished UI</label>
             </div>
         </div>
 
-        <!-- Contabo instructions -->
-        <div id="vps-contabo" style="margin-top: 15px;">
+        <!-- OVHcloud instructions -->
+        <div id="vps-ovhcloud" style="margin-top: 15px;">
             <ol style="font-size: 14px;">
-                <li>Go to <code>contabo.com</code> → <strong>Cloud VPS</strong></li>
-                <li>Select <strong>Cloud VPS 1</strong> ($5.99/mo)</li>
-                <li><strong>Term Length:</strong> 1 Month</li>
-                <li><strong>Region:</strong> Closest or cheapest</li>
-                <li><strong>Storage:</strong> 50GB NVMe</li>
+                <li>Go to <code>us.ovhcloud.com</code> → <strong>VPS</strong></li>
+                <li>Select <strong>VPS-1</strong> — about $6.46/mo, 4 vCores, 8GB RAM, 75GB SSD, daily backup included</li>
+                <li><strong>Billing:</strong> Monthly/no long commitment if offered</li>
+                <li><strong>Region:</strong> Closest US location available</li>
                 <li style="color: red; font-weight: bold;">⚠️ <strong>OS:</strong> Ubuntu 24.04 LTS — do NOT pick anything else</li>
-                <li><strong>Password:</strong> Generate and save in notepad:<br>
-                    <code>VPS Root Password: _______________</code></li>
-                <li>Check out. Save the IP when it arrives (15-30 min):<br>
-                    <code>VPS IP Address: _______________</code></li>
+                <li><strong>Login:</strong> Use password login if offered. If OVH requires SSH keys, pause and generate one together.</li>
+                <li>Check out. Save the IP/login details when OVH shows or emails them:<br>
+                    <code>VPS IP Address: _______________</code><br>
+                    <code>VPS Username: root or ubuntu</code><br>
+                    <code>VPS Root Password / SSH Key: _______________</code></li>
             </ol>
         </div>
 
