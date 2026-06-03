@@ -8,18 +8,15 @@
     :root {
       --bg: #0f1115;
       --panel: #171a21;
-      --panel-2: #1d222c;
       --ink: #f4f1e8;
       --muted: #a9afbd;
       --line: #303746;
       --accent: #d9b56f;
-      --green-bg: #153f2a;
-      --green: #9af2bd;
-      --red-bg: #4a1f24;
-      --red: #ff9aa6;
       --blue: #9db8ff;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --warn: #f2c56b;
+      --good: #9af2bd;
       --radius: 18px;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
       color-scheme: dark;
     }
 
@@ -39,7 +36,7 @@
     button, input, textarea, select { font: inherit; }
 
     .app {
-      width: min(1500px, calc(100vw - 32px));
+      width: min(1450px, calc(100vw - 32px));
       margin: 0 auto;
       padding: 24px 0 32px;
     }
@@ -62,16 +59,18 @@
     .subhead {
       color: var(--muted);
       margin: 0;
-      max-width: 720px;
+      max-width: 760px;
       line-height: 1.5;
     }
 
-    .top-actions {
+    .top-actions, .small-row {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
+
+    .top-actions { justify-content: flex-end; }
+    .small-row .btn { flex: 1; min-width: 90px; }
 
     .btn {
       border: 1px solid var(--line);
@@ -86,7 +85,7 @@
 
     .btn:hover { transform: translateY(-1px); border-color: #556075; }
     .btn:focus-visible { outline: 3px solid rgba(217,181,111,.45); outline-offset: 2px; }
-    .btn.primary { background: var(--accent); color: #17120a; border-color: #f0d08c; font-weight: 750; }
+    .btn.primary { background: var(--accent); color: #17120a; border-color: #f0d08c; font-weight: 800; }
     .btn.ghost { background: transparent; }
     .btn.danger { background: #30191d; border-color: #5f2c34; color: #ffb5bf; }
 
@@ -97,8 +96,7 @@
       align-items: start;
     }
 
-    .sidebar,
-    .panel {
+    .sidebar, .panel {
       background: color-mix(in oklab, var(--panel) 94%, black);
       border: 1px solid rgba(255,255,255,.08);
       border-radius: var(--radius);
@@ -127,7 +125,7 @@
     }
 
     textarea {
-      min-height: 310px;
+      min-height: 420px;
       resize: vertical;
       line-height: 1.55;
       tab-size: 2;
@@ -157,10 +155,7 @@
     .draft-title { font-weight: 760; font-size: 13px; margin-bottom: 4px; }
     .draft-meta { color: var(--muted); font-size: 12px; }
 
-    .workspace {
-      display: grid;
-      gap: 16px;
-    }
+    .workspace { display: grid; gap: 16px; }
 
     .editors {
       display: grid;
@@ -187,12 +182,6 @@
     .panel-note { color: var(--muted); font-size: 13px; }
     .panel-body { padding: 14px 16px 16px; }
 
-    .stats {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
     .pill {
       font-size: 12px;
       border: 1px solid var(--line);
@@ -200,81 +189,38 @@
       color: var(--muted);
       border-radius: 999px;
       padding: 5px 8px;
+      white-space: nowrap;
     }
 
-    .diff-wrap {
-      background: #10131a;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      min-height: 340px;
-      padding: 18px;
-      overflow: auto;
+    .pill.warn { color: #17120a; background: var(--warn); border-color: #ffe0a1; font-weight: 800; }
+    .pill.good { color: #07150d; background: var(--good); border-color: #c4ffd8; font-weight: 800; }
+
+    .request-panel {
+      border: 1px solid rgba(217,181,111,.36);
+      background: linear-gradient(135deg, rgba(217,181,111,.12), rgba(157,184,255,.07));
     }
 
-    .diff {
-      white-space: pre-wrap;
-      line-height: 1.75;
-      font-size: 17px;
-      overflow-wrap: anywhere;
-    }
-
-    .diff del,
-    .diff ins {
-      border-radius: 5px;
-      padding: 1px 3px;
-      text-decoration: none;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-    }
-
-    .diff del {
-      color: var(--red);
-      background: var(--red-bg);
-      text-decoration: line-through;
-      text-decoration-thickness: 2px;
-      text-decoration-color: rgba(255,154,166,.7);
-    }
-
-    .diff ins {
-      color: var(--green);
-      background: var(--green-bg);
-      text-decoration: none;
-    }
-
-    .legend {
-      display: flex;
-      gap: 10px;
+    .request-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
       align-items: center;
-      flex-wrap: wrap;
+    }
+
+    .request-card p {
+      margin: 4px 0 0;
       color: var(--muted);
-      font-size: 13px;
+      line-height: 1.45;
     }
 
-    .swatch {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .swatch::before {
-      content: "";
-      width: 14px;
-      height: 14px;
-      border-radius: 4px;
-      display: inline-block;
-    }
-    .swatch.red::before { background: var(--red-bg); border: 1px solid var(--red); }
-    .swatch.green::before { background: var(--green-bg); border: 1px solid var(--green); }
-    .swatch.neutral::before { background: #202631; border: 1px solid var(--line); }
-
-    .output-grid {
+    .notes-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
     .readonly {
-      min-height: 240px;
+      min-height: 220px;
       background: #10131a;
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -302,13 +248,10 @@
 
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    .small-row { display: flex; gap: 8px; flex-wrap: wrap; }
-    .small-row .btn { flex: 1; min-width: 90px; }
-
     @media (max-width: 980px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar { position: static; max-height: none; }
-      .editors, .output-grid { grid-template-columns: 1fr; }
+      .editors, .notes-grid, .request-card { grid-template-columns: 1fr; }
       header { align-items: start; flex-direction: column; }
       .top-actions { justify-content: start; }
     }
@@ -319,7 +262,7 @@
     <header>
       <div>
         <h1>Agent Path draft editor</h1>
-        <p class="subhead">Write the rough draft on the left. Paste Captain's edit on the right. The review pane shows removed words in red, added words in green, and untouched words as plain text.</p>
+        <p class="subhead">Write the rough draft on the left. Hit <strong>Run edit with Captain</strong> when you want me to update the edited version. No red/green diff noise.</p>
       </div>
       <div class="top-actions">
         <button class="btn ghost" id="newDraftBtn">New draft</button>
@@ -355,12 +298,22 @@
       </aside>
 
       <section class="workspace">
+        <article class="panel request-panel">
+          <div class="panel-body request-card">
+            <div>
+              <div class="panel-title">Need a new edit?</div>
+              <p>This copies a clean request with your latest draft, current edited version, cadence, and notes. Paste it to me in Telegram. I’ll return the updated edited version.</p>
+            </div>
+            <button class="btn primary" id="runEditBtn">Run edit with Captain</button>
+          </div>
+        </article>
+
         <div class="editors">
           <article class="panel">
             <div class="panel-head">
               <div>
-                <div class="panel-title">Original draft</div>
-                <div class="panel-note">Your messy version. Mess is allowed.</div>
+                <div class="panel-title">Your draft</div>
+                <div class="panel-note">Change this anytime. Mess is allowed.</div>
               </div>
               <span class="pill" id="originalCount">0 words</span>
             </div>
@@ -372,10 +325,13 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <div class="panel-title">Edited draft</div>
-                <div class="panel-note">Captain edit or your revised version.</div>
+                <div class="panel-title">Edited version</div>
+                <div class="panel-note">Paste Captain's updated edit here.</div>
               </div>
-              <span class="pill" id="editedCount">0 words</span>
+              <div class="top-actions">
+                <span class="pill" id="editedStatus">Up to date</span>
+                <span class="pill" id="editedCount">0 words</span>
+              </div>
             </div>
             <div class="panel-body">
               <textarea id="editedText" spellcheck="true"></textarea>
@@ -383,26 +339,7 @@
           </article>
         </div>
 
-        <article class="panel">
-          <div class="panel-head">
-            <div>
-              <div class="panel-title">Inline review</div>
-              <div class="panel-note">VS Code-ish word diff. Red got cut. Green got added.</div>
-            </div>
-            <div class="legend" aria-label="Diff legend">
-              <span class="swatch red">removed</span>
-              <span class="swatch green">added</span>
-              <span class="swatch neutral">unchanged</span>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="diff-wrap">
-              <div class="diff" id="diffOutput"></div>
-            </div>
-          </div>
-        </article>
-
-        <div class="output-grid">
+        <div class="notes-grid">
           <article class="panel">
             <div class="panel-head">
               <div class="panel-title">Clean final</div>
@@ -416,10 +353,10 @@
           <article class="panel">
             <div class="panel-head">
               <div class="panel-title">Notes</div>
-              <span class="panel-note">Private reminders</span>
+              <span class="panel-note">Private reminders for the edit</span>
             </div>
             <div class="panel-body">
-              <textarea id="notesText" style="min-height:240px" placeholder="Example: remove CTA, make it less brochure, keep raccoon joke..."></textarea>
+              <textarea id="notesText" style="min-height:220px" placeholder="Example: remove CTA, make it less brochure, keep raccoon joke..."></textarea>
             </div>
           </article>
         </div>
@@ -492,16 +429,9 @@ That is a much more useful direction.`;
 
     const state = {
       currentId: null,
-      drafts: []
+      drafts: [],
+      lastEditRequestOriginal: ''
     };
-
-    function tokenize(text) {
-      return text.match(/\s+|[^\s]+/g) || [];
-    }
-
-    function isWordToken(token) {
-      return !/^\s+$/.test(token);
-    }
 
     function escapeHtml(text) {
       return text
@@ -510,65 +440,6 @@ That is a much more useful direction.`;
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#039;');
-    }
-
-    function diffTokens(aTokens, bTokens) {
-      const n = aTokens.length;
-      const m = bTokens.length;
-      const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
-
-      for (let i = n - 1; i >= 0; i--) {
-        for (let j = m - 1; j >= 0; j--) {
-          if (aTokens[i] === bTokens[j]) dp[i][j] = dp[i + 1][j + 1] + 1;
-          else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
-        }
-      }
-
-      const out = [];
-      let i = 0, j = 0;
-      while (i < n && j < m) {
-        if (aTokens[i] === bTokens[j]) {
-          out.push({ type: 'same', text: aTokens[i] });
-          i++; j++;
-        } else if (dp[i + 1][j] >= dp[i][j + 1]) {
-          out.push({ type: 'del', text: aTokens[i] });
-          i++;
-        } else {
-          out.push({ type: 'ins', text: bTokens[j] });
-          j++;
-        }
-      }
-      while (i < n) out.push({ type: 'del', text: aTokens[i++] });
-      while (j < m) out.push({ type: 'ins', text: bTokens[j++] });
-      return out;
-    }
-
-    function compactOps(ops) {
-      const compacted = [];
-      for (const op of ops) {
-        const last = compacted[compacted.length - 1];
-        if (last && last.type === op.type) last.text += op.text;
-        else compacted.push({ ...op });
-      }
-      return compacted;
-    }
-
-    function renderDiff() {
-      const original = $('originalText').value;
-      const edited = $('editedText').value;
-      const ops = compactOps(diffTokens(tokenize(original), tokenize(edited)));
-      const html = ops.map(op => {
-        const safe = escapeHtml(op.text);
-        if (op.type === 'del' && op.text.trim()) return `<del>${safe}</del>`;
-        if (op.type === 'ins' && op.text.trim()) return `<ins>${safe}</ins>`;
-        return safe;
-      }).join('');
-
-      $('diffOutput').innerHTML = html || '<span style="color:var(--muted)">Start typing to see edits.</span>';
-      $('cleanOutput').textContent = edited || 'Clean edited text appears here.';
-      $('originalCount').textContent = `${countWords(original)} words`;
-      $('editedCount').textContent = `${countWords(edited)} words`;
-      persistWorkingCopy();
     }
 
     function countWords(text) {
@@ -581,7 +452,36 @@ That is a much more useful direction.`;
       toast.textContent = message;
       toast.classList.add('show');
       clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => toast.classList.remove('show'), 1400);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function refreshOutputs() {
+      const original = $('originalText').value;
+      const edited = $('editedText').value;
+      $('cleanOutput').textContent = edited || 'Clean edited text appears here.';
+      $('originalCount').textContent = `${countWords(original)} words`;
+      $('editedCount').textContent = `${countWords(edited)} words`;
+      updateEditedStatus();
+      persistWorkingCopy();
+    }
+
+    function updateEditedStatus() {
+      const status = $('editedStatus');
+      const original = $('originalText').value.trim();
+      const edited = $('editedText').value.trim();
+      const lastRequested = state.lastEditRequestOriginal.trim();
+
+      status.classList.remove('warn', 'good');
+      if (!edited) {
+        status.textContent = 'Needs edit';
+        status.classList.add('warn');
+      } else if (original && original !== lastRequested) {
+        status.textContent = 'Draft changed';
+        status.classList.add('warn');
+      } else {
+        status.textContent = 'Up to date';
+        status.classList.add('good');
+      }
     }
 
     function loadState() {
@@ -589,6 +489,7 @@ That is a much more useful direction.`;
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
         state.currentId = saved.currentId || null;
         state.drafts = Array.isArray(saved.drafts) ? saved.drafts : [];
+        state.lastEditRequestOriginal = saved.lastEditRequestOriginal || '';
         if (saved.workingCopy && !state.drafts.length) {
           applyDraft(saved.workingCopy, false);
         } else if (state.drafts.length) {
@@ -601,20 +502,19 @@ That is a much more useful direction.`;
         applyDraft(seedDraft(), false);
       }
       renderDraftList();
-      renderDiff();
+      refreshOutputs();
     }
 
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         currentId: state.currentId,
         drafts: state.drafts,
-        workingCopy: getCurrentDraft()
+        workingCopy: getCurrentDraft(),
+        lastEditRequestOriginal: state.lastEditRequestOriginal
       }));
     }
 
-    function persistWorkingCopy() {
-      saveState();
-    }
+    function persistWorkingCopy() { saveState(); }
 
     function seedDraft() {
       return {
@@ -642,6 +542,7 @@ That is a much more useful direction.`;
 
     function applyDraft(draft, announce = true) {
       state.currentId = draft.id;
+      state.lastEditRequestOriginal = draft.lastEditRequestOriginal || draft.original || '';
       $('draftTitle').value = draft.title || 'Untitled draft';
       $('postType').value = draft.type || 'Raw idea';
       $('originalText').value = draft.original || '';
@@ -649,11 +550,12 @@ That is a much more useful direction.`;
       $('notesText').value = draft.notes || '';
       if (announce) showToast('Loaded');
       renderDraftList();
-      renderDiff();
+      refreshOutputs();
     }
 
     function saveDraft() {
       const draft = getCurrentDraft();
+      draft.lastEditRequestOriginal = state.lastEditRequestOriginal;
       state.currentId = draft.id;
       const idx = state.drafts.findIndex(d => d.id === draft.id);
       if (idx >= 0) state.drafts[idx] = draft;
@@ -673,6 +575,7 @@ That is a much more useful direction.`;
         notes: '',
         updatedAt: new Date().toISOString()
       };
+      state.lastEditRequestOriginal = '';
       applyDraft(draft);
       saveState();
     }
@@ -712,6 +615,22 @@ That is a much more useful direction.`;
       showToast(`${label} copied`);
     }
 
+    function buildEditRequest() {
+      const d = getCurrentDraft();
+      return `Captain, run an edit on this LinkedIn draft and return only the updated edited version.\n\nVoice: genuine, helpful, deadpan, not corporate. Keep it useful. If this is a Hook post, include a soft Agent Path CTA. If it is a Jab, no CTA.\n\nCadence: ${d.type}\nTitle: ${d.title}\n\nNotes:\n${d.notes || '(none)'}\n\nMy latest draft:\n${d.original || '(empty)'}\n\nCurrent edited version, if useful as a starting point:\n${d.edited || '(none yet)'}`;
+    }
+
+    async function runEditRequest() {
+      const request = buildEditRequest();
+      await navigator.clipboard.writeText(request);
+      state.lastEditRequestOriginal = $('originalText').value;
+      saveDraft();
+      updateEditedStatus();
+      showToast('Edit request copied');
+      const telegramShare = `https://t.me/share/url?text=${encodeURIComponent(request)}`;
+      window.open(telegramShare, '_blank', 'noopener,noreferrer');
+    }
+
     function exportMarkdown() {
       const d = getCurrentDraft();
       const content = `# ${d.title}\n\nCadence: ${d.type}\nUpdated: ${new Date(d.updatedAt).toLocaleString()}\n\n## Original draft\n\n${d.original}\n\n## Edited draft\n\n${d.edited}\n\n## Notes\n\n${d.notes}\n`;
@@ -728,8 +647,8 @@ That is a much more useful direction.`;
     }
 
     ['originalText', 'editedText', 'notesText', 'draftTitle', 'postType'].forEach(id => {
-      $(id).addEventListener('input', renderDiff);
-      $(id).addEventListener('change', renderDiff);
+      $(id).addEventListener('input', refreshOutputs);
+      $(id).addEventListener('change', refreshOutputs);
     });
 
     $('saveBtn').addEventListener('click', saveDraft);
@@ -738,6 +657,7 @@ That is a much more useful direction.`;
     $('copyEditedBtn').addEventListener('click', () => copyText($('editedText').value, 'Edited draft'));
     $('copyCleanBtn').addEventListener('click', () => copyText($('editedText').value, 'Clean final'));
     $('exportBtn').addEventListener('click', exportMarkdown);
+    $('runEditBtn').addEventListener('click', runEditRequest);
 
     window.addEventListener('keydown', (event) => {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
