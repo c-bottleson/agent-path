@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Path draft editor</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1d222c;
+      --ink: #f4f1e8;
+      --muted: #a9afbd;
+      --line: #303746;
+      --accent: #d9b56f;
+      --green-bg: #153f2a;
+      --green: #9af2bd;
+      --red-bg: #4a1f24;
+      --red: #ff9aa6;
+      --blue: #9db8ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(217,181,111,.16), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(80,120,255,.12), transparent 30rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, textarea, select { font: inherit; }
+
+    .app {
+      width: min(1500px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 32px;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 54px);
+      letter-spacing: -.05em;
+      line-height: .95;
+    }
+
+    .subhead {
+      color: var(--muted);
+      margin: 0;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #202631;
+      color: var(--ink);
+      padding: 10px 13px;
+      min-height: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: #556075; }
+    .btn:focus-visible { outline: 3px solid rgba(217,181,111,.45); outline-offset: 2px; }
+    .btn.primary { background: var(--accent); color: #17120a; border-color: #f0d08c; font-weight: 750; }
+    .btn.ghost { background: transparent; }
+    .btn.danger { background: #30191d; border-color: #5f2c34; color: #ffb5bf; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .sidebar,
+    .panel {
+      background: color-mix(in oklab, var(--panel) 94%, black);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar {
+      padding: 14px;
+      position: sticky;
+      top: 16px;
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+    }
+
+    .field { margin-bottom: 12px; }
+    label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+
+    input, textarea, select {
+      width: 100%;
+      color: var(--ink);
+      background: #10131a;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 310px;
+      resize: vertical;
+      line-height: 1.55;
+      tab-size: 2;
+    }
+
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,181,111,.13); }
+
+    .draft-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .draft-item {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: #121720;
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .draft-item:hover { border-color: #536073; }
+    .draft-item.active { border-color: var(--accent); background: #211d14; }
+    .draft-title { font-weight: 760; font-size: 13px; margin-bottom: 4px; }
+    .draft-meta { color: var(--muted); font-size: 12px; }
+
+    .workspace {
+      display: grid;
+      gap: 16px;
+    }
+
+    .editors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .panel-note { color: var(--muted); font-size: 13px; }
+    .panel-body { padding: 14px 16px 16px; }
+
+    .stats {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 12px;
+      border: 1px solid var(--line);
+      background: #111720;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+
+    .diff-wrap {
+      background: #10131a;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      min-height: 340px;
+      padding: 18px;
+      overflow: auto;
+    }
+
+    .diff {
+      white-space: pre-wrap;
+      line-height: 1.75;
+      font-size: 17px;
+      overflow-wrap: anywhere;
+    }
+
+    .diff del,
+    .diff ins {
+      border-radius: 5px;
+      padding: 1px 3px;
+      text-decoration: none;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .diff del {
+      color: var(--red);
+      background: var(--red-bg);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(255,154,166,.7);
+    }
+
+    .diff ins {
+      color: var(--green);
+      background: var(--green-bg);
+      text-decoration: none;
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .swatch.red::before { background: var(--red-bg); border: 1px solid var(--red); }
+    .swatch.green::before { background: var(--green-bg); border: 1px solid var(--green); }
+    .swatch.neutral::before { background: #202631; border: 1px solid var(--line); }
+
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .readonly {
+      min-height: 240px;
+      background: #10131a;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      white-space: pre-wrap;
+      line-height: 1.55;
+      color: #e9e5dc;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #e9d39d;
+      color: #19140b;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-weight: 760;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .small-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .small-row .btn { flex: 1; min-width: 90px; }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; }
+      .editors, .output-grid { grid-template-columns: 1fr; }
+      header { align-items: start; flex-direction: column; }
+      .top-actions { justify-content: start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Agent Path draft editor</h1>
+        <p class="subhead">Write the rough draft on the left. Paste Captain's edit on the right. The review pane shows removed words in red, added words in green, and untouched words as plain text.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn ghost" id="newDraftBtn">New draft</button>
+        <button class="btn" id="copyEditedBtn">Copy edited</button>
+        <button class="btn primary" id="saveBtn">Save draft</button>
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="sidebar" aria-label="Draft controls">
+        <div class="field">
+          <label for="draftTitle">Draft title</label>
+          <input id="draftTitle" value="Anthropic small business add-on" />
+        </div>
+
+        <div class="field">
+          <label for="postType">Cadence</label>
+          <select id="postType">
+            <option>Jab - useful, no CTA</option>
+            <option>Hook - useful + soft Agent Path CTA</option>
+            <option>Article draft</option>
+            <option>Raw idea</option>
+          </select>
+        </div>
+
+        <div class="small-row" style="margin-bottom:14px">
+          <button class="btn" id="exportBtn">Export .md</button>
+          <button class="btn danger" id="deleteBtn">Delete</button>
+        </div>
+
+        <div class="panel-note">Saved drafts</div>
+        <div class="draft-list" id="draftList"></div>
+      </aside>
+
+      <section class="workspace">
+        <div class="editors">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Original draft</div>
+                <div class="panel-note">Your messy version. Mess is allowed.</div>
+              </div>
+              <span class="pill" id="originalCount">0 words</span>
+            </div>
+            <div class="panel-body">
+              <textarea id="originalText" spellcheck="true"></textarea>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Edited draft</div>
+                <div class="panel-note">Captain edit or your revised version.</div>
+              </div>
+              <span class="pill" id="editedCount">0 words</span>
+            </div>
+            <div class="panel-body">
+              <textarea id="editedText" spellcheck="true"></textarea>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Inline review</div>
+              <div class="panel-note">VS Code-ish word diff. Red got cut. Green got added.</div>
+            </div>
+            <div class="legend" aria-label="Diff legend">
+              <span class="swatch red">removed</span>
+              <span class="swatch green">added</span>
+              <span class="swatch neutral">unchanged</span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="diff-wrap">
+              <div class="diff" id="diffOutput"></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="output-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Clean final</div>
+              <button class="btn" id="copyCleanBtn">Copy</button>
+            </div>
+            <div class="panel-body">
+              <div class="readonly" id="cleanOutput"></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Notes</div>
+              <span class="panel-note">Private reminders</span>
+            </div>
+            <div class="panel-body">
+              <textarea id="notesText" style="min-height:240px" placeholder="Example: remove CTA, make it less brochure, keep raccoon joke..."></textarea>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Saved</div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const STORAGE_KEY = 'captain-inline-draft-editor-v1';
+
+    const sampleOriginal = `I saw that Anthropic came out with a 'small business' add-on. In reality it's a simple thing, just a small collection of skills and connectors.
+
+Skills are instructions you can reuse, like summarize this report, review this spreadsheet, explain this P&L, write a weekly update.
+
+Connectors are ways for the AI to reach into the tools you already use, like Gmail, Google Drive, Slack, QuickBooks, calendars, project management tools.
+
+This grouped together is quite powerful.
+
+There are pre-built workflows like forecasting cash flow, month close-outs with P&L explanations, marketing campaign creator, and Monday snapshot of last week and what ahead this week.`;
+
+    const sampleEdited = `I saw Anthropic came out with a "small business" add-on.
+
+At first glance, it sounds bigger than it is.
+
+It is mostly a collection of skills and connectors.
+
+Which sounds boring.
+
+Unfortunately for my habit of downplaying things, boring is usually where the useful stuff lives.
+
+A skill is basically a packaged instruction set. Instead of explaining the same task every time, you give the AI a repeatable way to do it.
+
+Examples:
+- summarize a P&L in plain English
+- write a weekly marketing recap
+- review invoices for weird changes
+- turn meeting notes into follow-up tasks
+
+A connector lets the AI reach into another system instead of waiting for you to copy/paste everything like a raccoon with a keyboard.
+
+Examples:
+- Google Drive
+- Gmail
+- Slack
+- QuickBooks
+- calendars
+- project tools
+
+The magic is not either piece by itself.
+
+It is the combination.
+
+Once the AI has instructions and access to the right information, you can get pre-built workflows like:
+
+- cash flow forecasting
+- month close with P&L explanations
+- marketing campaign drafts
+- Monday snapshots of last week and what is coming up
+
+That is the part worth paying attention to.
+
+Not because it is flashy.
+
+Because it turns AI from "answer my question" into "help me run the boring weekly stuff I keep avoiding."
+
+That is a much more useful direction.`;
+
+    const state = {
+      currentId: null,
+      drafts: []
+    };
+
+    function tokenize(text) {
+      return text.match(/\s+|[^\s]+/g) || [];
+    }
+
+    function isWordToken(token) {
+      return !/^\s+$/.test(token);
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function diffTokens(aTokens, bTokens) {
+      const n = aTokens.length;
+      const m = bTokens.length;
+      const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+
+      for (let i = n - 1; i >= 0; i--) {
+        for (let j = m - 1; j >= 0; j--) {
+          if (aTokens[i] === bTokens[j]) dp[i][j] = dp[i + 1][j + 1] + 1;
+          else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+        }
+      }
+
+      const out = [];
+      let i = 0, j = 0;
+      while (i < n && j < m) {
+        if (aTokens[i] === bTokens[j]) {
+          out.push({ type: 'same', text: aTokens[i] });
+          i++; j++;
+        } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+          out.push({ type: 'del', text: aTokens[i] });
+          i++;
+        } else {
+          out.push({ type: 'ins', text: bTokens[j] });
+          j++;
+        }
+      }
+      while (i < n) out.push({ type: 'del', text: aTokens[i++] });
+      while (j < m) out.push({ type: 'ins', text: bTokens[j++] });
+      return out;
+    }
+
+    function compactOps(ops) {
+      const compacted = [];
+      for (const op of ops) {
+        const last = compacted[compacted.length - 1];
+        if (last && last.type === op.type) last.text += op.text;
+        else compacted.push({ ...op });
+      }
+      return compacted;
+    }
+
+    function renderDiff() {
+      const original = $('originalText').value;
+      const edited = $('editedText').value;
+      const ops = compactOps(diffTokens(tokenize(original), tokenize(edited)));
+      const html = ops.map(op => {
+        const safe = escapeHtml(op.text);
+        if (op.type === 'del' && op.text.trim()) return `<del>${safe}</del>`;
+        if (op.type === 'ins' && op.text.trim()) return `<ins>${safe}</ins>`;
+        return safe;
+      }).join('');
+
+      $('diffOutput').innerHTML = html || '<span style="color:var(--muted)">Start typing to see edits.</span>';
+      $('cleanOutput').textContent = edited || 'Clean edited text appears here.';
+      $('originalCount').textContent = `${countWords(original)} words`;
+      $('editedCount').textContent = `${countWords(edited)} words`;
+      persistWorkingCopy();
+    }
+
+    function countWords(text) {
+      const words = (text.trim().match(/\S+/g) || []).filter(Boolean);
+      return words.length;
+    }
+
+    function showToast(message = 'Saved') {
+      const toast = $('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 1400);
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        state.currentId = saved.currentId || null;
+        state.drafts = Array.isArray(saved.drafts) ? saved.drafts : [];
+        if (saved.workingCopy && !state.drafts.length) {
+          applyDraft(saved.workingCopy, false);
+        } else if (state.drafts.length) {
+          const active = state.drafts.find(d => d.id === state.currentId) || state.drafts[0];
+          applyDraft(active, false);
+        } else {
+          applyDraft(seedDraft(), false);
+        }
+      } catch {
+        applyDraft(seedDraft(), false);
+      }
+      renderDraftList();
+      renderDiff();
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        currentId: state.currentId,
+        drafts: state.drafts,
+        workingCopy: getCurrentDraft()
+      }));
+    }
+
+    function persistWorkingCopy() {
+      saveState();
+    }
+
+    function seedDraft() {
+      return {
+        id: crypto.randomUUID(),
+        title: 'Anthropic small business add-on',
+        type: 'Jab - useful, no CTA',
+        original: sampleOriginal,
+        edited: sampleEdited,
+        notes: 'Post 1 in jab-jab-hook cadence. No Agent Path CTA.',
+        updatedAt: new Date().toISOString()
+      };
+    }
+
+    function getCurrentDraft() {
+      return {
+        id: state.currentId || crypto.randomUUID(),
+        title: $('draftTitle').value.trim() || 'Untitled draft',
+        type: $('postType').value,
+        original: $('originalText').value,
+        edited: $('editedText').value,
+        notes: $('notesText').value,
+        updatedAt: new Date().toISOString()
+      };
+    }
+
+    function applyDraft(draft, announce = true) {
+      state.currentId = draft.id;
+      $('draftTitle').value = draft.title || 'Untitled draft';
+      $('postType').value = draft.type || 'Raw idea';
+      $('originalText').value = draft.original || '';
+      $('editedText').value = draft.edited || '';
+      $('notesText').value = draft.notes || '';
+      if (announce) showToast('Loaded');
+      renderDraftList();
+      renderDiff();
+    }
+
+    function saveDraft() {
+      const draft = getCurrentDraft();
+      state.currentId = draft.id;
+      const idx = state.drafts.findIndex(d => d.id === draft.id);
+      if (idx >= 0) state.drafts[idx] = draft;
+      else state.drafts.unshift(draft);
+      saveState();
+      renderDraftList();
+      showToast('Draft saved');
+    }
+
+    function newDraft() {
+      const draft = {
+        id: crypto.randomUUID(),
+        title: 'Untitled draft',
+        type: 'Raw idea',
+        original: '',
+        edited: '',
+        notes: '',
+        updatedAt: new Date().toISOString()
+      };
+      applyDraft(draft);
+      saveState();
+    }
+
+    function deleteDraft() {
+      if (!state.currentId) return;
+      state.drafts = state.drafts.filter(d => d.id !== state.currentId);
+      const next = state.drafts[0] || seedDraft();
+      applyDraft(next);
+      saveState();
+      renderDraftList();
+      showToast('Deleted');
+    }
+
+    function renderDraftList() {
+      const list = $('draftList');
+      if (!state.drafts.length) {
+        list.innerHTML = '<div class="panel-note">No saved drafts yet.</div>';
+        return;
+      }
+      list.innerHTML = state.drafts.map(d => `
+        <button class="draft-item ${d.id === state.currentId ? 'active' : ''}" data-id="${d.id}">
+          <div class="draft-title">${escapeHtml(d.title || 'Untitled')}</div>
+          <div class="draft-meta">${escapeHtml(d.type || 'Draft')} · ${new Date(d.updatedAt || Date.now()).toLocaleString()}</div>
+        </button>
+      `).join('');
+      list.querySelectorAll('.draft-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const draft = state.drafts.find(d => d.id === btn.dataset.id);
+          if (draft) applyDraft(draft);
+        });
+      });
+    }
+
+    async function copyText(text, label) {
+      await navigator.clipboard.writeText(text);
+      showToast(`${label} copied`);
+    }
+
+    function exportMarkdown() {
+      const d = getCurrentDraft();
+      const content = `# ${d.title}\n\nCadence: ${d.type}\nUpdated: ${new Date(d.updatedAt).toLocaleString()}\n\n## Original draft\n\n${d.original}\n\n## Edited draft\n\n${d.edited}\n\n## Notes\n\n${d.notes}\n`;
+      const blob = new Blob([content], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${d.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'draft'}.md`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Exported');
+    }
+
+    ['originalText', 'editedText', 'notesText', 'draftTitle', 'postType'].forEach(id => {
+      $(id).addEventListener('input', renderDiff);
+      $(id).addEventListener('change', renderDiff);
+    });
+
+    $('saveBtn').addEventListener('click', saveDraft);
+    $('newDraftBtn').addEventListener('click', newDraft);
+    $('deleteBtn').addEventListener('click', deleteDraft);
+    $('copyEditedBtn').addEventListener('click', () => copyText($('editedText').value, 'Edited draft'));
+    $('copyCleanBtn').addEventListener('click', () => copyText($('editedText').value, 'Clean final'));
+    $('exportBtn').addEventListener('click', exportMarkdown);
+
+    window.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+        event.preventDefault();
+        saveDraft();
+      }
+    });
+
+    loadState();
+  </script>
+</body>
+</html>
