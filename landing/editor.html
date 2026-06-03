@@ -302,7 +302,7 @@
           <div class="panel-body request-card">
             <div>
               <div class="panel-title">Need a new edit?</div>
-              <p>This copies a clean request with your latest draft, current edited version, cadence, and notes. Paste it to me in Telegram. I’ll return the updated edited version.</p>
+              <p>This sends your latest draft to the backend and updates the edited version automatically. If the backend is down, it falls back to copying a Telegram-ready request.</p>
             </div>
             <button class="btn primary" id="runEditBtn">Run edit with Captain</button>
           </div>
@@ -620,15 +620,54 @@ That is a much more useful direction.`;
       return `Captain, run an edit on this LinkedIn draft and return only the updated edited version.\n\nVoice: genuine, helpful, deadpan, not corporate. Keep it useful. If this is a Hook post, include a soft Agent Path CTA. If it is a Jab, no CTA.\n\nCadence: ${d.type}\nTitle: ${d.title}\n\nNotes:\n${d.notes || '(none)'}\n\nMy latest draft:\n${d.original || '(empty)'}\n\nCurrent edited version, if useful as a starting point:\n${d.edited || '(none yet)'}`;
     }
 
-    async function runEditRequest() {
+    function buildApiPayload() {
+      const d = getCurrentDraft();
+      return {
+        title: d.title,
+        cadence: d.type,
+        draft: d.original,
+        currentEdited: d.edited,
+        notes: d.notes
+      };
+    }
+
+    async function fallbackEditRequest(error) {
       const request = buildEditRequest();
       await navigator.clipboard.writeText(request);
-      state.lastEditRequestOriginal = $('originalText').value;
-      saveDraft();
-      updateEditedStatus();
-      showToast('Edit request copied');
+      showToast(error ? 'Backend failed. Request copied.' : 'Edit request copied');
       const telegramShare = `https://t.me/share/url?text=${encodeURIComponent(request)}`;
       window.open(telegramShare, '_blank', 'noopener,noreferrer');
+    }
+
+    async function runEditRequest() {
+      const button = $('runEditBtn');
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Editing...';
+      showToast('Running edit...');
+
+      try {
+        const response = await fetch('/api/edit-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(buildApiPayload())
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok || !data.edited) {
+          throw new Error(data.error || 'Backend edit failed.');
+        }
+
+        $('editedText').value = data.edited;
+        state.lastEditRequestOriginal = $('originalText').value;
+        saveDraft();
+        refreshOutputs();
+        showToast('Edited version updated');
+      } catch (error) {
+        await fallbackEditRequest(error);
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
     }
 
     function exportMarkdown() {
