@@ -8,6 +8,9 @@
     { "source": "/agent-install", "destination": "/agent-install.html" },
     { "source": "/jackson-second-brain-script", "destination": "/jackson-second-brain-script.html" },
     { "source": "/captain-setup", "destination": "/captain-setup.html" },
-    { "source": "/assessment", "destination": "/assessment.html" }
+    { "source": "/assessment", "destination": "/assessment.html" },
+    { "source": "/ai-assessment-call", "destination": "/ai-assessment-call-script.html" },
+    { "source": "/claude-coworker-call", "destination": "/claude-coworker-call-script.html" },
+    { "source": "/claude-coworker-setup", "destination": "/claude-coworker-setup.html" }
   ]
 }
