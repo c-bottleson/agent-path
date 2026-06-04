@@ -19,10 +19,15 @@ function cleanField(value, max = MAX_FIELD_CHARS) {
   return value.trim().slice(0, max);
 }
 
+function getEditMode(changeRequest) {
+  return cleanField(changeRequest, 1000) ? 'directed edit' : 'variation';
+}
+
 function buildMessages(body) {
   const title = cleanField(body.title, 300) || 'Untitled LinkedIn draft';
   const cadence = cleanField(body.cadence, 200) || 'Raw idea';
   const changeRequest = cleanField(body.changeRequest, 1000) || '(none)';
+  const editMode = getEditMode(body.changeRequest);
   const notes = cleanField(body.notes, 3000) || '(none)';
   const draft = cleanField(body.draft);
   const currentEdited = cleanField(body.currentEdited) || '(none yet)';
@@ -33,7 +38,9 @@ function buildMessages(body) {
       content: [
         'You are Captain editing NE\'s LinkedIn post.',
         'Return only the updated edited version. No explanation. No markdown wrapper.',
+        'Always return a fresh updated edited version that should replace the Edited version box in the app.',
         'The user\'s Change request is the highest-priority instruction for this edit.',
+        'If Edit mode is "variation", the user pressed the button without instructions. Treat that like an "I feel lucky" button: create a slightly different usable version from the current edited version/draft. Keep the same point, but make the wording visibly different.',
         'If the Change request says "only fix typos", "typos only", or similar: preserve the original wording, sentence order, rhythm, and voice. Fix only spelling, obvious grammar, punctuation, and spacing.',
         'If the Change request says "I like my voice", "learn from this one", "use this as a voice sample", or similar: treat the draft/current edit as voice calibration. Make a very light pass, preserve the user\'s phrasing, and do not force the default LinkedIn style.',
         'If the Change request asks for tone changes like "more upbeat", "less business tone", "shorter", or "stronger hook", make that specific change visibly. Do not return the same edit unless the request asks for no rewrite.',
@@ -48,6 +55,7 @@ function buildMessages(body) {
       content: [
         `Title: ${title}`,
         `Cadence: ${cadence}`,
+        `Edit mode: ${editMode}`,
         '',
         'Change request:',
         changeRequest,
@@ -112,7 +120,7 @@ async function handler(req, res, options = {}) {
       },
       body: JSON.stringify({
         model,
-        temperature: 0.45,
+        temperature: getEditMode(body.changeRequest) === 'variation' ? 0.75 : 0.45,
         max_tokens: 1400,
         messages: buildMessages({ ...body, draft })
       })
@@ -136,3 +144,4 @@ async function handler(req, res, options = {}) {
 module.exports = handler;
 module.exports.handler = handler;
 module.exports.buildMessages = buildMessages;
+module.exports.getEditMode = getEditMode;

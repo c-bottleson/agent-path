@@ -57,6 +57,7 @@ test('returns edited text from OpenRouter', async () => {
         assert.equal(options.headers.Authorization, 'Bearer test-key');
         const payload = JSON.parse(options.body);
         assert.equal(payload.model, 'test-model');
+        assert.equal(payload.temperature, 0.45);
         assert.match(payload.messages[1].content, /rough draft/);
         assert.match(payload.messages[1].content, /more upbeat/);
         return {
@@ -102,4 +103,44 @@ test('prioritizes plain-language change requests in the model prompt', () => {
   assert.match(messages[0].content, /learn from this one/i);
   assert.match(messages[1].content, /only fix typos/);
   assert.match(messages[1].content, /I like my voice/);
+});
+
+test('empty change request becomes an I-feel-lucky variation', async () => {
+  const { handler, buildMessages, getEditMode } = require('../api/edit-request.js');
+
+  assert.equal(getEditMode(''), 'variation');
+
+  const messages = buildMessages({
+    title: 'Try again',
+    cadence: 'Jab - useful, no CTA',
+    draft: 'Original draft',
+    currentEdited: 'Current edited version',
+    changeRequest: '',
+    notes: ''
+  });
+
+  assert.match(messages[0].content, /I feel lucky/i);
+  assert.match(messages[1].content, /Edit mode: variation/);
+
+  const res = makeRes();
+  await handler(
+    { method: 'POST', body: { draft: 'rough draft', currentEdited: 'old edit', changeRequest: '' } },
+    res,
+    {
+      env: { OPENROUTER_API_KEY: 'test-key' },
+      fetchImpl: async (url, options) => {
+        const payload = JSON.parse(options.body);
+        assert.equal(payload.temperature, 0.75);
+        assert.match(payload.messages[1].content, /Edit mode: variation/);
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ choices: [{ message: { content: 'different edit' } }] })
+        };
+      }
+    }
+  );
+
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.edited, 'different edit');
 });

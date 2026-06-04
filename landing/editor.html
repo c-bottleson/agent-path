@@ -654,9 +654,11 @@ That is a much more useful direction.`;
       showToast('Running edit...');
 
       try {
+        const beforeEdit = $('editedText').value.trim();
         const response = await fetch('/api/edit-request', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+          cache: 'no-store',
           body: JSON.stringify(buildApiPayload())
         });
         const data = await response.json().catch(() => ({}));
@@ -665,10 +667,11 @@ That is a much more useful direction.`;
         }
 
         $('editedText').value = data.edited;
+        $('changeInstructions').value = '';
         state.lastEditRequestOriginal = $('originalText').value;
         saveDraft();
         refreshOutputs();
-        showToast('Edited version updated');
+        showToast(data.edited.trim() === beforeEdit ? 'No visible change returned' : 'Edited version updated');
       } catch (error) {
         await fallbackEditRequest(error);
       } finally {
