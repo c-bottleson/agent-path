@@ -213,6 +213,11 @@
       line-height: 1.45;
     }
 
+    .request-input {
+      margin-top: 10px;
+      max-width: 620px;
+    }
+
     .notes-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -302,7 +307,7 @@
           <div class="panel-body request-card">
             <div>
               <div class="panel-title">Need a new edit?</div>
-              <p>This sends your latest draft to the backend and updates the edited version automatically. If the backend is down, it falls back to copying a Telegram-ready request.</p>
+              <input class="request-input" id="changeInstructions" type="text" placeholder="Ask for a change… more upbeat, less business tone, shorter">
             </div>
             <button class="btn primary" id="runEditBtn">Run edit with Captain</button>
           </div>
@@ -617,7 +622,8 @@ That is a much more useful direction.`;
 
     function buildEditRequest() {
       const d = getCurrentDraft();
-      return `Captain, run an edit on this LinkedIn draft and return only the updated edited version.\n\nVoice: genuine, helpful, deadpan, not corporate. Keep it useful. If this is a Hook post, include a soft Agent Path CTA. If it is a Jab, no CTA.\n\nCadence: ${d.type}\nTitle: ${d.title}\n\nNotes:\n${d.notes || '(none)'}\n\nMy latest draft:\n${d.original || '(empty)'}\n\nCurrent edited version, if useful as a starting point:\n${d.edited || '(none yet)'}`;
+      const changeInstructions = $('changeInstructions').value.trim();
+      return `Captain, run an edit on this LinkedIn draft and return only the updated edited version.\n\nVoice: genuine, helpful, deadpan, not corporate. Keep it useful. If this is a Hook post, include a soft Agent Path CTA. If it is a Jab, no CTA.\n\nChange request:\n${changeInstructions || '(none)'}\n\nCadence: ${d.type}\nTitle: ${d.title}\n\nNotes:\n${d.notes || '(none)'}\n\nMy latest draft:\n${d.original || '(empty)'}\n\nCurrent edited version, if useful as a starting point:\n${d.edited || '(none yet)'}`;
     }
 
     function buildApiPayload() {
@@ -627,6 +633,7 @@ That is a much more useful direction.`;
         cadence: d.type,
         draft: d.original,
         currentEdited: d.edited,
+        changeRequest: $('changeInstructions').value.trim(),
         notes: d.notes
       };
     }

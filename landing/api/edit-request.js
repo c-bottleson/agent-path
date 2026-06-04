@@ -22,6 +22,7 @@ function cleanField(value, max = MAX_FIELD_CHARS) {
 function buildMessages(body) {
   const title = cleanField(body.title, 300) || 'Untitled LinkedIn draft';
   const cadence = cleanField(body.cadence, 200) || 'Raw idea';
+  const changeRequest = cleanField(body.changeRequest, 1000) || '(none)';
   const notes = cleanField(body.notes, 3000) || '(none)';
   const draft = cleanField(body.draft);
   const currentEdited = cleanField(body.currentEdited) || '(none yet)';
@@ -43,6 +44,9 @@ function buildMessages(body) {
       content: [
         `Title: ${title}`,
         `Cadence: ${cadence}`,
+        '',
+        'Change request:',
+        changeRequest,
         '',
         'Notes:',
         notes,

@@ -44,6 +44,7 @@ test('returns edited text from OpenRouter', async () => {
         cadence: 'Jab - useful, no CTA',
         draft: 'rough draft',
         currentEdited: 'old edit',
+        changeRequest: 'more upbeat',
         notes: 'keep it short'
       }
     },
@@ -57,6 +58,7 @@ test('returns edited text from OpenRouter', async () => {
         const payload = JSON.parse(options.body);
         assert.equal(payload.model, 'test-model');
         assert.match(payload.messages[1].content, /rough draft/);
+        assert.match(payload.messages[1].content, /more upbeat/);
         return {
           ok: true,
           status: 200,
