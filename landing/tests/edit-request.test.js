@@ -84,3 +84,22 @@ test('reports missing OpenRouter key as unavailable', async () => {
   assert.equal(res.body.ok, false);
   assert.match(res.body.error, /not configured/i);
 });
+
+test('prioritizes plain-language change requests in the model prompt', () => {
+  const { buildMessages } = require('../api/edit-request.js');
+
+  const messages = buildMessages({
+    title: 'Voice sample',
+    cadence: 'Raw idea',
+    draft: 'I like this but teh typo is bad.',
+    currentEdited: 'Old edit',
+    changeRequest: 'only fix typos. I like my voice, just learn from this one.',
+    notes: ''
+  });
+
+  assert.match(messages[0].content, /Change request is the highest-priority/i);
+  assert.match(messages[0].content, /only fix typos/i);
+  assert.match(messages[0].content, /learn from this one/i);
+  assert.match(messages[1].content, /only fix typos/);
+  assert.match(messages[1].content, /I like my voice/);
+});
