@@ -896,6 +896,100 @@
       "alternate_emails": [],
       "alternate_phones": [],
       "scrape_note": "Mailto and tel links confirmed on contact page."
+    },
+    {
+      "company": "Keyrenter Denver Property Management",
+      "market": "Denver CO",
+      "contact": "info@keyrenterdenver.com; https://keyrenterdenver.com/; 720-739-3000",
+      "website": "https://keyrenterdenver.com/",
+      "fit": "8",
+      "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
+      "status": "Ready to call",
+      "sample_url": "/radar/denver-sample/",
+      "email": "info@keyrenterdenver.com",
+      "phone": "720-739-3000",
+      "contact_url": "https://keyrenterdenver.com/",
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "info@keyrenterdenver.com"
+      ],
+      "scraped_phones": [
+        "720-739-3000"
+      ],
+      "scrape_sources": [
+        "https://keyrenterdenver.com/"
+      ],
+      "scrape_errors": [
+        "https://keyrenterdenver.com/contact/: HTTPError 403",
+        "https://keyrenterdenver.com/contact-us/: HTTPError 403"
+      ],
+      "alternate_emails": [],
+      "alternate_phones": [],
+      "scrape_note": "Homepage scrape found email and phone; contact pages blocked automated scrape."
+    },
+    {
+      "company": "Grace Property Management & Real Estate",
+      "market": "Denver metro CO",
+      "contact": "info@rentgrace.com; https://www.rentgrace.com/contact; 303-255-1990",
+      "website": "https://www.rentgrace.com/",
+      "fit": "8",
+      "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
+      "status": "Ready to call",
+      "sample_url": "/radar/denver-sample/",
+      "email": "info@rentgrace.com",
+      "phone": "303-255-1990",
+      "contact_url": "https://www.rentgrace.com/contact",
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "info@rentgrace.com"
+      ],
+      "scraped_phones": [
+        "303-255-1990",
+        "303-942-4070",
+        "303-210-5744",
+        "303-451-7811"
+      ],
+      "scrape_sources": [
+        "https://www.rentgrace.com/",
+        "https://www.rentgrace.com/contact"
+      ],
+      "scrape_errors": [],
+      "alternate_emails": [],
+      "alternate_phones": [
+        "303-942-4070",
+        "303-210-5744",
+        "303-451-7811"
+      ],
+      "scrape_note": "Homepage/contact scrape found primary email plus multiple phone candidates; 303-255-1990 appears primary."
+    },
+    {
+      "company": "Fox Property Management",
+      "market": "Denver/Boulder CO",
+      "contact": "info@foxpropertymgmt.com; https://www.foxpropertymgmt.com/; 720-583-4369",
+      "website": "https://www.foxpropertymgmt.com/",
+      "fit": "8",
+      "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
+      "status": "Ready to call",
+      "sample_url": "/radar/denver-sample/",
+      "email": "info@foxpropertymgmt.com",
+      "phone": "720-583-4369",
+      "contact_url": "https://www.foxpropertymgmt.com/",
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "info@foxpropertymgmt.com"
+      ],
+      "scraped_phones": [
+        "720-583-4369"
+      ],
+      "scrape_sources": [
+        "https://www.foxpropertymgmt.com/"
+      ],
+      "scrape_errors": [
+        "https://www.foxpropertymgmt.com/contact: HTTPError 404"
+      ],
+      "alternate_emails": [],
+      "alternate_phones": [],
+      "scrape_note": "Homepage scrape found email and phone; /contact returned 404."
     }
   ],
   "generated_source": "Denver Middle Housing Stock ArcGIS + Agent Path CRM CSV; balanced sample mix assigned 2026-06-07",
