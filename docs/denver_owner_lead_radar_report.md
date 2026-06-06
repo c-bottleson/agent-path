@@ -68,6 +68,35 @@ Denver supports the first paid test because the source pool is far above the 40�
 1. Denver Core / Central: 80203, 80204, 80205, 80206, 80211
 2. West + East/South spillover: 80212, 80219, 80220, 80231, 80238, nearby ZIPs
 
+
+## Balanced Sample Decision
+
+The first trial sample is now intentionally mixed instead of simply taking the top-scored records. This protects the premium pool and tells us which signal category property managers actually value.
+
+Trial sample size: **25 leads**.
+
+Trial mix:
+
+- **8 Recent Sale Absentee** — recently sold and mailing address differs from property.
+- **6 Small Multifamily** — duplex/triplex/4–8 unit non-owner style opportunities.
+- **5 Entity Owner** — LLC/trust/entity-owned rental/investor signals.
+- **3 Out-of-State Owner** — classic absentee-owner management pain.
+- **3 High-Value Asset** — higher-value assets where premium PM positioning may work.
+
+Success threshold: **2–3 leads worth checking further** from the 25-lead sample.
+
+Kill threshold: **5 property managers receive the balanced sample and nobody finds 2 useful leads**.
+
+Paid weekly mix after first close:
+
+- **15 Recent Sale Absentee**
+- **12 Small Multifamily**
+- **10 Entity Owner**
+- **8 Out-of-State Owner**
+- **5 High-Value Asset**
+
+Operating rule: each lead gets one primary testing category even when multiple public-record signals overlap. Track which category the buyer says is most useful before changing the mix.
+
 ## SDR Call Readiness
 
 CRM app is ready with:
