@@ -741,7 +741,35 @@
       "email": "",
       "phone": "(303) 665-7368",
       "contact_url": "https://www.coloradorpm.com/contact-us/",
-      "workflow": "Email first, then call within 10 minutes."
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [],
+      "scraped_phones": [
+        "(303) 665-7368",
+        "303-819-8633",
+        "970-444-7063",
+        "720-679-1162",
+        "719-497-5520",
+        "719-312-7752",
+        "303-803-1117"
+      ],
+      "scrape_sources": [
+        "https://www.coloradorpm.com/",
+        "https://www.coloradorpm.com/contact-us/",
+        "https://www.coloradorpm.com/contact",
+        "https://www.coloradorpm.com/contact-us",
+        "https://www.coloradorpm.com/contact/"
+      ],
+      "scrape_errors": [],
+      "alternate_emails": [],
+      "alternate_phones": [
+        "303-819-8633",
+        "970-444-7063",
+        "720-679-1162",
+        "719-497-5520",
+        "719-312-7752",
+        "303-803-1117"
+      ],
+      "scrape_note": "Contact page exposes multiple office/location tel links; no public email found in scrape."
     },
     {
       "company": "Sheepdog Property Management",
@@ -753,9 +781,27 @@
       "status": "Ready to call",
       "sample_url": "/radar/denver-sample/",
       "email": "learnmore@sheepdogpm.com",
-      "phone": "",
+      "phone": "720.440.2054",
       "contact_url": "https://www.sheepdogpm.com/contact",
-      "workflow": "Email first, then call within 10 minutes."
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "learnmore@sheepdogpm.com"
+      ],
+      "scraped_phones": [
+        "720.440.2054"
+      ],
+      "scrape_sources": [
+        "https://www.sheepdogpm.com/",
+        "https://www.sheepdogpm.com/contact",
+        "https://www.sheepdogpm.com/contact/"
+      ],
+      "scrape_errors": [
+        "https://www.sheepdogpm.com/contact-us: HTTPError",
+        "https://www.sheepdogpm.com/contact-us/: HTTPError"
+      ],
+      "alternate_emails": [],
+      "alternate_phones": [],
+      "scrape_note": "Email found; phone inferred from visible/tel-style site data, excluding form examples."
     },
     {
       "company": "Whole Property Management",
@@ -769,7 +815,18 @@
       "email": "info@wholepm.com",
       "phone": "",
       "contact_url": "https://www.wholepm.com/contact/",
-      "workflow": "Email first, then call within 10 minutes."
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [],
+      "scraped_phones": [],
+      "scrape_sources": [],
+      "scrape_errors": [
+        "https://www.wholepm.com/: HTTPError",
+        "https://www.wholepm.com/contact/: HTTPError",
+        "https://www.wholepm.com/contact: HTTPError"
+      ],
+      "alternate_emails": [],
+      "alternate_phones": [],
+      "scrape_note": "Site blocked automated scrape; retained known email and contact page."
     },
     {
       "company": "DenCO Property Management & Sales",
@@ -783,7 +840,30 @@
       "email": "david@dencopm.com",
       "phone": "(303) 722-9688",
       "contact_url": "https://denverpropertymanagement.co/contact/",
-      "workflow": "Email first, then call within 10 minutes."
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "david@dencopm.com",
+        "jennifer@dencopm.com",
+        "conner@dencopm.com"
+      ],
+      "scraped_phones": [
+        "(303) 722-9688"
+      ],
+      "scrape_sources": [
+        "https://denverpropertymanagement.co/",
+        "https://denverpropertymanagement.co/contact/",
+        "https://denverpropertymanagement.co/contact"
+      ],
+      "scrape_errors": [
+        "https://denverpropertymanagement.co/contact-us: HTTPError",
+        "https://denverpropertymanagement.co/contact-us/: HTTPError"
+      ],
+      "alternate_emails": [
+        "jennifer@dencopm.com",
+        "conner@dencopm.com"
+      ],
+      "alternate_phones": [],
+      "scrape_note": "Mailto and tel links confirmed on contact page."
     },
     {
       "company": "Bergan & Company",
@@ -797,7 +877,25 @@
       "email": "berganrealty@berganco.com",
       "phone": "(303) 694-5116",
       "contact_url": "https://www.berganco.com/contact",
-      "workflow": "Email first, then call within 10 minutes."
+      "workflow": "Email first, then call within 10 minutes.",
+      "scraped_emails": [
+        "berganrealty@berganco.com"
+      ],
+      "scraped_phones": [
+        "(303) 694-5116"
+      ],
+      "scrape_sources": [
+        "https://www.berganco.com/",
+        "https://www.berganco.com/contact",
+        "https://www.berganco.com/contact/"
+      ],
+      "scrape_errors": [
+        "https://www.berganco.com/contact-us: HTTPError",
+        "https://www.berganco.com/contact-us/: HTTPError"
+      ],
+      "alternate_emails": [],
+      "alternate_phones": [],
+      "scrape_note": "Mailto and tel links confirmed on contact page."
     }
   ],
   "generated_source": "Denver Middle Housing Stock ArcGIS + Agent Path CRM CSV; balanced sample mix assigned 2026-06-07",
