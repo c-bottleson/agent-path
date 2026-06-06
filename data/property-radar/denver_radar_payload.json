@@ -34,7 +34,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -55,7 +60,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -76,7 +86,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -97,7 +112,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -118,7 +138,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -139,7 +164,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -160,7 +190,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -181,7 +216,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Recent Sale Absentee",
-      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation."
+      "category_rationale": "Tests whether trigger-event ownership changes create the strongest PM conversation.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -202,7 +242,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -223,7 +268,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -244,7 +294,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -265,7 +320,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -286,7 +346,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -307,7 +372,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Small Multifamily",
-      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload."
+      "category_rationale": "Tests the core PM fit: 2\u20138 unit operators with obvious management workload.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -328,7 +398,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Entity Owner",
-      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver."
+      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -349,7 +424,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Entity Owner",
-      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver."
+      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -370,7 +450,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Entity Owner",
-      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver."
+      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -391,7 +476,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Entity Owner",
-      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver."
+      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -412,7 +502,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Entity Owner",
-      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver."
+      "category_rationale": "Tests investor-owned rental inventory without relying on distance from Denver.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -433,7 +528,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Out-of-State Owner",
-      "category_rationale": "Tests the classic absentee-owner management pain point."
+      "category_rationale": "Tests the classic absentee-owner management pain point.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -454,7 +554,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Out-of-State Owner",
-      "category_rationale": "Tests the classic absentee-owner management pain point."
+      "category_rationale": "Tests the classic absentee-owner management pain point.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "100",
@@ -475,7 +580,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "Out-of-State Owner",
-      "category_rationale": "Tests the classic absentee-owner management pain point."
+      "category_rationale": "Tests the classic absentee-owner management pain point.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "95",
@@ -496,7 +606,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "High-Value Asset",
-      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations."
+      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -517,7 +632,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "High-Value Asset",
-      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations."
+      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     },
     {
       "priority_score": "90",
@@ -538,7 +658,12 @@
       "source": "Denver Middle Housing Stock (ArcGIS FeatureServer), retrieved live",
       "source_confidence": "Medium-high for property/owner record; low for active intent until enriched",
       "primary_category": "High-Value Asset",
-      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations."
+      "category_rationale": "Tests whether higher-dollar assets create stronger premium-service conversations.",
+      "owner_email": "",
+      "owner_phone": "",
+      "owner_webpage": "",
+      "owner_contact_status": "Needs enrichment before owner outreach",
+      "next_enrichment_step": "Find owner phone/email after PM validates this signal category."
     }
   ],
   "zip_counts": [
@@ -612,7 +737,11 @@
       "fit": "9",
       "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
       "status": "Ready to call",
-      "sample_url": "/radar/denver-sample/"
+      "sample_url": "/radar/denver-sample/",
+      "email": "",
+      "phone": "(303) 665-7368",
+      "contact_url": "https://www.coloradorpm.com/contact-us/",
+      "workflow": "Email first, then call within 10 minutes."
     },
     {
       "company": "Sheepdog Property Management",
@@ -622,7 +751,11 @@
       "fit": "9",
       "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
       "status": "Ready to call",
-      "sample_url": "/radar/denver-sample/"
+      "sample_url": "/radar/denver-sample/",
+      "email": "learnmore@sheepdogpm.com",
+      "phone": "",
+      "contact_url": "https://www.sheepdogpm.com/contact",
+      "workflow": "Email first, then call within 10 minutes."
     },
     {
       "company": "Whole Property Management",
@@ -632,7 +765,11 @@
       "fit": "9",
       "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
       "status": "Ready to call",
-      "sample_url": "/radar/denver-sample/"
+      "sample_url": "/radar/denver-sample/",
+      "email": "info@wholepm.com",
+      "phone": "",
+      "contact_url": "https://www.wholepm.com/contact/",
+      "workflow": "Email first, then call within 10 minutes."
     },
     {
       "company": "DenCO Property Management & Sales",
@@ -642,7 +779,11 @@
       "fit": "9",
       "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
       "status": "Ready to call",
-      "sample_url": "/radar/denver-sample/"
+      "sample_url": "/radar/denver-sample/",
+      "email": "david@dencopm.com",
+      "phone": "(303) 722-9688",
+      "contact_url": "https://denverpropertymanagement.co/contact/",
+      "workflow": "Email first, then call within 10 minutes."
     },
     {
       "company": "Bergan & Company",
@@ -652,7 +793,11 @@
       "fit": "8",
       "angle": "Owner Lead Radar sample: Denver owner/rental opportunities worth outreach",
       "status": "Ready to call",
-      "sample_url": "/radar/denver-sample/"
+      "sample_url": "/radar/denver-sample/",
+      "email": "berganrealty@berganco.com",
+      "phone": "(303) 694-5116",
+      "contact_url": "https://www.berganco.com/contact",
+      "workflow": "Email first, then call within 10 minutes."
     }
   ],
   "generated_source": "Denver Middle Housing Stock ArcGIS + Agent Path CRM CSV; balanced sample mix assigned 2026-06-07",
@@ -676,5 +821,11 @@
       "High-Value Asset": 5
     },
     "operating_rule": "Each lead has one primary testing category even when multiple public-record signals overlap."
-  }
+  },
+  "email_draft": {
+    "subject": "25 Denver owner/rental signals worth checking?",
+    "body": "Hi {company},\n\nI\u2019m testing a Denver owner-lead radar for property managers.\n\nI pulled 25 sample property signals from public Denver records \u2014 recent-sale absentee owners, small multifamily, entity-owned rentals, out-of-state owners, and high-value assets. I would not expect every record to be useful. The test is simple: are at least 2\u20133 worth checking further?\n\nSample: https://agent-path.vercel.app/radar/denver-sample/\n\nIf 2\u20133 look worth a closer look, I can reserve a Denver territory and send a protected weekly feed.\n\nWorth a quick look?\n\nNick\nAgent Path"
+  },
+  "call_script": "Hi, this is Nick with Agent Path. I just sent a short email with a Denver owner/rental sample. We\u2019re testing whether property managers want a weekly radar of public-record signals \u2014 recent-sale absentee owners, small multifamily, LLC-owned rentals, out-of-state owners. The sample has 25 records. I\u2019m not claiming every one is a lead. I\u2019m trying to learn whether 2 or 3 are worth checking further. Who\u2019s the right person to review owner acquisition opportunities?",
+  "recording_script": "Quick note: I may record this call so I can capture feedback accurately. Is that okay?"
 }

@@ -97,6 +97,19 @@ Paid weekly mix after first close:
 
 Operating rule: each lead gets one primary testing category even when multiple public-record signals overlap. Track which category the buyer says is most useful before changing the mix.
 
+
+## Sales Workflow Decision
+
+Default sequence: **email first, then call within 10 minutes**. The email gives the prospect context and the call captures feedback while the sample is fresh.
+
+CRM page purpose: operational workspace only — prospect contacts, email action, call action, status, notes, and category feedback. Training belongs on `/sdr-property-radar/`.
+
+Trial email subject: **25 Denver owner/rental signals worth checking?**
+
+Owner contact decision: the current 25-record public sample is **signal-only**. Owner email/phone/web are not enriched yet. If a property manager asks “how would I contact them?”, that validates the next paid layer: enrich owner contact data before outbound owner campaigns.
+
+Recording decision: disclose recording at the start of every call and only record after consent. If they decline, take notes. This avoids cross-state consent risk and keeps the workflow simple.
+
 ## SDR Call Readiness
 
 CRM app is ready with:
