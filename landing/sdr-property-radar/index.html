@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agent Path SDR Desk — Property Manager Owner Lead Radar</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --panel: #141414;
+      --panel-2: #1b1b1b;
+      --border: #2b2b2b;
+      --text: #eeeeee;
+      --muted: #a3a3a3;
+      --soft: #d4d4d4;
+      --blue: #3b82f6;
+      --blue-2: #1d4ed8;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --red: #ef4444;
+      --purple: #a855f7;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(circle at top left, rgba(59,130,246,.16), transparent 34rem), var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .shell { max-width: 1220px; margin: 0 auto; padding: 24px; }
+    header {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+      padding: 22px 0 18px;
+    }
+    .hero, .scoreboard, .card, .script, .capture, .objection, .lead-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)), var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 34px; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--yellow);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    h1 { font-size: clamp(34px, 5vw, 62px); line-height: .98; letter-spacing: -.045em; margin: 12px 0 16px; }
+    h2 { font-size: 28px; line-height: 1.08; letter-spacing: -.025em; margin: 0 0 10px; }
+    h3 { font-size: 18px; margin: 0 0 8px; }
+    p { color: var(--soft); margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .hero p.big { font-size: 20px; max-width: 760px; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .badge { border: 1px solid var(--border); color: var(--soft); background: rgba(255,255,255,.035); border-radius: 999px; padding: 8px 11px; font-size: 13px; }
+    .scoreboard { padding: 22px; display: grid; gap: 14px; }
+    .metric { padding: 14px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255,255,255,.025); }
+    .metric strong { display:block; font-size: 27px; letter-spacing:-.02em; }
+    .metric span { color: var(--muted); font-size: 13px; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      margin: 8px 0 24px;
+      padding: 10px;
+      background: rgba(9,9,9,.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex; gap: 8px; overflow-x: auto;
+    }
+    .nav a, button, .btn {
+      min-height: 42px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 11px;
+      padding: 10px 13px;
+      font-weight: 750;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav a:hover, button:hover, .btn:hover { border-color: rgba(59,130,246,.65); background: rgba(59,130,246,.12); }
+    .btn-primary { background: var(--blue); border-color: var(--blue); color: white; }
+    .btn-primary:hover { background: var(--blue-2); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    section { margin: 0 0 22px; scroll-margin-top: 92px; }
+    .card { padding: 24px; }
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .kicker { color: var(--blue); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 900; margin-bottom: 8px; }
+    ul, ol { margin: 10px 0 0 20px; color: var(--soft); padding: 0; }
+    li { margin: 8px 0; }
+    .do { color: var(--green); font-weight: 800; }
+    .dont { color: var(--red); font-weight: 800; }
+    .script { padding: 18px; border-left: 4px solid var(--blue); position: relative; }
+    .script p { font-size: 17px; color: #fff; }
+    .copy { position: absolute; right: 14px; top: 14px; min-height: 34px; padding: 7px 10px; font-size: 12px; }
+    .stage { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .pill { padding: 7px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    .pill.green { color: var(--green); border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.07); }
+    .pill.yellow { color: var(--yellow); border-color: rgba(234,179,8,.35); background: rgba(234,179,8,.07); }
+    .pill.red { color: #ffb4b4; border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.07); }
+    .lead-card { padding: 18px; box-shadow: none; }
+    .lead-card strong { display: block; font-size: 17px; margin-bottom: 5px; }
+    .lead-meta { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+    .capture label { display: block; font-weight: 800; margin: 13px 0 6px; }
+    input, textarea, select {
+      width: 100%; min-height: 42px;
+      border: 1px solid var(--border);
+      background: #0f0f0f;
+      color: var(--text);
+      border-radius: 11px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+    textarea { min-height: 86px; resize: vertical; }
+    .capture { padding: 20px; box-shadow: none; }
+    .objection { padding: 18px; box-shadow: none; border-left: 4px solid var(--yellow); }
+    .objection .q { color: var(--yellow); font-weight: 900; margin-bottom: 8px; }
+    .money { font-size: 38px; font-weight: 900; letter-spacing: -.04em; color: #fff; }
+    .close-box { border: 1px solid rgba(34,197,94,.35); background: rgba(34,197,94,.07); }
+    .warning { border: 1px solid rgba(234,179,8,.35); background: rgba(234,179,8,.08); }
+    .danger { border: 1px solid rgba(239,68,68,.35); background: rgba(239,68,68,.07); }
+    .small { font-size: 13px; }
+    .actions { display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .two-col { columns: 2; column-gap: 28px; }
+    .checklist label { display:flex; gap:10px; align-items:flex-start; color: var(--soft); margin: 10px 0; }
+    .checklist input { width: 18px; min-height: 18px; margin-top: 3px; }
+    footer { padding: 30px 0 50px; color: var(--muted); text-align:center; }
+    @media (max-width: 900px) {
+      header { grid-template-columns: 1fr; }
+      .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
+      .two-col { columns: 1; }
+      .hero { padding: 24px; }
+    }
+    @media print {
+      body { background: white; color: #111; font-size: 11pt; }
+      .nav, .copy, button, .actions { display:none !important; }
+      .shell { max-width: none; padding: 0; }
+      header, .grid { display:block; }
+      .hero, .scoreboard, .card, .script, .capture, .objection, .lead-card { box-shadow:none; background:white; color:#111; border: 1px solid #ddd; break-inside: avoid; margin-bottom: 12px; }
+      p, li, .muted, .lead-meta { color:#222; }
+      h1 { font-size: 30pt; }
+      h2 { font-size: 18pt; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="hero">
+        <div class="eyebrow">Agent Path SDR Desk · Internal</div>
+        <h1>Property Manager Owner Lead Radar</h1>
+        <p class="big">Your job is not to sell AI. Your job is to book property managers into a practical trial: real owner-lead opportunities, free sample first, paid weekly feed if useful.</p>
+        <div class="badge-row">
+          <span class="badge">Primary offer: $799/mo territory</span>
+          <span class="badge">Free sample: 5–10 leads</span>
+          <span class="badge">First markets: Denver + Phoenix</span>
+          <span class="badge">Goal: 10 quality calls/day</span>
+        </div>
+      </div>
+      <aside class="scoreboard">
+        <div class="metric"><strong>1</strong><span>Close per metro proves the product.</span></div>
+        <div class="metric"><strong>8–10</strong><span>PM companies to sample per city max.</span></div>
+        <div class="metric"><strong>90 days</strong><span>Lock leads sent to paying clients.</span></div>
+        <div class="metric"><strong>Never</strong><span>Promise the same list to competitors.</span></div>
+      </aside>
+    </header>
+
+    <nav class="nav">
+      <a href="#daily">Daily Flow</a>
+      <a href="#who">Who To Call</a>
+      <a href="#offer">Offer</a>
+      <a href="#script">Script</a>
+      <a href="#objections">Objections</a>
+      <a href="#close">Close + Pay</a>
+      <a href="#capture">Call Notes</a>
+      <a href="#rules">Rules</a>
+    </nav>
+
+    <main class="grid">
+      <section id="daily" class="card span-12">
+        <div class="kicker">Daily SDR flow</div>
+        <h2>Do this every work block.</h2>
+        <div class="grid">
+          <div class="span-4">
+            <h3>1. Prep 10 calls</h3>
+            <p>Open today’s target city. Pull the company website, owner/manager name if visible, phone, email/contact form, and the private sample-page link if ready.</p>
+          </div>
+          <div class="span-4">
+            <h3>2. Call first</h3>
+            <p>Phone beats email. Use email/contact form only after no answer or as a follow-up after live interest.</p>
+          </div>
+          <div class="span-4">
+            <h3>3. Capture exact words</h3>
+            <p>Do not summarize vaguely. Write the buyer’s real objection, pain, and next step. Captain uses this to improve the product.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <span class="pill green">Good outcome: demo/sample requested</span>
+          <span class="pill green">Best outcome: territory hold / payment ready</span>
+          <span class="pill yellow">Okay outcome: follow-up scheduled</span>
+          <span class="pill red">Bad outcome: no next action</span>
+        </div>
+      </section>
+
+      <section id="who" class="card span-7">
+        <div class="kicker">Who to call first</div>
+        <h2>Property managers who want more doors.</h2>
+        <p>Prioritize small-to-mid property management companies. They feel owner-acquisition pain, but are not so large that every process is locked behind corporate layers.</p>
+        <ul class="two-col">
+          <li><span class="do">Call:</span> 50–500 managed doors.</li>
+          <li><span class="do">Call:</span> local/regional PM firms.</li>
+          <li><span class="do">Call:</span> companies advertising owner services.</li>
+          <li><span class="do">Call:</span> owner/operator visible on site.</li>
+          <li><span class="dont">Avoid:</span> giant national franchises first.</li>
+          <li><span class="dont">Avoid:</span> firms with no PM focus.</li>
+          <li><span class="dont">Avoid:</span> pure realtors with occasional rentals.</li>
+          <li><span class="dont">Avoid:</span> anyone asking for guaranteed closed clients.</li>
+        </ul>
+      </section>
+
+      <section class="card span-5 warning">
+        <div class="kicker">Market order</div>
+        <h2>First locations</h2>
+        <ol>
+          <li><strong>Denver</strong> — first proof market.</li>
+          <li><strong>Phoenix</strong> — best next market.</li>
+          <li><strong>Atlanta</strong> — large investor market.</li>
+          <li><strong>Dallas–Fort Worth</strong> — deep territory potential.</li>
+          <li><strong>Tampa–Orlando</strong> — rental/investor corridor.</li>
+          <li><strong>Charlotte–Raleigh</strong> — expansion wave.</li>
+        </ol>
+      </section>
+
+      <section id="offer" class="card span-12">
+        <div class="kicker">Offer</div>
+        <h2>Sell the result, not the tool.</h2>
+        <div class="grid">
+          <div class="span-4 lead-card">
+            <h3>Free sample</h3>
+            <div class="money">$0</div>
+            <p>5–10 local owner/rental opportunities. They inspect the list before paying.</p>
+            <ul><li>Private sample page</li><li>Outreach angle per lead</li><li>No obligation</li></ul>
+          </div>
+          <div class="span-4 lead-card close-box">
+            <h3>Territory Radar</h3>
+            <div class="money">$799/mo</div>
+            <p>Weekly owner-lead feed for a protected city/sub-territory.</p>
+            <ul><li>40–60 leads/month</li><li>Same leads not sold to competitors</li><li>90-day lead lock</li></ul>
+          </div>
+          <div class="span-4 lead-card">
+            <h3>Managed assist</h3>
+            <div class="money">$1,499/mo</div>
+            <p>Lead list plus outreach drafts, follow-up tracker, and weekly review.</p>
+            <ul><li>For buyers wanting more help</li><li>SDR/copy support</li><li>Best after proof</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="script" class="card span-12">
+        <div class="kicker">Call script</div>
+        <h2>Open short. Ask one real question.</h2>
+        <div class="script" data-copy>
+          <button class="copy">Copy</button>
+          <p>“Hey, this is Nick with Agent Path. I’m testing a practical lead radar for property managers. We find local owner/rental opportunities that may be worth outreach — things like stale listings, out-of-state owners, weak rental marketing, or owner-managed rentals. I made a small sample for property managers in your market. Who handles new owner acquisition for you?”</p>
+        </div>
+        <div class="grid" style="margin-top:16px">
+          <div class="span-6">
+            <h3>If they engage</h3>
+            <div class="script" data-copy>
+              <button class="copy">Copy</button>
+              <p>“The first sample is free. If the leads look useful, we can refresh it weekly for your territory. The important part: we do not sell the same opportunities to direct competitors.”</p>
+            </div>
+          </div>
+          <div class="span-6">
+            <h3>If they ask what AI does</h3>
+            <div class="script" data-copy>
+              <button class="copy">Copy</button>
+              <p>“AI is mostly behind the scenes. The product is not software you have to learn. It is a weekly list of owner/rental opportunities with the reason they may be worth contacting and what to say.”</p>
+            </div>
+          </div>
+          <div class="span-6">
+            <h3>Voicemail</h3>
+            <div class="script" data-copy>
+              <button class="copy">Copy</button>
+              <p>“Hey, this is Nick with Agent Path. I pulled a few local owner-lead opportunities for your property management company. Not a software pitch — just a short sample list you can inspect. I’ll send it over, and if it’s useful we can talk about refreshing it weekly for your territory. My number is [your number].”</p>
+            </div>
+          </div>
+          <div class="span-6">
+            <h3>Email / contact form follow-up</h3>
+            <div class="script" data-copy>
+              <button class="copy">Copy</button>
+              <p>Subject: Owner leads for [Company]
+
+Hi [Name] — I pulled a short sample of local property-owner/rental opportunities that may be worth outreach for [Company]. Not selling software. It’s a practical lead list with why each opportunity may matter and what to say.
+
+Sample: [private link]
+
+If it’s useful, we can refresh this weekly for your territory and won’t send the same opportunities to direct competitors.
+
+— Nick</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="objections" class="card span-12">
+        <div class="kicker">Objection replies</div>
+        <h2>Keep it plain. Do not argue.</h2>
+        <div class="grid">
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“We already buy leads.”</div><p>“Makes sense. This is different from generic shared lead marketplaces. The goal is a curated list of owner/rental situations in your actual territory, with the reason they may be worth outreach. If the sample is not useful, don’t use it.”</p></div>
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“Can you guarantee new owners?”</div><p>“No. I would not promise that honestly. We guarantee the research/feed and territory protection. The sample exists so you can judge lead quality before paying.”</p></div>
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“Is this spam?”</div><p>“No. We are not blasting homeowners. We identify public business opportunities and give you a suggested human outreach angle. You decide who to contact and how.”</p></div>
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“Send me information.”</div><p>“I can. The useful thing is the sample page, not a brochure. I’ll send 5–10 examples. If those are weak, you’ll know immediately. What email should I send it to?”</p></div>
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“We’re not interested.”</div><p>“No problem. Before I let you go — is owner acquisition already handled well, or is it just not a priority this month?”</p></div>
+          <div class="span-6 objection" data-copy><button class="copy">Copy</button><div class="q">“How much?”</div><p>“The sample is free. If it is useful and you want the weekly protected territory feed, it is $799/month. Same leads are not sent to direct competitors.”</p></div>
+        </div>
+      </section>
+
+      <section id="close" class="card span-8 close-box">
+        <div class="kicker">Close + payment</div>
+        <h2>If they want it now, close the territory hold.</h2>
+        <p>Use this when they say the sample looks useful or they want to reserve the market.</p>
+        <div class="script" data-copy>
+          <button class="copy">Copy</button>
+          <p>“The clean next step is to hold the territory and start the weekly feed. It’s $799/month. We’ll send the first full batch, lock those leads from competitors for 90 days, and review quality after the first week. If the first full batch is not useful, we cancel before the next month.”</p>
+        </div>
+        <h3 style="margin-top:18px">Payment path today</h3>
+        <ol>
+          <li><strong>Collect billing contact:</strong> name, company, email, phone, territory they want.</li>
+          <li><strong>Mark status:</strong> “Payment ready — Radar $799/mo.”</li>
+          <li><strong>Text/send Captain immediately:</strong> company + buyer + territory + email + phone.</li>
+          <li><strong>Captain sends Stripe invoice/payment link.</strong> Current environment has no Radar Stripe link configured yet.</li>
+          <li><strong>Do not promise activation until payment clears</strong> unless Captain approves a trial exception.</li>
+        </ol>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://buy.stripe.com/7sY9ATaAV1Qz9SO8mv87K01" target="_blank" rel="noopener">Fallback: $999 AI Assessment Stripe</a>
+          <button onclick="copyPaymentRequest()">Copy payment-ready note</button>
+        </div>
+        <p class="small muted" style="margin-top:12px">Note: the button is only for the existing AI Assessment. Radar needs its own Stripe link/invoice before the SDR can take instant payment without Captain.</p>
+      </section>
+
+      <section class="card span-4 danger">
+        <div class="kicker">Do not say</div>
+        <h2>Hard lines</h2>
+        <ul>
+          <li>Do not guarantee closed property owners.</li>
+          <li>Do not say the list is exclusive before payment.</li>
+          <li>Do not sell the same lead to two paying competitors.</li>
+          <li>Do not call it “AI software.”</li>
+          <li>Do not invent lead sources or fake examples.</li>
+        </ul>
+      </section>
+
+      <section id="capture" class="card span-12">
+        <div class="kicker">Call notes</div>
+        <h2>Capture this after every call.</h2>
+        <div class="grid">
+          <div class="span-6 capture">
+            <label>Company</label><input id="company" placeholder="DenCO Property Management">
+            <label>Contact name / role</label><input id="contact" placeholder="David — owner / ops / growth">
+            <label>Market / territory</label><input id="territory" placeholder="Denver / Aurora / Lakewood">
+            <label>Phone / email</label><input id="contactInfo" placeholder="phone, email">
+            <label>Outcome</label>
+            <select id="outcome">
+              <option>No answer</option><option>Left voicemail</option><option>Sent sample</option><option>Interested — follow-up scheduled</option><option>Payment ready</option><option>Not interested</option><option>Bad fit</option>
+            </select>
+          </div>
+          <div class="span-6 capture">
+            <label>Exact buyer language</label><textarea id="buyerWords" placeholder="Write their actual words. Example: 'We need owner leads, not tenant leads.'"></textarea>
+            <label>Objection / concern</label><textarea id="objectionText" placeholder="Price, quality, source, compliance, timing..."></textarea>
+            <label>Next action + date</label><textarea id="nextAction" placeholder="Send sample page by 3pm. Call back Friday at 10am."></textarea>
+            <div class="actions"><button class="btn-primary" onclick="exportNotes()">Copy call note</button><button onclick="clearNotes()">Clear</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rules" class="card span-12">
+        <div class="kicker">Quality rules</div>
+        <h2>The product lives or dies on trust.</h2>
+        <div class="grid">
+          <div class="span-6 checklist">
+            <h3>Before sending a sample</h3>
+            <label><input type="checkbox"> Prospect is actually a property manager.</label>
+            <label><input type="checkbox"> Territory is not already held by a paying client.</label>
+            <label><input type="checkbox"> Sample page matches their market.</label>
+            <label><input type="checkbox"> No fake metrics or invented owner intent.</label>
+            <label><input type="checkbox"> CTA says sample first, weekly feed if useful.</label>
+          </div>
+          <div class="span-6 checklist">
+            <h3>After every live conversation</h3>
+            <label><input type="checkbox"> Capture exact buyer language.</label>
+            <label><input type="checkbox"> Log next action or close as bad fit.</label>
+            <label><input type="checkbox"> Send follow-up within 10 minutes.</label>
+            <label><input type="checkbox"> Notify Captain on payment-ready or strong objection.</label>
+            <label><input type="checkbox"> Never leave “send info” without a date/time follow-up.</label>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Agent Path internal SDR guide · Owner Lead Radar · noindex</footer>
+  </div>
+
+  <script>
+    function textFor(el) {
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll('button').forEach(b => b.remove());
+      return clone.innerText.trim();
+    }
+    document.querySelectorAll('[data-copy] .copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = textFor(btn.closest('[data-copy]'));
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = old, 1000);
+      });
+    });
+    const fields = ['company','contact','territory','contactInfo','outcome','buyerWords','objectionText','nextAction'];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      const saved = localStorage.getItem('sdr_' + id);
+      if (saved) el.value = saved;
+      el.addEventListener('input', () => localStorage.setItem('sdr_' + id, el.value));
+    });
+    async function exportNotes() {
+      const v = id => document.getElementById(id).value.trim();
+      const note = `SDR Call Note\nCompany: ${v('company')}\nContact: ${v('contact')}\nTerritory: ${v('territory')}\nPhone/email: ${v('contactInfo')}\nOutcome: ${v('outcome')}\nBuyer language: ${v('buyerWords')}\nObjection: ${v('objectionText')}\nNext action: ${v('nextAction')}`;
+      await navigator.clipboard.writeText(note);
+      alert('Call note copied. Paste it into Telegram/CRM.');
+    }
+    function clearNotes() {
+      fields.forEach(id => { document.getElementById(id).value = ''; localStorage.removeItem('sdr_' + id); });
+    }
+    async function copyPaymentRequest() {
+      const text = 'Payment ready — Radar $799/mo\nCompany: \nBuyer/contact: \nEmail: \nPhone: \nTerritory requested: \nNotes: Please send Stripe invoice/payment link.';
+      await navigator.clipboard.writeText(text);
+      alert('Payment-ready note copied.');
+    }
+  </script>
+</body>
+</html>
